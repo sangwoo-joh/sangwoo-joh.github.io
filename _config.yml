@@ -15,6 +15,7 @@ disqus: blog-utrcmpd2xa
 permalink: /:title
 
 markdown: kramdown
+theme: no-style-please
 theme_config:
   appearance: "auto"
   back_home_text": ".."
