@@ -16,7 +16,6 @@ permalink: /:title
 
 # Build settings
 markdown: kramdown
-theme: no-style-please
 theme_config:
   appearance: "auto"
   back_home_text": ".."
