@@ -18,8 +18,8 @@ markdown: kramdown
 theme: no-style-please
 theme_config:
   appearance: "auto"
-  back_home_text": ".."
-  date_format": "%Y-%m-%d"
+  back_home_text: ".."
+  date_format: "%Y-%m-%d"
   show_description: true
 
 sass:
