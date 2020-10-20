@@ -2,7 +2,6 @@ title: Caml Shaving
 email: lambdasnow@gmail.com
 description: Yet Another Software Engineer's Blog
 author: sangwoo-joh
-# baseurl: "/startbootstrap-clean-blog-jekyll"
 url: https://sangwoo-joh.github.io
 
 # Social Profiles
@@ -12,9 +11,9 @@ linkedin_username: sangwoo-joh
 # Add your google-analytics ID here to activate google analytics
 google_analytics: UA-145416085-1
 disqus: blog-utrcmpd2xa
+
 permalink: /:title
 
-# Build settings
 markdown: kramdown
 theme_config:
   appearance: "auto"
