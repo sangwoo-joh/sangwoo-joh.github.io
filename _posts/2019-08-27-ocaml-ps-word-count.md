@@ -3,8 +3,6 @@ layout: post
 published: true
 title: OCaml과 함께 PS를 -2-
 subtitle: 힘을 내.. OCaml
-categories: ocaml
-background: '/assets/img/camels.jpeg'
 ---
 
  최애 언어 [OCaml](https://ocaml.org/) 로 문제를 풀어보자 두 번째

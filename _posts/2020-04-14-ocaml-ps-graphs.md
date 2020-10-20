@@ -3,8 +3,6 @@ layout: post
 published: true
 title: OCaml과 함께 PS를 -5-
 subtitle: OCamlgraph 흉내내기
-categories: ocaml
-background: '/assets/img/camels.jpeg'
 ---
 
  최애 언어 [OCaml](https://ocaml.org/) 로 문제를 풀어보자 다섯 번째

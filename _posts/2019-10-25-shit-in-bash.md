@@ -3,8 +3,6 @@ layout: post
 published: true
 title: 배쉬 스크립트에서 지뢰 피하기
 subtitle: 뭐 이딴게 다있어
-categories: cs
-background: '/assets/img/daily-desk.jpg'
 ---
 
  모름지기 프로그래머는 귀찮은 반복적인 일을 자동화할 줄 알아야

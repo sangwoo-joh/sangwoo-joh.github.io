@@ -3,8 +3,6 @@ layout: post
 published: true
 title: 시작
 subtitle: 블로깅의 시작
-categories: life
-background: '/assets/img/light.jpg'
 ---
 
  돌고 돌아 다시 Jekyll로 블로그를 만들었다. (update:2017-12-21)

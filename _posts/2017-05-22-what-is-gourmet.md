@@ -3,8 +3,6 @@ layout: post
 published: true
 title: 미식이란...
 subtitle: 대체 뭘까
-categories: life
-background: '/assets/img/sikmool.jpg'
 ---
 
 >  미식: 좋은 음식. 또는 그런 음식을 먹음.

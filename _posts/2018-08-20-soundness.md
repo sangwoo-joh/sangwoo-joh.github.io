@@ -2,9 +2,7 @@
 layout: post
 title: Soundness
 subtitle: 정적 분석과 안전함
-categories: cs
 published: true
-background: '/assets/img/flower0.jpg'
 ---
 
  이 글은 Michel Hicks의 ["What is soundness in static

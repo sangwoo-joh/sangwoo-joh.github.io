@@ -3,8 +3,6 @@ layout: post
 published: true
 title: 누가 퍼포먼스를 출렁이게 하는가?
 subtitle: 하드웨어는 믿을 게 못된다
-categories: cs
-background: '/assets/img/question-marks.jpg'
 ---
 
  유튜브 알고리즘이 [이런

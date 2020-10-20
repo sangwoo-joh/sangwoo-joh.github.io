@@ -3,8 +3,6 @@ layout: post
 published: true
 title: OCaml과 함께 PS를 -4-
 subtitle: Permutation, Combination
-categories: ocaml
-background: '/assets/img/camels.jpeg'
 ---
 
  최애 언어 [OCaml](https://ocaml.org/) 로 문제를 풀어보자 네 번째

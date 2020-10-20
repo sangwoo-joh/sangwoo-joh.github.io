@@ -2,9 +2,7 @@
 layout: post
 title: 세그먼트 트리
 subtitle: 부분이 자주 변하는 경우
-categories: cs
 published: true
-background: '/assets/img/light.jpg'
 ---
  알고리즘 준비를 하다가 만난 문제다. 주어진 배열에서,
 
