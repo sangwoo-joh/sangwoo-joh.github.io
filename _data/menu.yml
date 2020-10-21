@@ -10,5 +10,12 @@ entries:
 
   - title: thoughts
     post_list: true
+    category: thoughts
+    url: false
+    entries: false
+
+  - title: dev
+    post_list: true
+    category: dev
     url: false
     entries: false
