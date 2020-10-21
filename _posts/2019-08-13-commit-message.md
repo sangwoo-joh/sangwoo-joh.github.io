@@ -3,6 +3,7 @@ layout: post
 published: true
 title: 커밋 메시지 잘 적기
 subtitle: 기술적 빚이라도 잘 갚자
+category: dev
 ---
 
  졸업하고 엔지니어의 삶을 산지 벌써 1년이 넘었다. 내가 맡은 프로젝트

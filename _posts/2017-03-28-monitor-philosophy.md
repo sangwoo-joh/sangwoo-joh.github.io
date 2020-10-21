@@ -3,6 +3,7 @@ layout: post
 published: true
 title: 모니터 철학
 subtitle: 모니터를 어떻게 써야할까
+category: thoughts
 ---
 
 
