@@ -2,7 +2,7 @@
 {% for post in site.posts %}
 {% if post.category == include.category %}
   <li>
-    {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>
+    {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>  <sub><a href="{{ post.url | relative_url }}#disqus_thread">[]</a></sub>
   </li>
 {% endif %}
 {% endfor %}
