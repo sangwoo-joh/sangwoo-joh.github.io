@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: 시작
-subtitle: 블로깅의 시작
+subtitle: 글을 쓰자
 category: thoughts
 ---
 

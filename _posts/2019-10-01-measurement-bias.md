@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: 누가 퍼포먼스를 출렁이게 하는가?
-subtitle: 하드웨어는 믿을 게 못된다
+subtitle: 세상에 믿을 놈 하나 없다
 category: dev
 ---
 

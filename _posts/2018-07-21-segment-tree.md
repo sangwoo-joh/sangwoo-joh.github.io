@@ -1,7 +1,7 @@
 ---
 layout: post
 title: 세그먼트 트리
-subtitle: 부분이 자주 변하는 경우
+subtitle: 자료 구조란 어려워
 published: true
 category: dev
 ---
