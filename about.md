@@ -3,7 +3,7 @@ layout: page
 title: About
 permalink: /about/
 ---
- <p align="center"><img src="/assets/img/caml.jpg"/> </p>
- [야크
- 털깎기](http://www.catb.org/~esr/jargon/html/Y/yak-shaving.html)
- ... 가 아닌 [**낙타**](https://realworldocaml.org) **털깎기** 를 하기 위한 블로그.
+
+- 정해진 글감 없이 쓰고 싶은게 생기면 씁니다.
+- 제가 쓰는 글은 특정 집단의 입장을 대변하지 않습니다.
+- 제 글은 주로 개인적인 경험에 기반한 글이며, 항상 틀릴 수 있습니다.
