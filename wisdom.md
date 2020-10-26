@@ -9,3 +9,6 @@ permalink: /wisdom/
 
 
 > Enthusiasm is common. Endurance is rare. - Angela Duckworth
+
+
+> Speech is silver, silence is golden. - Thomas Carlyle
