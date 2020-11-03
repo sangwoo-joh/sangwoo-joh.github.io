@@ -1,7 +1,12 @@
+{% assign timeframe = 604800 %}
+{% assign recent_criteria = "now" | date: "%s" | minus: timeframe %}
+
 <ul>
 {% for post in site.posts %}
 {% if post.category == include.category %}
   <li>
+    {% assign post_time = post.date | date: "%s" | plus: 0 %}
+    {% if post_time > recent_criteria %}<b>[new!]</b>{% endif %}
     {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>  <sub><a href="{{ post.url | relative_url }}#disqus_thread">[]</a></sub>
   </li>
 {% endif %}
