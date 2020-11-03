@@ -9,7 +9,7 @@
     </li>
 
     {% if item.post_list == true %}
-      {% include post_list.html category=item.category %}
+      {% include post_list.html category=item.category recent=item.recent %}
     {% endif %}
 
     {% if item.entries != blank %}        
