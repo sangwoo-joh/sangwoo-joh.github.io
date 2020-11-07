@@ -23,9 +23,12 @@ html, body { background-color: white; }
 
 html { height: 100%; }
 
+// Handling monospace font size in browsers is fundamentally broken.  A hacky solution is applied to
+// prevent browsers from reducing the monospace font size arbitrarily.
+// see: http://code.iamkate.com/html-and-css/fixing-browsers-broken-monospace-font-handling/
 body {
   color: black;
-  font-family: monospace;
+  font-family: monospace, monospace;
   font-size: 1.3rem;
   line-height: 1.3;
   margin: 0;
