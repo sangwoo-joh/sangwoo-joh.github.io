@@ -1,5 +1,4 @@
-{% assign timeframe = 604800 %}
-{% assign week_ago = "now" | date: "%s" | minus: timeframe %}
+{% assign week_ago = "now" | date: "%s" | minus: 604800 %}
 
 <ul>
   {% for post in site.posts %}
