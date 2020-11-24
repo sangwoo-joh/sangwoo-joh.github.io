@@ -1,4 +1,4 @@
-{% assign week_ago = "now" | date: "%s" | minus: 604800 %}
+{% assign fourdays_ago = "now" | date: "%s" | minus: 345600 %}
 
 <ul>
   {% for post in site.posts %}
@@ -8,10 +8,10 @@
   {% if post.category == include.category %}
   <!-- normal posts -->
   <li>
-    {% if post_time > week_ago %}<b>[new!]</b>{% endif %} <!-- show new tag in normal list -->
+    {% if post_time > fourdays_ago %}<b>[new!]</b>{% endif %} <!-- show new tag in normal list -->
     {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>  <sub><a href="{{ post.url | relative_url }}#disqus_thread">[]</a></sub>
   </li>
-  {% elsif include.recent and post_time > week_ago %}
+  {% elsif include.recent and post_time > fourdays_ago %}
   <!-- recent posts -->
   <li>
     {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>  <sub><a href="{{ post.url | relative_url }}#disqus_thread">[]</a></sub>
