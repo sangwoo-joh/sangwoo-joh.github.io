@@ -1,10 +1,20 @@
 <ul>
   {% for item in include.collection %}
+
+    {% if item.category %}
+      {% assign total = 0 %}
+      {% for post in site.posts %}
+        {% if post.category == item.category %}
+          {% assign total = total | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
+
     <li>
     {% if item.url != false %}
       <a href="{{ item.url }}">{{ item.title }}</a>
     {% else %}
-      {{ item.title }}
+      {{ item.title }} {% if total %} [{{ total }}] {% endif %}
     {% endif %}
     </li>
 
@@ -12,7 +22,7 @@
       {% include post_list.html category=item.category recent=item.recent %}
     {% endif %}
 
-    {% if item.entries != blank %}        
+    {% if item.entries != blank %}
       {% include menu_item.html collection=item.entries %}
     {% endif %}
   {% endfor %}
