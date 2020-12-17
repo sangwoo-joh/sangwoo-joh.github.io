@@ -79,9 +79,11 @@ category: dev
 ### 백준 만세
  백준 온라인 저지 사이트의 기능 요청을 받는
  [깃허브](https://github.com/startlink/boj-feature-request)가
- 있더라. 여기에 정성스럽게 이슈를 올렸다. 지금 쓰이는 컴파일러 버전에
- 심각한 버그가 있으니 올려주세요. 네이티브 컴파일 해주세요. 더불어
- 자바랑 유사하니까 시간 제한 좀 늘려주세요.
+ 있더라. 여기에 정성스럽게
+ [이슈를](https://github.com/Startlink/BOJ-Feature-Request/issues/186)
+ [올렸다](https://github.com/Startlink/BOJ-Feature-Request/issues/188). 지금
+ 쓰이는 컴파일러 버전에 심각한 버그가 있으니 올려주세요. 네이티브
+ 컴파일 해주세요. 더불어 자바랑 유사하니까 시간 제한 좀 늘려주세요.
 
  그리고 인고의 기다림 끝에 드디어!!! 백준 온라인 저지에 모든 것이
  반영되었다. 백준 만만세! 이제 백준 사이트에서는
