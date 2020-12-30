@@ -32,9 +32,9 @@ category: dev
     못쓰네](https://github.com/janestreet/ecaml/issues/6). 다음 버전
     릴리즈 때나 고쳐지겠군...
   - 플러그인 말고 elisp 자체를 네이티브 코드로 컴파일하는 도구는 없나?
-  - 찾아보니 개발자 한명이 개인 프로젝트로 1년동안 해온
-    [GccEmacs](https://www.emacswiki.org/emacs/GccEmacs)가 있구나!
-  - 심지어 [톡](https://youtu.be/zKHYZOAc_bQ)도 했었군.
+  - 찾아보니 1년 동안 개발되고 있는
+    [GccEmacs](https://www.emacswiki.org/emacs/GccEmacs)라는게
+    있구나. 심지어 [톡](https://youtu.be/zKHYZOAc_bQ)도 했었군.
 
 ...까지 돌다 와서, 당장 새 버전을 빌드해서 사용해보고 있다.
 
