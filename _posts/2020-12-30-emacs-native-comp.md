@@ -84,7 +84,7 @@ emacs --version  # shows GNU Emacs 28.0.50
   * 나머지 20%는 C로 짜여있는데 주로 성능 문제 때문이다. 대부분의
     primitives 함수와 Elisp 인터프리터가 이걸로 구현되어 있는 것 같다.
   * Elisp은 느리다 (...).
-  * Elisp 인터프리터는 C로 짜여있지만, Elisp 바이트 컴파일러 최적화는
+  * Elisp 인터프리터는 C로 짜여있지만, Elisp 바이트코드 최적화는
     Elisp으로 짜여져 있다. 즉 부트스트래핑 해야 한다.
 
  하여튼 간에 핵심은 Elisp이 느리다는 것이다. 정확히는 지금의 Elisp
