@@ -89,8 +89,8 @@ emacs --version  # shows GNU Emacs 28.0.50
 
  하여튼 간에 핵심은 Elisp이 느리다는 것이다. 정확히는 지금의 Elisp
  인터프리터와 바이트코드 컴파일러가 느리다. 재밌는 것은 바이트코드
- 컴파일 최적화 코드인 `byte-opt.el` 파일의 주석에 다음과 같은 인용구가
- 쓰여져 있는데:
+ 컴파일러의 최적화 패스 코드인 `byte-opt.el` 파일의 주석에는 다음과
+ 같은 인용구가 쓰여져 있는데:
 
 > "No matter how hard you try, you can't make a racehorse out of a
 > pig. You can, however, make a faster pig."
