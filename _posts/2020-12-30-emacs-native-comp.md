@@ -142,9 +142,12 @@ emacs --version  # shows GNU Emacs 28.0.50
  설치 & 로드하기 시작했다. 다만 딱 두 가지, `auctex` 와
  `company-auctex` 패키지는 signature verification에 실패한다 (...)
  TeX질 할 일이 없어서 급한 불은 아니라 일단 그냥 두긴 한데 영
- 찝찝하다.
+ 찝찝하다. 그런데 설치는 또 됐다(???). 흐음. rounding edges 라고
+ 했지만 애초에 정식 버전이 아니라서 그런가보다.
 
- 그래도 확실히 빠릿빠릿해진게 느껴진다. 착각이 아니었다.
+ 그래도 확실히 빠릿빠릿해진게 느껴진다. 착각이 아니었다. 너무
+ 좋다. 이제 똑똑한 가비지 컬렉터랑 진정한 멀티코어 쓰레딩만 들어오면
+ 더 바랄 게 없겠다.
 
 ---
 [^1]: [Guile-emacs](https://www.emacswiki.org/emacs/GuileEmacs)라고 하며, 이 [Guile](https://www.gnu.org/software/guile/) 이라는 언어는 Rust로 개발한다고 한다. 근데 이러면 돼지가 아니라 아예 다른 생물이 되는 게 아닌지?
