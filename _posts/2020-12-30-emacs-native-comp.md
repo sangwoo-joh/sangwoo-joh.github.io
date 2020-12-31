@@ -144,6 +144,8 @@ emacs --version  # shows GNU Emacs 28.0.50
  TeX질 할 일이 없어서 급한 불은 아니라 일단 그냥 두긴 한데 영
  찝찝하다.
 
+ 그래도 확실히 빠릿빠릿해진게 느껴진다. 착각이 아니었다.
+
 ---
 [^1]: [Guile-emacs](https://www.emacswiki.org/emacs/GuileEmacs)라고 하며, 이 [Guile](https://www.gnu.org/software/guile/) 이라는 언어는 Rust로 개발한다고 한다. 근데 이러면 돼지가 아니라 아예 다른 생물이 되는 게 아닌지?
 
