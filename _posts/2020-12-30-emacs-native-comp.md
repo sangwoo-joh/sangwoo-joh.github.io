@@ -40,8 +40,8 @@ category: dev
 
 ### 이맥스 28 + 네이티브 컴파일러
  1. 일단 이맥스 코드를 클론
-    받는다. `git://git.savannah.gnu.org/emacs.git` 을 클론해도 되고
-    미러인 `https://github.com/emacs-mirror/emacs`를 클론해도 된다.
+    받는다. git://git.savannah.gnu.org/emacs.git 을 클론해도 되고
+    미러인 https://github.com/emacs-mirror/emacs 를 클론해도 된다.
  2. `feature/native-comp` 브랜치에 체크아웃 한다.
  3. GCC-10, 그리고 네이티브 컴파일러를 위한 libgccjit 디펜던시를
     설치한 뒤에 빌드한다:
