@@ -3,6 +3,7 @@
 
 entries:
   - title: /root
+    post_list: false
     entries:
       - title: /about
         url: about
@@ -18,6 +19,8 @@ entries:
     entries: false
 
   - title: /bin
+    url: false
+    post_list: false
     entries:
       - title: /thoughts
         post_list: true
