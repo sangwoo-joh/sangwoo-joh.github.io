@@ -10,7 +10,7 @@ entries:
       - title: /mantra
         url: mantra
       - title: /translate
-        url: https://sangwoo-joh.github.io/google-engineering-practices-kr/
+        url: google-engineering-practices-kr
 
   - title: /tmp/recent
     post_list: true
