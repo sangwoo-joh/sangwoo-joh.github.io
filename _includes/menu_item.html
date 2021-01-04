@@ -1,5 +1,18 @@
+{% assign week_ago = "now" | date: "%s" | minus: 604800 %}
+{% assign show_tmp = false %}
+{% for post in site.posts %}
+  {% assign post_time = post.date | date: "%s" | plus: 0 %}
+  {% if post_time > week_ago %}
+    {% assign show_tmp = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
 <ul>
   {% for item in include.collection %}
+    {% if item.recent and show_tmp == false %}
+      {% continue %}
+    {% endif %}
 
     {% if item.category %}
       {% assign total = 0 %}
