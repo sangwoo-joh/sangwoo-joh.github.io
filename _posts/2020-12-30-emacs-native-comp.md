@@ -48,7 +48,7 @@ category: dev
 
 ``` sh
 sudo add-apt-repository ppa:ubuntu-toolchain-r/test
-sudo apt-get install gcc-10 g++-10 libgccjit0 libgccjit10-dev libjansson4 libjansson-dev
+sudo apt-get install gcc-10 g++-10 libgccjit0 libgccjit-10-dev libjansson4 libjansson-dev
 export CC=/usr/bin/gcc-10 CXX=/usr/bin/gcc-10
 ./autogen.sh
 ./configure --with-nativecomp
