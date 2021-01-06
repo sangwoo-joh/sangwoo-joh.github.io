@@ -5,11 +5,11 @@ entries:
   - title: /root
     post_list: false
     entries:
-      - title: /about
+      - title: about
         url: about
-      - title: /mantra
+      - title: mantra
         url: mantra
-      - title: /translate
+      - title: translate
         url: google-engineering-practices-kr
 
   - title: /tmp/recent
@@ -22,12 +22,12 @@ entries:
     url: false
     post_list: false
     entries:
-      - title: /thoughts
+      - title: thoughts
         post_list: true
         category: thoughts
         url: false
         entries: false
-      - title: /dev
+      - title: dev
         post_list: true
         category: dev
         url: false
