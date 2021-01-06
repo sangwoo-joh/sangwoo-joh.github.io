@@ -70,7 +70,7 @@ category: dev
  ![엉엉](assets/img/sad-frog.jpg)
  <center>대답 좀 해 이맥스야...</center>
 
- `Ctrl-c Ctrl-x`로 종료되는 걸로 봐서 실행은 되고 있지만 폰트 렌더링이
+ `Ctrl-x Ctrl-c`로 종료되는 걸로 봐서 실행은 되고 있지만 폰트 렌더링이
  안되는 것 같았다. 흐음. 혹시 X 환경을 쓰는 어플리케이션 전부가 안되는
  것인가 싶어서 gedit과 xeyes를 켜봤지만 얘네는 잘 되었다. 이맥스만
  안되었다. 흐으으음.
