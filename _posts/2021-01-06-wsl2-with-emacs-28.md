@@ -2,7 +2,7 @@
 layout: post
 published: true
 title: WSL 2 + Emacs 28 (성공)
-subtitle: 진정한 리눅스(?)는 맥이 아니라 윈도우다
+subtitle: 진정한 리눅스는 맥이 아니라 윈도우다
 category: dev
 ---
 
