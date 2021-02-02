@@ -12,6 +12,7 @@ entries:
 
   - title: /projects
     post_list: false
+    url: false
     entries:
       - title: bible
         url: bible
