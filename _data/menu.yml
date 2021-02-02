@@ -9,6 +9,10 @@ entries:
         url: about
       - title: mantra
         url: mantra
+
+  - title: /projects
+    post_list: false
+    entries:
       - title: bible
         url: bible
       - title: translate
