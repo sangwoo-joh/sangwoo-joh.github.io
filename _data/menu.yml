@@ -7,6 +7,8 @@ entries:
     entries:
       - title: about
         url: about
+      - title: about me
+        url: about-me
       - title: mantra
         url: mantra
 
