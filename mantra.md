@@ -16,3 +16,7 @@ permalink: /mantra/
 
 > We don't rise to the level of our expectations; we fall to the level
 > of our training. - Archilochos
+
+
+> Young man, in mathematics you don't understand things. You just get
+> used to them. - John von Neumann
