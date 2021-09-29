@@ -2,10 +2,11 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: /root
+  - title: /
     post_list: false
+    url: false
     entries:
-      - title: about
+      - title: about blog
         url: about
       - title: about me
         url: about-me
@@ -27,20 +28,24 @@ entries:
     url: false
     entries: false
 
-  - title: /bin
+  - title: /usr/bin
     url: false
     post_list: false
     entries:
-      - title: dev
+      - title: /dev
         post_list: true
         category: dev
         url: false
         entries: false
-      - title: thoughts
+      - title: /thoughts
         post_list: true
         category: thoughts
         url: false
         entries: false
+      - title: /books
+        post_list: true
+        category: books
+        url: false
 
   - title: /var/rss
     url: feed.xml
