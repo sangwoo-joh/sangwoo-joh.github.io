@@ -18,8 +18,8 @@ entries:
     entries:
       - title: bible
         url: bible
-      - title: translate
-        url: google-engineering-practices-kr
+      # - title: translate
+      #   url: google-engineering-practices-kr
 
   - title: /tmp/recent
     post_list: true
