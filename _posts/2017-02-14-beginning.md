@@ -3,7 +3,7 @@ layout: post
 published: true
 title: 시작
 subtitle: 글을 쓰자
-category: thoughts
+category: usr
 ---
 
  돌고 돌아 다시 Jekyll로 블로그를 만들었다. (update:2017-12-21)

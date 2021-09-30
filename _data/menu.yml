@@ -2,25 +2,22 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: /
+  - title: /home
     post_list: false
-    url: false
+    url: /
+
+  - title: /about
+    post_list: false
+    url: about
     entries:
-      - title: about blog
-        url: about
-      - title: about me
+      - title: /me
         url: about-me
       - title: mantra
-        url: mantra
+        url: /mantra
 
-  - title: /projects
+  - title: /bible
     post_list: false
-    url: false
-    entries:
-      - title: bible
-        url: bible
-      # - title: translate
-      #   url: google-engineering-practices-kr
+    url: bible
 
   - title: /tmp/recent
     post_list: true
@@ -28,20 +25,17 @@ entries:
     url: false
     entries: false
 
-  - title: /usr/bin
+  - title: /dev
+    post_list: true
+    category: dev
     url: false
-    post_list: false
-    entries:
-      - title: /dev
-        post_list: true
-        category: dev
-        url: false
-        entries: false
-      - title: /thoughts
-        post_list: true
-        category: thoughts
-        url: false
-        entries: false
+    entries: false
+
+  - title: /usr
+    post_list: true
+    category: usr
+    url: false
+    entries: false
 
   - title: /var/rss
     url: feed.xml

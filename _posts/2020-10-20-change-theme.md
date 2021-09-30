@@ -3,7 +3,7 @@ layout: post
 published: true
 title: 테마 바꾸기
 subtitle: 언제까지 바꾸게 될까
-category: thoughts
+category: usr
 ---
 
  한동안 육아와 업무에 시달려 블로그를 소홀히 했다. 그러다 요즘 취미
