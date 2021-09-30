@@ -42,10 +42,6 @@ entries:
         category: thoughts
         url: false
         entries: false
-      - title: /books
-        post_list: true
-        category: books
-        url: false
 
   - title: /var/rss
     url: feed.xml
