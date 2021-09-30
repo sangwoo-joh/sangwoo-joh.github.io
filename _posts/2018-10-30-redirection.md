@@ -74,3 +74,5 @@ category: dev
  stderr이 추가적으로 stdout 핸들로 리다이렉트되는데, 이때 이미
  stdout은 `file`로 리다이렉트된 상황이다. 따라서 최종적으로
  `command`의 실행 결과와 오류가 모두 `file`에 쓰여진다.
+
+---

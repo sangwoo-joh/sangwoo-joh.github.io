@@ -19,3 +19,5 @@ category: usr
 >  - Tony Hoare, Speaking at a conference in 2009, QCon
 
  널 레퍼런스의 유혹이란...
+
+---

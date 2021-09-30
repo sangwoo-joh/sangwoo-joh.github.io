@@ -139,3 +139,5 @@ category: dev
 [^1]: [출처](https://hexus.net/business/news/components/147224-amd-briefly-passes-intel-desktop-cpu-market-share/)
 
 [^2]:[이맥스 키 바인딩 플러그인](https://marketplace.visualstudio.com/search?term=emacs&target=VSCode&category=All%20categories&sortBy=Relevance)과 [magit 플러그인](https://marketplace.visualstudio.com/items?itemName=kahole.magit)이 생각보다 잘 되어 있었다. 특히 magit을 VS Code에서 쓰게 될 줄은 몰랐다.
+
+---
