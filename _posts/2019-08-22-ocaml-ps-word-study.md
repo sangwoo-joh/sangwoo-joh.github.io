@@ -8,10 +8,10 @@ category: dev
 
  최애 언어 [OCaml](https://ocaml.org/) 로 문제를 풀어보자.
 
- [백준](https://www.acmicpc.net) 은
- [나무위키](https://namu.wiki/w/Baekjoon%20OJ)에 따르면 세계 최대
- 수준의 문제 수를 보유하고 있는 알고리즘 트레이닝 사이트이다. 거기다
- 온갖 프로그래밍 언어들의 컴파일러를 지원한다고 한다.
+ [백준](https://www.acmicpc.net)은
+ ([나무위키](https://namu.wiki/w/Baekjoon%20OJ)에 따르면) 세계 최대
+ 수준의 문제 수를 보유하고 있는 알고리즘 트레이닝 사이트이다. 문제가
+ 많은 것뿐 아니라, 수많은 프로그래밍 언어를 지원한다고 한다.
 
  과연 찾아보니 [지원하는 언어
  목록](https://www.acmicpc.net/help/language)의 끝 무렵에서 OCaml 을
@@ -36,7 +36,7 @@ category: dev
 ![boj-cpp](/assets/img/boj-cpp.png)
 
  치사하게(?) 주력 언어만 최적화 옵션을 챙겨주는 것을 볼 수 있다. 우리
- OCaml 도 얼마든지 [네이티브
+ OCaml도 얼마든지 [네이티브
  코드](http://caml.inria.fr/pub/docs/manual-ocaml-4.07/native.html)
  컴파일 할 수 있고 함수형 최적화인
  [Flambda](http://caml.inria.fr/pub/docs/manual-ocaml-4.07/flambda.html)
@@ -44,13 +44,13 @@ category: dev
 
  최적화는 차치하더라도 이런 사이트의 문제 풀이를 하려면 가장 큰 장벽이
  입력을 처리하는 일이다. 대부분의 문제가 C/C++ 같은 언어를 대상으로
- 만들어지다보니 OCaml 에게 불친절한 입력이 들어온다. `scanf` 를 염두에
+ 만들어지다보니 OCaml에게 불친절한 입력이 들어온다. `scanf` 를 염두에
  두고 입력 개수를 먼저 받고 그 후 반복문을 돌아서 받는다던가, 특수한
  값 (e.g. `-1`) 이 들어오기 전까지 계속 입력을 받아야 한다던가
  하는. 마이너의 비애이지만 어쩔 수 없다. 몇 십년을 이어온 유구한
  전통의 포맷이다. 우리가 맞춰야 한다.
 
- 다행히 OCaml 은 명령형 프로그래밍을 아주 잘 지원하며, 언어 예제
+ 다행히 OCaml은 명령형 프로그래밍을 아주 잘 지원하며, 언어 예제
  소스에도 나와 있듯 표준 라이브러리에 있는
  [Scanf](http://caml.inria.fr/pub/docs/manual-ocaml-4.07/libref/Scanf.html)
  모듈을 잘 갖다 쓰면 충분히 가능할 것 같다.
