@@ -172,5 +172,3 @@ let () = solve ()
  포스팅](https://sangwoo-joh.github.io/restart)에 적어둔 깨달음대로
  꾸준히 풀다보면, 누군가는 OCaml의 매력을 알고 함께 풀어가는 아름다운
  세상이 오지 않을까? 하는 두루뭉실한 기대를 해본다.
-
----

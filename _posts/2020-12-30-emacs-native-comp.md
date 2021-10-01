@@ -153,5 +153,3 @@ emacs --version  # shows GNU Emacs 28.0.50
 [^1]: [Guile-emacs](https://www.emacswiki.org/emacs/GuileEmacs)라고 하며, 이 [Guile](https://www.gnu.org/software/guile/) 이라는 언어는 Rust로 개발한다고 한다. 근데 이러면 돼지가 아니라 아예 다른 생물이 되는 게 아닌지?
 
 [^2]: 저자는 돼지에 날개를 달아주는 거라고 설명한다 (...)
-
----
