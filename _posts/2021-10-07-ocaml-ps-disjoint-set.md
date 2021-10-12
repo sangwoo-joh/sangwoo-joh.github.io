@@ -238,8 +238,104 @@ end
    빠른 성능을 보였다 (168ms vs. 288ms)
 
 ### 부모 포인터 트리로 구현하기
- TBD
- - [`Union_find`](https://github.com/janestreet/core_kernel/blob/master/core/src/union_find.ml)
+ 마지막으로 실제 포인터를 이용해서 뒤집어진 트리를
+ 구현해보자. JaneStreet Core_kernel 모듈의
+ [`Union_find`](https://github.com/janestreet/core_kernel/blob/master/core/src/union_find.ml)를
+ 많이 참조했다. 주석을 보니 오리지널은 MLTon의
+ [`disjoint.fun`](https://github.com/MLton/mlton/blob/master/lib/mlton/set/disjoint.fun)인듯
+ 하다.
+
+ OCaml의 강점 중 하나는 바로 명령형(Imperative) 스타일을 특별한
+ 복잡함없이 잘 지원한다는 것이다. 덕분에 아래와 같이 `mutable`을
+ 활용해서 우리가 원하는 뒤집어진 트리의 타입을 정의할 수 있다.
+
+```ocaml
+type 'a root = { mutable value : 'a; mutable rank : int }
+
+type 'a t = { mutable node: 'a node }
+and 'a node =
+  | Inner of 'a t  (** [Inner x] is a node whose parent is [x] *)
+  | Root of 'a root
+```
+
+ 트리의 노드 타입은 부모(대표 원소)를 나타내는 `Root` 이거나 그 밖의
+ 안쪽 노드 `Inner`로 이뤄진다. 부모에는 최적화를 위한 랭크 값을 함께
+ 저장해서 `합치기` 연산에서 활용한다.
+
+ 잠깐 삼천포로 빠지자면, `'a`에 대해서 추가적으로 설명할 부분이
+ 있다. 우리는 구체적인 원소들의 "값"에 관심이 있는 게 아니라, 서로소
+ 성질을 유지하는 집합과 그 집합에 대한 연산에 있는 것이다. 추가적으로,
+ 가능하다면 이 서로소 (부분) 집합을 대표하는 "값"을 설정할 수 있으면
+ 좋겠다. 예를 들어 잠깐 언급한 Unification에서도, 방정식을 풀는
+ 과정에서 같은 식으로 판단되는 애들은 서로소 집합에다 모으면서, 그
+ 같은 식이 최종적으로 갖는 어떤 표현식을 하나로 관리하면 좋을 것
+ 같다. 이것을 표현하는 부분이 바로 `'a` 이다. 실제 라이브러리 구현을
+ 보면 여기서 언급한 세 가지 핵심 연산 외에도 `get`과 `set` 연산을
+ 제공하는데, 어떤 서로소 집합의 대표 원소 값을 지정하는 연산이다.
+
+
+ 이렇게 정의한 타입으로 먼저 `만들기` 연산을 구현해보자.
+
+```ocaml
+let make_set v = { node = Root { value = v; rank = 0 } }
+```
+
+ `make_set x`는 `x` 스스로가 대표 원소가 되는 서로소 집합을 만드는
+ 연산이므로 `Root`를 만든다. 초기 랭크 값은 `0`이다. 더 이상 할 게
+ 없다.
+
+ `찾기` 연산을 구현해보자. 참조한 구현체를 살펴보니, 경로 압축
+ 최적화를 아래와 같이 별도의 함수로 빼 놓은 점이 인상깊었다.
+
+```ocaml
+(**
+ Invariants:
+  - [inner.node] = [inner_node] = [Inner t]
+  - [descendants] are the proper descendants of [inner] we've visited.
+*)
+let rec compress t ~inner_node ~inner ~descendants =
+  match t.node with
+  | Root r ->
+    (* [t] is the root of the tree. Re-point all descendants directly to it by setting them to [Inner t]. Note: we don't re-point [inner] as it already points there. *)
+    List.iter (fun t -> t.node <- inner_node) descendants;
+    (t, r)
+  | Inner t' as node ->
+    compress t' ~inner_node:node ~inner:t ~descendants:(inner :: descendants)
+```
+
+ - 그림으로 설명 가능할지?
+
+
+```ocaml
+let find t =
+  match t.node with
+  | Root r -> (t, r)
+  | Inner t' as node -> compress t' ~inner_node:node ~inner:t ~descendants:[]
+
+
+let root t = snd (find t)
+```
+
+ - `(t, r)`을 리턴하는 이유 (합치기 연산에서 쓰임)
+ -
+
+
+
+```ocaml
+let union t1 t2 =
+  let t1, r1 = find t1 in
+  let t2, r2 = find t2 in
+  if r1 == r2 then ()
+  else
+    if r1.rank < r2.rank then t1.node <- Inner t2
+    else (
+      t2.node <- Inner t1;
+      if r1.rank = r2.rank then r1.rank <- r1.rank + 1)
+```
+
+ -
+
+
  - [272ms](https://www.acmicpc.net/source/23510028)
 
 ---
