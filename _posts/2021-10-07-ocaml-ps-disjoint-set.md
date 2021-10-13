@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: OCaml과 함께 PS를 -6-
 subtitle: 서로소 집합
 category: dev
@@ -82,13 +82,12 @@ let union root x y =
   if px = py then () else root.(px) <- py
 ```
 
- 여기서 주의할 점은 `union` 연산에서 `px` 하나의 부모를 업데이트하기
- 때문에, `find` 연산이 제대로 동작하려면 `root.(x)`가 변하지 않을
- 때까지, 즉 일종의 Fixed point에 도달할 때까지 거슬러 올라가야 한다는
- 것이다.
+ `union` 연산에서는 `px` 하나의 부모를 업데이트하기 때문에, `find`
+ 연산이 제대로 동작하려면 `root.(x)`가 변하지 않을 때까지, 즉 일종의
+ Fixed point에 도달할 때까지 거슬러 올라가야 한다.
 
- 이건 올바른 구현이지만, 아무런 최적화가 없기 때문에 실제 제출 시
- `시간 초과`가 뜬다. 그럼 하나씩 최적화를 해 나아가 보자.
+ 이건 올바른 구현이지만, 아무런 최적화가 없기 때문에 제출 시 `시간
+ 초과`가 뜬다. 그럼 하나씩 최적화를 해 나아가 보자.
 
 #### 최적화 1 - 경로 압축
  서로소 집합에는 유명한 두 가지 최적화가 있는데, 그 중 먼저 *경로
@@ -142,25 +141,25 @@ let rec find root x =
 
 ![dumb-union](assets/img/disjoint-set-dumb-union.png)
 
- `y`를 `z`에 합치면 다음과 같이 (그래도) 균형잡힌 트리를 얻을 수 있다.
+ `y`를 `z`에 합치면 다음과 같이 좀더 균형잡힌 트리를 얻을 수 있다.
 
 ![smart-union](assets/img/disjoint-set-smart-union.png)
 
  즉, 둘 중 더 작은 집합을 더 큰 집합에 합치는 것이다.
 
- 이 아이디어를 구현하기 위해서는 *랭크*라고 불리는, 서로소 부분
+ 이 아이디어를 구현하기 위해서는 *랭크*라고 하는, 서로소 부분
  집합(대표 원소)에서 어떤 정수 값으로 가는 맵을 도입한다. 초기에 모든
  서로소 부분 집합의 랭크는 `0`이다. 같은 랭크 `r`을 갖는 두 집합이
  합쳐지면 랭크가 1 증가한다. 그 외의 경우는 더 작은 랭크를 갖는 집합을
- 더 큰 랭크를 갖는 집합에 합친다. 이 아이디어를 바탕으로 랭크를
- 유지하도록 구현하면 다음과 같다.
+ 더 큰 랭크를 갖는 집합에 합친다. 이 아이디어를 바탕으로 랭크로 합치기
+ 최적화를 구현하면 다음과 같다.
 
 ```ocaml
 let union root rank x y =
   let px, py = find root x, find root y in
   if px = py then ()
-  (* union by rank *)
   else (
+    (* optimize with union by rank *)
     (* make px.rank >= py.rank *)
     let px, py = if rank.(px) >= rank.(py) then px, py else py, px in
     (* attach smaller one to bigger one *)
@@ -177,10 +176,9 @@ let union root rank x y =
  떨어진다고 하며, 이는 큰 입력에 대해서는 거의 상수(`5`)에 가까운
  값이라고 한다. 하지만 이 문제의 경우, 오히려 두 최적화를 모두
  적용하니 [88ms](https://www.acmicpc.net/source/34199332)로 경로
- 압축만 적용했을 때보다 성능이 나빠졌다. 그리고 랭크로 합치기만
- 적용했을 때에도 경로 압축만큼의 속도는 얻지 못했다. 알고리즘 문제
- 정도의 사이즈에서는 경로 압축만 적용해도 충분한 성능을 얻을 수 있는
- 것 같다.
+ 압축만 적용했을 때보다 느렸다. 그리고 랭크로 합치기만 적용했을 때에도
+ 경로 압축만큼 빠르진 않았다. 이 문제 정도의 사이즈에서 배열로 구현할
+ 때에는 경로 압축 최적화만 적용해도 충분한 속도를 보였다.
 
 ### 해시 테이블로 구현하기
  파이썬이라면, 배열을 해시 테이블로 바꾸는 일은 trivial하다. 그냥
@@ -246,97 +244,155 @@ end
  하다.
 
  OCaml의 강점 중 하나는 바로 명령형(Imperative) 스타일을 특별한
- 복잡함없이 잘 지원한다는 것이다. 덕분에 아래와 같이 `mutable`을
- 활용해서 우리가 원하는 뒤집어진 트리의 타입을 정의할 수 있다.
+ 복잡함없이 잘 지원한다는 것이다. 기본적으로 OCaml의 모든 변수는 불변
+ 타입이지만, `mutable` 키워드를 이용해서 레코드의 필드를 가변으로
+ 정의할 수 있다. 또 하나의 값만 가변으로 담을 수 있는 `ref` 생성자가
+ 있는데, `type 'a ref = { mutable content : 'a }`로 정의되어 있다. 이
+ `ref`에서 값을 빼오거나 업데이트하는 연산은
+ [런타임](https://github.com/ocaml/ocaml/blob/4.11.1/stdlib/stdlib.ml#L232-L237)에
+ [구현](https://github.com/ocaml/ocaml/blob/600aad5d29643598d4bddee346275a51930c7859/lambda/translprim.ml#L132)되어
+ 있는데, 레코드의 `mutable` 필드를 조작하는 것과 동일한 의미를 갖는다.
+
+ 런타임 프리미티브가 좀더 최적화가 잘 되어 있을 거라는 기대를 갖고
+ 여기서는 `ref`를 이용해서 트리를 구현해보자. 먼저 트리의 노드 타입을
+ 다음과 같이 정의한다.
 
 ```ocaml
-type 'a root = { mutable value : 'a; mutable rank : int }
-
-type 'a t = { mutable node: 'a node }
-and 'a node =
-  | Inner of 'a t  (** [Inner x] is a node whose parent is [x] *)
-  | Root of 'a root
+type node =
+  | Representative of int ref
+  | PointsTo of node ref
 ```
 
- 트리의 노드 타입은 부모(대표 원소)를 나타내는 `Root` 이거나 그 밖의
- 안쪽 노드 `Inner`로 이뤄진다. 부모에는 최적화를 위한 랭크 값을 함께
- 저장해서 `합치기` 연산에서 활용한다.
+ - `Representative r`은 트리의 대표 원소를 나타내며, 랭크 값 `r`을
+   담고 있다.
+ - `PointsTo x`는 `x`를 가리키는 재귀적인 타입이다. `x`가 현재 노드의
+   부모 노드라는 것을 추상화했다.
 
- 잠깐 삼천포로 빠지자면, `'a`에 대해서 추가적으로 설명할 부분이
- 있다. 우리는 구체적인 원소들의 "값"에 관심이 있는 게 아니라, 서로소
- 성질을 유지하는 집합과 그 집합에 대한 연산에 있는 것이다. 추가적으로,
- 가능하다면 이 서로소 (부분) 집합을 대표하는 "값"을 설정할 수 있으면
- 좋겠다. 예를 들어 잠깐 언급한 Unification에서도, 방정식을 풀는
- 과정에서 같은 식으로 판단되는 애들은 서로소 집합에다 모으면서, 그
- 같은 식이 최종적으로 갖는 어떤 표현식을 하나로 관리하면 좋을 것
- 같다. 이것을 표현하는 부분이 바로 `'a` 이다. 실제 라이브러리 구현을
- 보면 여기서 언급한 세 가지 핵심 연산 외에도 `get`과 `set` 연산을
- 제공하는데, 어떤 서로소 집합의 대표 원소 값을 지정하는 연산이다.
+ 잠깐 삼천포로 빠지자면, 여기서는 특별히 대표 원소의 *값*을 유지할
+ 필요는 없어서 제외했지만, 범용적인 용도의 라이브러리에서는 주로 `'a`
+ 타입의 값을 담는 `mutable` 필드를 함께 갖는 레코드로 정의한다. 아마
+ Unification 알고리즘을 서로소 집합으로 구현하려면 이렇게 값을 담는
+ 필드가 필요할 것으로 생각된다.
 
 
  이렇게 정의한 타입으로 먼저 `만들기` 연산을 구현해보자.
 
 ```ocaml
-let make_set v = { node = Root { value = v; rank = 0 } }
+let make_set () = ref (Representative (ref 0))
 ```
 
- `make_set x`는 `x` 스스로가 대표 원소가 되는 서로소 집합을 만드는
- 연산이므로 `Root`를 만든다. 초기 랭크 값은 `0`이다. 더 이상 할 게
- 없다.
+ - 랭크 초기값 `0`을 갖는 대표 원소 하나를 만든다.
+ - 이때 대표 원소 값 자체도 `ref`로 감싸줘야 한다. 그래야 실제로
+   가리키는 값을 업데이트하는 연산을 할 수 있다.
 
- `찾기` 연산을 구현해보자. 참조한 구현체를 살펴보니, 경로 압축
- 최적화를 아래와 같이 별도의 함수로 빼 놓은 점이 인상깊었다.
+ 다음으로 최적화가 없는 `찾기` 연산을 구현해보자.
 
 ```ocaml
-(**
- Invariants:
-  - [inner.node] = [inner_node] = [Inner t]
-  - [descendants] are the proper descendants of [inner] we've visited.
-*)
-let rec compress t ~inner_node ~inner ~descendants =
-  match t.node with
-  | Root r ->
-    (* [t] is the root of the tree. Re-point all descendants directly to it by setting them to [Inner t]. Note: we don't re-point [inner] as it already points there. *)
-    List.iter (fun t -> t.node <- inner_node) descendants;
-    (t, r)
-  | Inner t' as node ->
-    compress t' ~inner_node:node ~inner:t ~descendants:(inner :: descendants)
+let rec find t =
+  match !t with
+  | Representative r -> (t, r)
+  | PointsTo t' -> find t'
 ```
 
- - 그림으로 설명 가능할지?
+ 여기서 `r`이 아니라 `(t, r)`을 리턴하는 이유는 `합치기` 연산을
+ 위해서이다.
+ - `t`는 `node ref` 타입으로, 노드가 가리키는 부모 노드를 업데이트
+   하기 위해서 리턴한다.
+ - `r`은 `int ref` 타입으로, 랭크 값을 비교하고 업데이트하기 위해서
+   리턴한다.
 
 
-```ocaml
-let find t =
-  match t.node with
-  | Root r -> (t, r)
-  | Inner t' as node -> compress t' ~inner_node:node ~inner:t ~descendants:[]
-
-
-let root t = snd (find t)
-```
-
- - `(t, r)`을 리턴하는 이유 (합치기 연산에서 쓰임)
- -
-
-
+ 이제 마지막으로 최적화가 없는 `합치기` 연산은 다음과 같다.
 
 ```ocaml
 let union t1 t2 =
   let t1, r1 = find t1 in
   let t2, r2 = find t2 in
-  if r1 == r2 then ()
-  else
-    if r1.rank < r2.rank then t1.node <- Inner t2
-    else (
-      t2.node <- Inner t1;
-      if r1.rank = r2.rank then r1.rank <- r1.rank + 1)
+  if t1 == t2 then () else t1 := PointsTo t2
 ```
 
- -
+ - 파라미터로 넘어온 `t1`과 `t2`과 서로 같은 서로소 집합에
+   속해있는지를 확인해야 하는데, 이때 값이 구조적으로
+   같은지(structural equaltiy)를 확인하는 게 아니라 실제로 *같은 값을
+   가리키고 있는지(physical equality)*를 확인해야 한다. 따라서 `=`가
+   아니라 `==` 연산자로 비교해야 한다[^5]
+ - 참고로 `find`로 찾은 `t`와 `r` 모두 대표 원소라고 할 수 있는
+   레퍼런스이므로, 같은지 비교할 때 `t1 == t2`을 써도 되고 `r1 ==
+   r2`를 써도 된다.
 
 
- - [272ms](https://www.acmicpc.net/source/23510028)
+ 이렇게 바닐라 구현을 하면 당연하게도 `시간 초과`가 뜬다. 그럼 또
+ 최적화해보자.
+
+
+#### 경로 압축
+ 앞의 아이디어를 코드로 옮기면 다음과 같다.
+
+```ocaml
+let rec find t =
+  let rec compress t ~prev ~descendants =
+    match !t with
+    | Representative r ->
+      List.iter (fun n -> n := !prev) descendants;
+      (t, r)
+    | PointsTo t' -> compress t' ~prev:t ~descendants:(prev :: descendants)
+  in
+  match !t with
+  | Representative r -> (t, r)
+  | PointsTo t' -> compress t' ~prev:t ~descendants:[]
+```
+
+ 먼저 일반적인 트리에서, 어떤 부모 노드에서 출발해서 도달할 수
+ 있는(Reachable) 자식 노드를 *후손(Descendant)*이라고 한다. 여기서는
+ 자식에서 부모로 가는 길 밖에 없긴 하지만, 최종적으로 트리의 루트(대표
+ 원소)까지 가는 경로에 있는 모든 노드는 이 루트 노드의 후손들이 된다.
+
+ 그래서 이 후손들을 `descendants` 라는 리스트로 계속 모아뒀다가 한번에
+ 최적화를 진행하는 `compress`라는 함수를 도입한다. `find`에 처음
+ 진입했을 때 `t`가 가리키는 부모 노드가 있다면 그때부터 `compress`를
+ 진행하면 된다. 이때 바로 직전에 만난 노드를 `prev`에 저장해두는
+ 방식으로 `descendants`를 쌓을 수 있다. 그리고 `compress`가 최종적으로
+ 대표 원소인 `Representative r`을 만났을 때, 쌓아둔 후손들이 가리키는
+ 노드를 업데이트하면 된다.
+
+#### 랭크로 합치기
+ 바로 코드부터 보자.
+
+```ocaml
+let union t1 t2 =
+  let t1, r1 = find t1 in
+  let t2, r2 = find t2 in
+  if t1 == t2 then ()
+  else if !r1 < !r2 then t1 := PointsTo t2
+  else (
+    t2 := PointsTo t1;
+    if !r1 = !r2 then incr r1)
+```
+
+ - `!r`로 랭크 정수 값을 빼올 수 있다. 랭크 값의 비교는 physical
+   equality로 비교할 필요가 없다.
+ - `t1`의 랭크가 더 작으면 `t1`을 `t2` 아래에 합친다. 이 말을 코드로
+   풀어쓰면, `t1`이 가리키는 노드가 `PointsTo t2`가 된다는 의미이다.
+
+
+ 포인터 트리 구현의 경우, 경로 압축만 적용하거나 (284ms) 랭크로
+ 합치기만 적용한 것 (324ms)보다 두 최적화를 모두 적용했을 때 (260ms)
+ 가장 빨랐다.
+
+
+---
+ 여기까지 다양한 방법으로 서로소 집합을 구현해보았다. 배열과 경로
+ 압축만을 이용한 68ms 솔루션, 해시 테이블과 경로 압축만을 이용한 168ms
+ 솔루션, 포인터 트리와 경로 압축 + 랭크로 합치기 최적화를 적용한 260ms
+ 솔루션 총 세 가지를 확인할 수 있었다.
+
+ 다른 사람은 어떻게 구현했을지 궁금하지만 아쉽게도 이 문제를 OCaml로
+ 제출한 사람이 [나
+ 혼자](https://www.acmicpc.net/problem/status/1717/22/1)라서 확인할 수
+ 없었다. 애초에 알고리즘 문제를 OCaml로 푸는 데 관심 있는 사람이 없는
+ 것 같다. 아니 애초에 OCaml에 관심있는 사람이 없는 것이다. OCaml
+ 얘기를 나눌 수 있는 사람이 주변에 많았으면 좋겠건만. 🥲 이번 생은
+ 외롭게 방망이나 깎아야 겠다.
 
 ---
 [^1]: 불현듯 4190.310 마지막 과제였던 타입 체커 구현하기가
@@ -358,3 +414,7 @@ let union t1 t2 =
 [^4]: 그림은 [Excalidraw](https://excalidraw.com/)로
     그렸다. [끈닷넷](https://blog.kkeun.net/computer/2021-02-18-excalidraw-cool)에
     감사를.
+
+[^5]: 자세한 내용은 [코넬 대학교의 OCaml 강의
+    노트](https://www.cs.cornell.edu/courses/cs3110/2020sp/textbook/mut/physical_equality.html)를
+    참조하면 좋다.
