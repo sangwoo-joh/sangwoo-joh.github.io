@@ -131,8 +131,8 @@ let rec find root x =
 
  앞에서 본 것처럼 `합치기` 연산을 할 때 아무 생각없이 합쳐버리면
  일자로 늘어진 링크드 리스트가 된다. 그럼 이걸 좀더 똑똑하게 합칠 수
- 있는 방법은 뭘까? 아래 그림에서 `x`와 `z`를 합치려고 할 때, 즉
- `Union(x, z)` 연산을 할 때,
+ 있는 방법은 뭘까? 아래 그림에서 `y`와 `z`를 합치려고 할 때, 즉
+ `Union(y, z)` 연산을 할 때,
 
 ![before-union](assets/img/disjoint-set-before-union.png)
 
