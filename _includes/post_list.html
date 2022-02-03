@@ -9,12 +9,12 @@
   {% comment %} normal posts {% endcomment %}
   <li>
     {% if post_time > week_ago %}<b>[new!]</b>{% endif %} {% comment %} show new tag in normal list {% endcomment %}
-    {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>  <sub><a href="{{ post.url | relative_url }}#disqus_thread">[]</a></sub>
+    {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>  <!-- <sub><a href="{{ post.url | relative_url }}#disqus_thread">[]</a></sub> -->
   </li>
   {% elsif include.recent and post_time > week_ago %}
   {% comment %} recent posts {% endcomment %}
   <li>
-    {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>  <sub><a href="{{ post.url | relative_url }}#disqus_thread">[]</a></sub>
+    {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>  <!-- <sub><a href="{{ post.url | relative_url }}#disqus_thread">[]</a></sub> -->
   </li>
   {% endif %} {% comment %} end for category check {% endcomment %}
 
