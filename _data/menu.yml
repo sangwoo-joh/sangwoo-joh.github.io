@@ -10,8 +10,6 @@ entries:
     post_list: false
     url: about
     entries:
-      - title: me
-        url: about-me
       - title: mantra
         url: /mantra
 
