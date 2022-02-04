@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: 두려움
+title: 글 쓰는 일에 대한 두려움
 category: usr
 ---
 
