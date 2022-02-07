@@ -17,21 +17,12 @@ entries:
     post_list: false
     url: bible
 
-  - title: /tmp/recent
-    post_list: true
-    recent: true
-    url: false
-    entries: false
+  - title: /tags
+    post_list: false
+    url: posts
 
-  - title: /dev
+  - title: /posts
     post_list: true
-    category: dev
-    url: false
-    entries: false
-
-  - title: /usr
-    post_list: true
-    category: usr
     url: false
     entries: false
 

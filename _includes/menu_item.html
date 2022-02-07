@@ -1,38 +1,16 @@
-{% assign week_ago = "now" | date: "%s" | minus: 604800 %}
-{% assign show_tmp = false %}
-{% for post in site.posts %}
-  {% assign post_time = post.date | date: "%s" | plus: 0 %}
-  {% if post_time > week_ago %}
-    {% assign show_tmp = true %}
-    {% break %}
-  {% endif %}
-{% endfor %}
-
 <ul>
   {% for item in include.collection %}
-    {% if item.recent and show_tmp == false %}
-      {% continue %}
-    {% endif %}
-
-    {% if item.category %}
-      {% assign total = 0 %}
-      {% for post in site.posts %}
-        {% if post.category == item.category %}
-          {% assign total = total | plus: 1 %}
-        {% endif %}
-      {% endfor %}
-    {% endif %}
 
     <li>
     {% if item.url != false %}
       <a href="{{ item.url }}">{{ item.title }}</a>
     {% else %}
-      {{ item.title }} {% if total %} [{{ total }}] {% endif %}
+      {{ item.title }} {% if item.post_list == true %}[{{ site.posts.size }}]{% endif %}
     {% endif %}
     </li>
 
     {% if item.post_list == true %}
-      {% include post_list.html category=item.category recent=item.recent %}
+      {% include post_list.html category=item.category %}
     {% endif %}
 
     {% if item.entries != blank %}

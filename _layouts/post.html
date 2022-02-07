@@ -11,6 +11,18 @@ layout: default
 
 {{ content }}
 
+<!-- TODO: hyper link to tags -->
+{% if page.tags.size > 0 %}
+태그:
+{% for tag in page.tags %}
+
+{% if site.data.tags contains tag %}
+<a href="/posts/?tag={{ tag }}"><span class="tag">{{ tag }}</span></a>
+{% endif %}
+
+{% endfor %}
+{% endif %}
+
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 

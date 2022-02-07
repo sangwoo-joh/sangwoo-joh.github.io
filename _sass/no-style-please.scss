@@ -90,6 +90,14 @@ div.highlighter-rouge code {
   padding: 1rem;
 }
 
+div.hidden {
+  display: none;
+}
+
+.selected {
+  font-style: italic;
+}
+
 blockquote {
   font-style: italic;
   border: thin solid black;

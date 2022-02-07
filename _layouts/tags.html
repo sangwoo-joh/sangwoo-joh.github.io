@@ -1,0 +1,93 @@
+---
+layout: default
+---
+
+<a href="{{ site.url }}">{{ site.theme_config.back_home_text }}</a>
+<br />
+태그 목록: <span class="tag" data-tag="all">전체</span>
+{% for tag in site.data.tags %}
+<span class="tag" data-tag="{{tag}}">
+  {{ tag }}
+</span>
+{% endfor %}
+
+
+
+<hr />
+[<span class="count"></span>]
+<ul>
+  {% for post in site.posts %}
+  {% if post.tags.size > 0 %}
+  <div class="post-wrapper"
+       {% for tag in post.tags %}
+       data-{{ tag }}
+       {% endfor %}>
+    <li>
+    <article class="post-preview">
+      {{ post.date | date: site.theme_config.date_format }}  <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+    </article>
+    </li>
+  </div>
+  {% endif %}
+  {% endfor %}
+</ul>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script type="text/javascript">
+  $("[data-tag]").click((e) => {
+    currentTag = e.target.dataset.tag;
+    if (currentTag != "all"){
+      console.log(currentTag);
+      filterByTagName(currentTag);
+    } else {
+      clearAll();
+    }
+  });
+
+  $(document).ready(() => {
+    let currentTag = "";
+    const queryTag = getQuery().tag;
+
+    console.log(queryTag);
+    if (queryTag) {
+      currentTag = queryTag;
+      filterByTagName(currentTag);
+    } else {
+      clearAll();
+    }
+  });
+
+  function getQuery() {
+    var params = {};
+    window.location.search.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(str, key, value) {
+
+      params[key] = value;
+    });
+
+    return params;
+  }
+
+  function clearAll() {
+    $('.hidden').removeClass('hidden');
+    $(`.tag`).removeClass('selected');
+    $(`.tag[data-tag=all]`).addClass('selected');
+    $(".count").text($(".post-wrapper").length);
+  }
+
+  function filterByTagName(tagName) {
+    var counter = 0;
+    $('.hidden').removeClass('hidden');
+    $('.post-wrapper').each((index, elem) => {
+      if (!elem.hasAttribute(`data-${tagName}`)) {
+        $(elem).addClass('hidden');
+      } else {
+        counter += 1;
+      }
+    });
+
+    $(`.tag`).removeClass('selected');
+    $(`.tag[data-tag=${tagName}]`).addClass('selected');
+    $(".count").text(counter);
+  }
+</script>
