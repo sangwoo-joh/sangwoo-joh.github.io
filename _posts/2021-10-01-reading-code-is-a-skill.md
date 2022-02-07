@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, think]
 published: true
 title: 코드 읽기
 subtitle: Reading Code Is A Skill
-category: dev
 ---
 
  발단은 이렇다. 누군가 "방대한 코드가 읽기 너무 어려워요"라는 글을

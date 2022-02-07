@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, life]
 published: true
 title: 올해의 삽질들
 subtitle: 끝이 없다
-category: dev
 ---
 
  2020 한해의 회고... 라기엔 너무 거창하고, 그냥 올해 했던 기억에 남는

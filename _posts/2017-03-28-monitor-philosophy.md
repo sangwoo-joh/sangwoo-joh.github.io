@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [think]
 published: true
 title: 모니터 철학
 subtitle: 개똥철학
-category: usr
 ---
 
 

@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [think]
 published: true
 title: 1조짜리 실수
 subtitle: 호어 아저씨가 말씀하시길...
-category: usr
 ---
 
 >  I call it my billion-dollar mistake. It was the invention of the

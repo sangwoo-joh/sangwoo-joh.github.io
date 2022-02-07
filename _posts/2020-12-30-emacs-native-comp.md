@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, life]
 published: true
 title: Emacs 28 짧은 소감
 subtitle: --with-nativecomp
-category: dev
 ---
 
  이맥스는 참 재밌는, 나에겐 최고의 에디터지만, 가끔 성능이 아쉽다고

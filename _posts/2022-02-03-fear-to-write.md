@@ -1,8 +1,8 @@
 ---
 layout: post
+tags: [life, think]
 published: true
 title: 글 쓰는 일에 대한 두려움
-category: usr
 ---
 
  문득 글을 쓰기가 두려워지는 때가 있다. 좀 생각해본 결과 두려움의

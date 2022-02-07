@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev]
 published: true
 title: 누가 퍼포먼스를 출렁이게 하는가?
 subtitle: 세상에 믿을 놈 하나 없다
-category: dev
 ---
 
  유튜브 알고리즘이 [이런

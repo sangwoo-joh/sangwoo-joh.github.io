@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, ocaml]
 published: true
 title: OCaml과 함께 PS를 -5-
 subtitle: OCamlgraph 흉내내기
-category: dev
 ---
 
  최애 언어 [OCaml](https://ocaml.org/) 로 문제를 풀어보자 다섯 번째

@@ -1,8 +1,8 @@
 ---
 layout: post
+tags: [life]
 published: true
 title: 노동요
-category: usr
 ---
 
  최근에 유튜브 뮤직이 내가 즐겨 듣던 가수 [더

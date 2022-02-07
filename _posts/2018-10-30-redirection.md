@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, think]
 title: 리-다이렉션
 subtitle: 저리 가라
 published: true
-category: dev
 ---
 
  분석 시간 관련 이슈를 파기 위해 빌드에 최소 8분, 최대 50분 정도

@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, think]
 published: true
 title: 나의 개발 프로세스
 subtitle: 타입, 그리고 커밋 메시지
-category: dev
 ---
 
  세상에는 소프트웨어를 잘 만들기 위한 다양한 개발 프로세스가

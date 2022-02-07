@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, think]
 title: Soundness
 subtitle: 정적 분석과 안전함
 published: true
-category: dev
 ---
 
  이 글은 Michel Hicks의 ["What is soundness in static

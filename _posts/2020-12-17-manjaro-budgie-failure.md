@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, life]
 published: true
 title: Manjaro Budgie (실패)
 subtitle: 험난한 리눅스 데스크탑의 길
-category: dev
 ---
 
  오랜만에 집 데스크탑에 새로운 리눅스 배포판을 시도하다가 장렬히

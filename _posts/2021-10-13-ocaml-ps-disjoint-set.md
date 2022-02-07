@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, ocaml]
 published: true
 title: OCaml과 함께 PS를 -6-
 subtitle: 서로소 집합
-category: dev
 ---
 
  최애 언어 [OCaml](https://ocaml.org/)로 알고리즘 문제를 풀어보는

@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev]
 title: 세그먼트 트리
 subtitle: 자료 구조란 어려워
 published: true
-category: dev
 ---
  알고리즘 준비를 하다가 만난 문제다. 주어진 배열에서,
 

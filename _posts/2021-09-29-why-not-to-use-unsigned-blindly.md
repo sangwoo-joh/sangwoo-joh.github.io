@@ -1,9 +1,8 @@
 ---
 layout: post
+tags: [dev, think]
 published: true
 title: 함부로 unsigned를 쓰지 말아야 할 이유
-subtitle:
-category: dev
 ---
 
 ### 수정 (2021/09/30)

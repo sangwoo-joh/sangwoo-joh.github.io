@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, life]
 published: true
 title: WSL 2 + Emacs 28 (성공)
 subtitle: 진정한 리눅스는 맥이 아니라 윈도우다
-category: dev
 ---
 
  감사하게도 회사에서 코드 리뷰와 관련된 교육을 듣게 되었다. 코로나로

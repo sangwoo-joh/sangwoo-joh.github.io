@@ -1,9 +1,9 @@
 ---
 layout: post
+tags: [dev, ocaml]
 published: true
 title: OCaml과 함께 PS를... 하다가 세그폴트가?
 subtitle: "Embarassingly Obvious"
-category: dev
 ---
 
  최애 언어로 문제를 풀어보는 시리즈긴 한데... 정식 시리즈는 아니고
