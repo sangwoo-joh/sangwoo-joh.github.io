@@ -17,14 +17,9 @@ entries:
     post_list: false
     url: bible
 
-  - title: /tags
-    post_list: false
-    url: posts
-
   - title: /posts
     post_list: true
-    url: false
-    entries: false
+    url: posts
 
   - title: /var/rss
     url: feed.xml
