@@ -14,7 +14,7 @@
   for (let post_date of posts) {
     let pdate = moment(post_date.dataset.postDate);
     if (now.isoWeek() == pdate.isoWeek()) {
-      post_date.innerHTML = "<b>[new!]</b> " + post_date.textContent;
+      post_date.innerHTML = "<b>[new!]</b> " + post_date.innerHTML;
     }
   }
 </script>
