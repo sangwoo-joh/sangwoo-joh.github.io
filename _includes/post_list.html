@@ -1,9 +1,20 @@
 <ul>
   {% for post in site.posts %}
-
+  {% assign post_date = post.date | date: site.theme_config.date_format %}
   <li>
-    {{ post.date | date: site.theme_config.date_format }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a>
+    <div class="new" data-post-date="{{ post_date}}">{{ post_date }} <a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a></div>
   </li>
 
   {% endfor %}
 </ul>
+
+<script type="text/javascript">
+  let posts = document.getElementsByClassName("new");
+  const now = moment();
+  for (let post_date of posts) {
+    let pdate = moment(post_date.dataset.postDate);
+    if (now.isoWeek() == pdate.isoWeek()) {
+      post_date.innerHTML = "<b>[new!]</b> " + post_date.textContent;
+    }
+  }
+</script>
