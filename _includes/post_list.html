@@ -10,10 +10,11 @@
 
 <script type="text/javascript">
   let posts = document.getElementsByClassName("new");
-  const now = moment();
+  const today = moment();
+  const weekago = moment().subtract(7, 'd');
   for (let post_date of posts) {
     let pdate = moment(post_date.dataset.postDate);
-    if (now.isoWeek() == pdate.isoWeek()) {
+    if (pdate.isBetween(weekago, today)) {
       post_date.innerHTML = "<b>[new!]</b> " + post_date.innerHTML;
     }
   }
