@@ -22,6 +22,9 @@ permalink: /mantra/
 > used to them. - John von Neumann
 
 
+> 독서란 작가가 세운 치밀한 생각의 체계를 독자의 머리로 재생해 보는
+> 행위
+
 ---
 
 ## An Old Hacker's Tips
