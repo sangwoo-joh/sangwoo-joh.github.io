@@ -1,5 +1,6 @@
 ---
 layout: post
+tags: [life]
 published: true
 title: 흰수염고래
 ---
