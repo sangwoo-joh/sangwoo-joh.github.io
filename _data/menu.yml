@@ -2,22 +2,15 @@
 # https://github.com/riggraz/no-style-please#customize-the-menu
 
 entries:
-  - title: /home
+  - title: /home/
     post_list: false
     url: /
 
-  - title: /about
+  - title: /about/
     post_list: false
     url: about
-    entries:
-      - title: mantra
-        url: /mantra
 
-  - title: /bible
-    post_list: false
-    url: bible
-
-  - title: /posts
+  - title: /posts/
     post_list: true
     url: posts
 

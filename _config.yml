@@ -1,5 +1,5 @@
 title: 🐪 Caml Shaving
-email: lambdasnow@gmail.com
+email: work.sangwoo.joh@gmail.com
 description: Going Down The Rabbit Hole
 author: sangwoo-joh
 url: https://sangwoo-joh.github.io
@@ -14,7 +14,7 @@ disqus: blog-utrcmpd2xa
 
 permalink: /:title
 
-remote_theme: riggraz/no-style-please
+# remote_theme: riggraz/no-style-please
 theme_config:
   appearance: "auto" # can be "light", "dark" or "auto"
   back_home_text: ".." # customize text for homepage link in post layout
