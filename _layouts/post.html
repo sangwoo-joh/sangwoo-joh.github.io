@@ -9,9 +9,7 @@ layout: default
 </center>
 <em><p align="right">{{ page.date | date: "%F" }}</p></em>
 
-{{ content }}
-
-<!-- TODO: hyper link to tags -->
+<em><p align="right">
 {% if page.tags.size > 0 %}
 태그:
 {% for tag in page.tags %}
@@ -22,6 +20,10 @@ layout: default
 
 {% endfor %}
 {% endif %}
+</p></em>
+
+
+{{ content }}
 
 <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
