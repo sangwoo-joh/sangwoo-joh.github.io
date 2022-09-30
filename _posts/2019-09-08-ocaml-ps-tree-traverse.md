@@ -2,7 +2,7 @@
 layout: post
 tags: [dev, ocaml]
 published: true
-title: OCaml과 함께 PS를 -3-
+title: OCaml로 PS 하기 -3-
 subtitle: 내 친구 ADT
 ---
 

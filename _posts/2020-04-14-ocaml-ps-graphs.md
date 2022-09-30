@@ -2,7 +2,7 @@
 layout: post
 tags: [dev, ocaml]
 published: true
-title: OCaml과 함께 PS를 -5-
+title: OCaml로 PS 하기 -5-
 subtitle: OCamlgraph 흉내내기
 ---
 

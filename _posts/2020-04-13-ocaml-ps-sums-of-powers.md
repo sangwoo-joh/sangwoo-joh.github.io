@@ -2,7 +2,7 @@
 layout: post
 tags: [dev, ocaml]
 published: true
-title: OCaml과 함께 PS를 -4-
+title: OCaml로 PS 하기 -4-
 subtitle: Permutation, Combination
 ---
 

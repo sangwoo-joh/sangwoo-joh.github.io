@@ -2,7 +2,7 @@
 layout: post
 tags: [dev, ocaml]
 published: true
-title: OCaml과 함께 PS를... 하다가 세그폴트가?
+title: OCaml로 PS 하...다가 세그폴트가?
 subtitle: "Embarassingly Obvious"
 ---
 

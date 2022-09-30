@@ -2,7 +2,7 @@
 layout: post
 tags: [dev, ocaml]
 published: true
-title: OCaml과 함께 PS를 -6-
+title: OCaml로 PS 하기 -6-
 subtitle: 서로소 집합
 ---
 
