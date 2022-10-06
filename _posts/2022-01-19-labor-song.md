@@ -54,3 +54,20 @@ title: 노동요
  가는 것도 신기하다. 20대 초반에는 힙합이랑 락을 엄청나게 들었었는데,
  지금 들으니 약간 피곤한 느낌마저 든다 (...) 한 10년 쯤 뒤에는
  뜬금없이 클래식 같은 걸 듣고 있을지도 모르겠다.
+
+#### 2022/10/06 업데이트
+
+ 어쩌다보니 후쿠이 료 라는 재즈 피아니스트의 앨범을 듣게 되었는데 너무
+ 내 스타일이라 여기 기록해둔다.
+
+ 좀 찾아보니 되게 특이한 배경이 있는 사람이었다. 일단 피아노를 22살에
+ 독학으로 (!) 시작했다고 한다. 앨범을 총 5장 냈는데, 일본에서만
+ 주목받다가 2016년 사망 후 유튜브 음악 추천 목록에 마구 노출되면서
+ 엄청난 인기를 얻게 되었다고 한다. 자세한 내용은
+ [위키피디아](https://en.wikipedia.org/wiki/Ryo_Fukui)에 꽤 잘 정리가
+ 되어있다.
+
+ - [Scenery
+   (1976)](https://music.youtube.com/playlist?list=OLAK5uy_l63UotXvycgKWYn_GkpJcyRfMEf78qYxg)
+ - [Mellow Dream
+   (1977)](https://music.youtube.com/playlist?list=OLAK5uy_nCL6JERLYBC0fs0lW11o_gEMzZ79Fwkiw)
