@@ -98,15 +98,16 @@ let eval ~f exp =
  총 8개의 진리값 조합이 가능하고 이는 곧 0부터 $$ 2 ^ {3( = 변수
  개수)} $$까지의 정수값과 같다.
 
- 그러므로, 변수의 진리값 조합을 나타내는 정수 `c`가 주어졌을 때 변수
- `id`에 부여된 진리값을 찾는 함수 `f`는 다음과 같다.
+ 이걸 바탕으로 변수의 진리값 조합을 나타내는 정수 `c`가 주어졌을 때
+ 변수 `id`에 부여된 진리값을 찾는 함수 `f`를 다음과 같이 구현할 수
+ 있다.
 
 ```ocaml
 let f ~c id = c land (1 lsl id) = 0
 ```
 
- 이를 이용해 한 진리값 조합에 대해서 두 표현식이 같은지 계산하는 함수
- `equal`을 구현할 수 있다.
+ 이걸 가지고 진리값 조합 하나에 대해서 두 표현식이 같은지 계산하는
+ 함수 `equal`을 구현할 수 있다.
 
 ```ocaml
 let equal e1 e2 c =
@@ -114,11 +115,10 @@ let equal e1 e2 c =
   eval ~f e1 = eval ~f e2
 ```
 
- `equal`은 가능한 진리값 조합 *하나*에 대해서 두 식이 같은지를
- 평가하는 함수이다. 앞서 말했듯 전체 조합은 0부터 $$ 2 ^ {변수
- 개수}$$만큼 가능하므로 이를 모두 살펴봐야 한다. "모두 살펴보는
- 작업"에는 `List.for_all`을 쓰고 싶으니 조합은 리스트로 생성하면
- 좋겠다. 이를 위한 `gen_comb`를 구현해보자.
+ 앞서 말했듯 전체 조합은 0부터 $$ 2 ^ {변수 개수}$$만큼 가능하므로
+ 이를 모두 살펴봐야 한다. "모두 살펴보는 작업"에는 `List.for_all`을
+ 쓰고 싶으니 조합은 리스트로 생성하면 좋겠다. 이를 위한 `gen_comb`를
+ 구현해보자.
 
 ```ocaml
 let gen_comb n =
@@ -196,8 +196,8 @@ let equal e1 e2 var_num =
 
 ## 구현
 
- 개인적으로 글보다는 구현하면서 훨씬 더 많이 이해 할 수 있었다. 특히
- [Angstrom](https://github.com/inhabitedtype/angstrom/)과
+ 개인적으로 글보다는 직접 구현해 보는 것이 이해에 큰 도움이
+ 되었다. 특히 [Angstrom](https://github.com/inhabitedtype/angstrom/)과
  [Parcoom](https://github.com/tsoding/parcoom) 코드가 좋았다. 여기서
  구현한 코드는 순전히 이 문제를 풀기 위한 것이므로 프로덕션 레벨의
  구현이 궁금하다면
@@ -554,8 +554,7 @@ type expr =
   | Neg of expr
 ```
 
- 표현식 파서를 만들기 위해 먼저 각 배리언트의 생성자를 위한 보조
- 함수들을 만들자.
+ 먼저 각 배리언트를 생성하는 보조 함수들을 만들자.
 
 ```ocaml
 let var_of : int -> expr = fun id -> Var id
@@ -565,8 +564,8 @@ let xor_of : expr -> expr -> expr = fun x y -> Xor (x, y)
 let neg_of : expr -> expr = fun x -> Neg x
 ```
 
- 이제 이 보조 함수들을 적절히 호출해서 표현식의 각 배리언트들을
- 파싱하는 파서를 만들자.
+ 이제 이 보조 함수들을 적절히 호출해서 표현식의 각 배리언트를 파싱하는
+ 파서를 만들자.
 
 #### 변수 파서
 
@@ -660,15 +659,16 @@ let xor : (expr -> expr -> expr) parser = char '^' *> return xor_of
        1.의 왼쪽항을 리턴한 것과 같다.
 
  이 과정은 파싱하고자 하는 대상이 조금만 복잡해져도 필수적이다. 딱히
- 이름이 있는 것 같진 않지만 [Angstrom에서는
+ 정해진 이름이 있는 것 같진 않지만 [Angstrom에서는
  `chainl1`](https://github.com/inhabitedtype/angstrom/#usage)이라는
- 함수를 정의했는데, 아마 '왼쪽항 1개'를 누적해가면서 파싱해간다는 뜻이
+ 함수가 있더라. 아마 '왼쪽항 1개'를 누적해가면서 파싱해간다는 뜻이
  아닐까 싶다. 나도 유사하게 `chain`이라는 함수를 정의했다.
 
 
 ```ocaml
 let chain expr op =
-  let rec further acc = (* 2. *)
+  let rec further acc =
+    (* 2. *)
     lift2 (fun constructor x -> constructor acc x (* 2.1. (a) *) ) op expr
     >>= further (* 2.1. (b) *) <|> return acc (* 2.2. *)
   in
