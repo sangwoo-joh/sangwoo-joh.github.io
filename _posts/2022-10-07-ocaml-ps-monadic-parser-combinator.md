@@ -783,9 +783,11 @@ let fix : ('a parser -> 'a parser) -> 'a parser =
     r
 ```
 
- 여기 적용된 기법은 [신발 끈 묶기 기법(Tying-the-knot
- technique)](https://wiki.haskell.org/Tying_the_Knot) 이라고 불리는데,
- 재귀적으로 불가능해보이는 것들을 정의하게 해주는
+ 재귀적인 함수 값을 정의하기 위해서 스스로를 파라미터로 받는 함수를
+ 만들어서 적용했다. 여기 적용된 기법은 [신발 끈 묶기
+ 기법(Tying-the-knot
+ technique)](https://wiki.haskell.org/Tying_the_Knot)이라고 하는 것
+ 같은데, 재귀적으로는 불가능해 보이는 것들을 정의하게 해주는
  기법이다. `Angstrom`은 [Lazy
  evaluation](https://en.wikipedia.org/wiki/Lazy_evaluation)을 이용해서
  이를 구현하고 있는데, `Lazy`를 벗겨내면 위 코드는 아래 코드와
