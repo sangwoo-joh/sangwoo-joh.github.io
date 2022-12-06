@@ -111,3 +111,13 @@ img {
   display: block;
   margin: 0 auto;
 }
+
+.post-date, .post-link {
+    display: inline;
+}
+
+.post-date::after {
+    content: ' | ';
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
