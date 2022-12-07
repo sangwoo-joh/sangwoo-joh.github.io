@@ -80,10 +80,10 @@ and (min-width : 1224px) {
 hr {
     text-align: center;
     border: none;
-    border-top: 3px double #4f4f4f;
+    border-top: 4px double #4f4f4f;
     color: #4f4f4f;
     overflow: visible;
-    height: 5px;
+    height: 2px;
     &:after {
         content: '🐪';
         padding: 0 4px;
