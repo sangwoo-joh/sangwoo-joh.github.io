@@ -20,11 +20,12 @@ layout: default
 <ul class="post-list">
   {% for post in site.posts %}
   {% assign post_date = post.date | date: site.theme_config.date_format %}
+  {% assign last_update = post.last_update | date: site.theme_config.date_format %}
   <li>
-    <div class="post-item" data-post-date="{{ post_date }}">
+    <div class="post-item" data-post-date="{{ post_date }}" data-last-update="{{ last_update }}">
       <div class="post-date">{{ post_date }}</div>
       <div class="post-link"><a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a></div>
-      <div class="post-new-tag" />
+      <div class="post-label" />
     </div>
   </li>
 
@@ -37,14 +38,20 @@ layout: default
   let posts = document.getElementsByClassName("post-item");
   const today = moment();
   const weekago = moment().subtract(7, 'd');
-  for (let post of posts) {
-    let pdate = moment(post.dataset.postDate);
-    if (pdate.isBetween(weekago, today)) {
-      let new_tag = post.getElementsByClassName("post-new-tag")[0];
-      const b = document.createElement("b");
-      const new_text = document.createTextNode("[new!]");
-      b.appendChild(new_text);
-      new_tag.appendChild(b);
+
+  function update_label(text){
+    for (let post of posts) {
+      let pdate = moment(post.dataset.postDate);
+      if (pdate.isBetween(weekago, today)) {
+        let new_tag = post.getElementsByClassName("post-label")[0];
+        const b = document.createElement("b");
+        const new_text = document.createTextNode(`[${text}!]`);
+        b.appendChild(new_text);
+        new_tag.appendChild(b);
+      }
     }
   }
+
+  update_label("new");
+  update_label("updated");
 </script>

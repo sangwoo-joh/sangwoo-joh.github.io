@@ -156,8 +156,11 @@ img {
     display: inline;
 }
 
-.post-new-tag {
+.post-label {
     display: inline;
+    b {
+        margin: 0.2em;
+    }
 }
 
 .post-date::after {
