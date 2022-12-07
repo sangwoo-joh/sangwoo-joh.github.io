@@ -15,7 +15,7 @@ layout: default
 {% for tag in page.tags %}
 
 {% if site.data.tags contains tag %}
-<a href="/posts?tag={{ tag }}"><span class="tag">{{ tag }}</span></a>
+<a href="/archive?tag={{ tag }}"><span class="tag">{{ tag }}</span></a>
 {% endif %}
 
 {% endfor %}
