@@ -29,10 +29,17 @@ html { height: 100%; }
 
 header { text-align: center; }
 
+.banner {
+    display: flex;
+    justify-content: center;
+}
+
 .banner-link {
     list-style: none;
+    text-decoration: none;
+    text-align: right;
     .banner-item {
-        display: inline;
+        display: inline-block;
         margin: 0.2em;
     }
 }
