@@ -17,5 +17,29 @@ layout: default
 </header>
 
 <hr />
-{% include post_list.html %}
+<ul class="post-list">
+  {% for post in site.posts %}
+  {% assign post_date = post.date | date: site.theme_config.date_format %}
+  <li>
+    <div class="post-item" data-post-date="{{ post_date }}">
+      <div class="post-date">{{ post_date }}</div>
+      <div class="post-link"><a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a></div>
+    </div>
+  </li>
+
+  {% endfor %}
+</ul>
+
 <hr />
+
+<script type="text/javascript">
+  let posts = document.getElementsByClassName("post");
+  const today = moment();
+  const weekago = moment().subtract(7, 'd');
+  for (let post_date of posts) {
+    let pdate = moment(post_date.dataset.postDate);
+    if (pdate.isBetween(weekago, today)) {
+      post_date.innerHTML =  post_date.innerHTML + "  <b>[new!]</b>";
+    }
+  }
+</script>
