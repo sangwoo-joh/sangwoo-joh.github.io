@@ -159,7 +159,9 @@ img {
 .post-label {
     display: inline;
     b {
+        font-size: 0.9em;
         margin: 0.2em;
+        vertical-align: sub;
     }
 }
 
