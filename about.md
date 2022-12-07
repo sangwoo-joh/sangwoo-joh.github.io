@@ -28,3 +28,9 @@ permalink: /about/
  - [OCaml](https://ocaml.org)
 
  하지만 사실 아무 글이나 씁니다.
+
+
+## [A Very Personal Bible](/bible)
+
+ 거창한 이름이지만 이때까지 배우고 공부한 것을 어떻게든 기록하고
+ 정리하려는 개인적인 시도입니다.

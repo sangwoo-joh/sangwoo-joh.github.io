@@ -81,7 +81,7 @@ hr {
 }
 
 table, th, td {
-    border: thin solid dimgrey;
+    border: thin solid #4f4f4f;
     border-collapse: collapse;
     padding: 0.2em;
 }
@@ -136,8 +136,8 @@ img {
 
 .post-date {
     display: inline;
-    font-size: 0.8em;
-    color: dimgrey;
+    font-size: 0.9em;
+    color: #4f4f4f;
 }
 
 .post-link {
@@ -155,6 +155,6 @@ footer {
 }
 
 footer a {
-    margin-left: 0.1em;
-    margin-right: 0.1em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
 }
