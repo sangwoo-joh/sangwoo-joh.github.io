@@ -4,6 +4,8 @@ title: About
 permalink: /about/
 ---
 
+## About Me
+
  소프트웨어 엔지니어입니다.
 
  정적 타입 함수형 언어 OCaml을 좋아하지만, 동적 타입 언어 Python으로
@@ -16,3 +18,13 @@ permalink: /about/
  관심이 많습니다.
 
  제 글을 100% 신뢰하시면 곤란합니다. 부족한 내용은 얼마든지 알려주세요.
+
+## About Caml Shaving
+
+ 블로그 이름은 아래 세 가지 레퍼런스에서 영향을 받았습니다.
+
+ - [Yak Shaving](http://projects.csail.mit.edu/gsb/old-archive/gsb-archive/gsb2000-02-11.html)
+ - [Down the rabbit hole](https://en.wikipedia.org/wiki/Down_the_rabbit_hole)
+ - [OCaml](https://ocaml.org)
+
+ 하지만 사실 아무 글이나 씁니다.
