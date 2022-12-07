@@ -24,6 +24,7 @@ layout: default
     <div class="post-item" data-post-date="{{ post_date }}">
       <div class="post-date">{{ post_date }}</div>
       <div class="post-link"><a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a></div>
+      <div class="post-new-tag" />
     </div>
   </li>
 
@@ -33,13 +34,17 @@ layout: default
 <hr />
 
 <script type="text/javascript">
-  let posts = document.getElementsByClassName("post");
+  let posts = document.getElementsByClassName("post-item");
   const today = moment();
   const weekago = moment().subtract(7, 'd');
-  for (let post_date of posts) {
-    let pdate = moment(post_date.dataset.postDate);
+  for (let post of posts) {
+    let pdate = moment(post.dataset.postDate);
     if (pdate.isBetween(weekago, today)) {
-      post_date.innerHTML =  post_date.innerHTML + "  <b>[new!]</b>";
+      let new_tag = post.getElementsByClassName("post-new-tag")[0];
+      const b = document.createElement("b");
+      const new_text = document.createTextNode("[new!]");
+      b.appendChild(new_text);
+      new_tag.appendChild(b);
     }
   }
 </script>
