@@ -122,10 +122,6 @@ div.hidden {
     display: none;
 }
 
-.selected {
-    font-style: italic;
-}
-
 blockquote {
     font-style: italic;
     color: #4f4f4f;
@@ -167,6 +163,25 @@ img {
     content: ' | ';
     margin-left: 0.5em;
     margin-right: 0.5em;
+}
+
+span.tag {
+    font-family: monospace;
+    display: inline-block;
+    padding: 0.2em;
+    margin: 0.2em;
+    font-size: 0.9em;
+    &:hover {
+        cursor: pointer;
+        border-radius: 0.2em;
+        border: thin solid #4f4f4f;
+        background-color: #eef;
+    }
+    &.selected {
+        border-radius: 0.2em;
+        border: thin solid #4f4f4f;
+        background-color: #eef;
+    }
 }
 
 footer {
