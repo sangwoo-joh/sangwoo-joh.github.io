@@ -107,13 +107,13 @@ th {
 }
 
 code {
+    background-color: #eef;
     font-family: $monospace;
     font-size: 0.9em;
     color: #4f4f4f;
 }
 
 div.highlighter-rouge code {
-    background-color: #eef;
     display: block;
     overflow-x: auto;
     padding: 0.5em;
