@@ -2,7 +2,7 @@
   {% for post in site.posts %}
   {% assign post_date = post.date | date: site.theme_config.date_format %}
   <li>
-    <div class="post" data-post-date="{{ post_date }}">
+    <div class="post-item" data-post-date="{{ post_date }}">
       <div class="post-date">{{ post_date }}</div>
       <div class="post-link"><a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a></div>
     </div>
