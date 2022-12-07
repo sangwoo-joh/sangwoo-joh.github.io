@@ -39,9 +39,10 @@ layout: default
   const today = moment();
   const weekago = moment().subtract(7, 'd');
 
-  function update_label(text){
+  function update_label(date, text){
     for (let post of posts) {
-      let pdate = moment(post.dataset.postDate);
+      let pdate = moment(post.dataset[date]);
+      console.log(pdate);
       if (pdate.isBetween(weekago, today)) {
         let new_tag = post.getElementsByClassName("post-label")[0];
         const b = document.createElement("b");
@@ -52,6 +53,6 @@ layout: default
     }
   }
 
-  update_label("new");
-  update_label("updated");
+  update_label("postDate", "new");
+  update_label("lastUpdate", "updated");
 </script>
