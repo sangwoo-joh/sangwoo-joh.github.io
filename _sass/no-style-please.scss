@@ -35,12 +35,10 @@ header { text-align: center; }
 }
 
 .banner-link {
-    list-style: none;
-    text-decoration: none;
-    text-align: right;
     .banner-item {
-        display: inline-block;
-        margin: 0.2em;
+        display: inline;
+        padding: 0.3em;
+        margin: 0.3em;
     }
 }
 
