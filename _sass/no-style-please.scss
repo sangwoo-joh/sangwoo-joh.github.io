@@ -74,10 +74,17 @@ and (min-width : 1224px) {
 
 hr {
     text-align: center;
-    border: 0;
-
-    &:before { content: '<><><><><> 🐪' }
-    &:after { content: attr(data-content) ' <><><><><>' }
+    border: none;
+    border-top: 3px double #4f4f4f;
+    color: #4f4f4f;
+    overflow: visible;
+    height: 5px;
+    &:after {
+        content: '🐪';
+        padding: 0 4px;
+        position: relative;
+        top: -13px;
+    }
 }
 
 table, th, td {
