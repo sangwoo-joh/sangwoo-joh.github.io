@@ -1,118 +1,146 @@
 // -------------- THEME SWITCHER -------------- //
 @mixin dark-appearance {
-  filter: invert(1);
-  img {
     filter: invert(1);
+    img {
+        filter: invert(1);
 
-    &.ioda { filter: invert(0); }
-  }
+        &.ioda { filter: invert(0); }
+    }
 }
 
 body[a="dark"] { @include dark-appearance; }
 
 
 @media (prefers-color-scheme: dark) {
-  body[a="auto"] { @include dark-appearance; }
+    body[a="auto"] { @include dark-appearance; }
 }
 // -------------------------------------------- //
 
 // bg color is also needed in html in order to
 // block body's background propagation
 // see: https://stackoverflow.com/a/61265706
-html, body { background-color: white; }
+html, body {
+    background-color: white;
+    color: black;
+    font-size: 18px;
+}
 
 html { height: 100%; }
 
-// Handling monospace font size in browsers is fundamentally broken.  A hacky solution is applied to
-// prevent browsers from reducing the monospace font size arbitrarily.
-// see: http://code.iamkate.com/html-and-css/fixing-browsers-broken-monospace-font-handling/
-body {
-  color: black;
-  font-family: sans-serif, sans-serif;
-  font-size: 1.1rem;
-  line-height: 1.4;
-  margin: 0;
-  min-height: 100%;
+header { text-align: center; }
+
+.banner-link {
+    list-style: none;
+    .banner-item {
+        display: inline;
+        margin: 0.2em;
+    }
 }
 
-h2, h3, h4, h5 { margin-top: 3rem; }
+body {
+    font-family: sans-serif, sans-serif;
+    line-height: 1.4;
+    margin: 0.3em;
+    min-height: 100%;
+}
 
-hr { margin: 2rem 0; }
+h2, h3, h4, h5 { margin-top: 3em; }
 
-p { margin: 1rem 0; }
+hr { margin: 2em 0; }
 
-li { margin: 0.4rem 0; }
+p { margin: 1em 0; }
+
+li { margin: 0.4em 0; }
+
+a {
+    text-decoration: none;
+    &:hover { text-decoration: underline; }
+    &:visited { color: blueviolet; }
+}
 
 *:target { background-color: yellow; }
 
 .w {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0.5em;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0.5em;
 }
 
 /* big screen desktop */
 @media only screen
 and (min-width : 1224px) {
-  .w { max-width: 966px; }
+    .w { max-width: 966px; }
 }
 
 hr {
-  text-align: center;
-  border: 0;
+    text-align: center;
+    border: 0;
 
-  &:before { content: '<><><><><> 🐪' }
-  &:after { content: attr(data-content) ' <><><><><>' }
+    &:before { content: '<><><><><> 🐪' }
+    &:after { content: attr(data-content) ' <><><><><>' }
 }
 
 table, th, td {
-  border: thin solid black;
-  border-collapse: collapse;
-  padding: 0.3em;
+    border: thin solid dimgrey;
+    border-collapse: collapse;
+    padding: 0.2em;
 }
 
 table {
-  width: 100%;
+    width: 100%;
 }
 
 th {
-  height: 50px;
+    height: 50px;
 }
 
 code {
-  font-family: $monospace;
-  color: rgb(66, 73, 73);
+    font-family: $monospace;
+    font-size: 0.9em;
+    color: #4f4f4f;
 }
 
 div.highlighter-rouge code {
-  display: block;
-  overflow-x: auto;
-  padding: 1rem;
+    background-color: #eef;
+    display: block;
+    overflow-x: auto;
+    padding: 0.5em;
+    margin: 1em;
 }
 
 div.hidden {
-  display: none;
+    display: none;
 }
 
 .selected {
-  font-style: italic;
+    font-style: italic;
 }
 
 blockquote {
-  font-style: italic;
-  border: thin solid black;
-  padding: 1rem;
-
-  p { margin: 0; }
+    font-style: italic;
+    color: #4f4f4f;
+    padding: 0.3em;
+    font-size: 0.9em;
+    p { margin: 0.1em; }
 }
 
 img {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
 }
 
-.post-date, .post-link {
+.post-list > li {
+    list-style: none;
+}
+
+.post-date {
+    display: inline;
+    font-size: 0.8em;
+    color: dimgrey;
+}
+
+.post-link {
     display: inline;
 }
 

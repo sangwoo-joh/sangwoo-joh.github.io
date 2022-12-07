@@ -19,7 +19,7 @@ layout: default
   {% for post in site.posts %}
   {% if post.tags.size > 0 %}
   {% assign post_date = post.date | date: site.theme_config.date_format %}
-  <div class="post-wrapper"
+  <div class="post-list"
        {% for tag in post.tags %}
        data-{{ tag }}
        {% endfor %}>
@@ -74,13 +74,13 @@ layout: default
     $('.hidden').removeClass('hidden');
     $(`.tag`).removeClass('selected');
     $(`.tag[data-tag=all]`).addClass('selected');
-    $(".count").text($(".post-wrapper").length);
+    $(".count").text($(".post-list").length);
   }
 
   function filterByTagName(tagName) {
     var counter = 0;
     $('.hidden').removeClass('hidden');
-    $('.post-wrapper').each((index, elem) => {
+    $('.post-list').each((index, elem) => {
       if (!elem.hasAttribute(`data-${tagName}`)) {
         $(elem).addClass('hidden');
       } else {

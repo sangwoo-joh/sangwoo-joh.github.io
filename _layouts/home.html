@@ -1,15 +1,20 @@
 ---
 layout: default
 ---
-<center>
-  <header>
+<header>
+  <div class="top">
     <h1>{{ site.title }}</h1>
-    {% if site.theme_config.show_description == true %}
+  </div>
+
+  <div class="banner">
     <p>{{ site.description }}</p>
-    {% endif %}
 
-    <a href="/about">About me</a>
-  </header>
-</center>
+    <ul class="banner-link">
+      <li class="banner-item"><a href="/about">About</a></li>
+      <li class="banner-item"><a href="/posts">Archive</a></li>
+    </ul>
+  </div>
+</header>
 
+<hr />
 {% include post_list.html %}
