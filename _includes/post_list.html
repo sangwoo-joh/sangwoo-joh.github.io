@@ -18,7 +18,7 @@
   for (let post_date of posts) {
     let pdate = moment(post_date.dataset.postDate);
     if (pdate.isBetween(weekago, today)) {
-      post_date.innerHTML = "<b>[new!]</b> " + post_date.innerHTML;
+      post_date.innerHTML =  post_date.innerHTML + "  <b>[new!]</b>";
     }
   }
 </script>
