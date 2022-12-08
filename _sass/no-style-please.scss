@@ -109,12 +109,13 @@ code {
     font-family: $monospace;
     font-size: 0.9em;
     color: #4f4f4f;
+    border-radius: 0.2em;
 }
 
 div.highlighter-rouge code {
     display: block;
     overflow-x: auto;
-    padding: 0.5em;
+    padding: 1.5em;
     margin: 1em;
 }
 
