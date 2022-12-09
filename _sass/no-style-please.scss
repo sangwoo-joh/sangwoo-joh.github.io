@@ -141,29 +141,41 @@ img {
     list-style: none;
 }
 
-.post-date {
-    display: inline;
-    font-size: 0.9em;
-    color: #4f4f4f;
-}
-
-.post-link {
-    display: inline;
-}
-
-.post-label {
-    display: inline;
-    b {
+.post-preview {
+    .post-date {
+        display: inline;
         font-size: 0.9em;
-        margin: 0.2em;
-        vertical-align: sub;
+        color: #4f4f4f;
+    }
+    .post-date::after {
+        content: ' | ';
+        margin-left: 0.5em;
+        margin-right: 0.5em;
+    }
+
+    .post-link {
+        display: inline;
+    }
+
+    .post-label {
+        display: inline;
+        b {
+            font-size: 0.9em;
+            margin: 0.2em;
+            vertical-align: sub;
+        }
     }
 }
 
-.post-date::after {
-    content: ' | ';
-    margin-left: 0.5em;
-    margin-right: 0.5em;
+.post-edit-date {
+    text-align: right;
+    font-style: italic;
+    .post-date {
+        display: inline;
+        font-size: 0.8em;
+        color: #4f4f4f;
+        margin: 0.5em;
+    }
 }
 
 span.tag {

@@ -24,7 +24,7 @@ layout: default
   {% assign post_date = post.date | date: site.theme_config.date_format %}
   {% assign last_update = post.last_update | date: site.theme_config.date_format %}
   <li>
-    <div class="post-item" data-post-date="{{ post_date }}" data-last-update="{{ last_update }}">
+    <div class="post-preview" data-post-date="{{ post_date }}" data-last-update="{{ last_update }}">
       <div class="post-date">{{ post_date }}</div>
       <div class="post-link"><a href="{{ post.url | relative_url }}">{{ post.title | downcase }}</a></div>
       <div class="post-label" />
@@ -37,7 +37,7 @@ layout: default
 <hr />
 
 <script type="text/javascript">
-  let posts = document.getElementsByClassName("post-item");
+  let posts = document.getElementsByClassName("post-preview");
   const today = moment();
   const weekago = moment().subtract(7, 'd');
 
