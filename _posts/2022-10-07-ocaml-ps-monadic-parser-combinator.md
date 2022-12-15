@@ -4,6 +4,7 @@ published: true
 tags: [dev, ocaml]
 title: OCaml로 PS 하기 -7-
 subtitle: 파서 컴비네이터
+last_update: 2022-12-15 10:39:54
 ---
 
  풀고 싶었던 문제를 드디어 풀었다.
@@ -852,7 +853,7 @@ let expr ~occur =
  따라서 단항 연산자 `~`가 가장 깊숙한 곳에 있고, 그 후 순서대로 `&`,
  `^`, `|`가 있는 문법을 정의하면 된다.
 
-```ebnf
+```
 EXPR := TERM0 or TERM0
       | TERM0
 
