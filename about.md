@@ -2,22 +2,23 @@
 layout: page
 title: About
 permalink: /about/
+last_update: 2022-12-28 17:56:41
 ---
 
 ## About Me
 
  소프트웨어 엔지니어입니다.
 
- 정적 타입 함수형 언어 OCaml을 좋아하지만, 동적 타입 언어 Python으로
+ 정적 타입 함수형 언어 OCaml 신도이지만, 동적 타입 언어 Python으로
  먹고 살고 있습니다.
 
- Emacs를 주로 씁니다. Emacs 이야기는 언제나 환영합니다. 가끔 Vim도
- 씁니다.
+ 메인 에디터는 Emacs입니다.
 
- 타입 시스템, 가비지 컬렉션, 공유 메모리 병렬 처리, 분산 시스템 등에
+ 타입 시스템, 가비지 컬렉션, 공유 메모리 병렬 처리, 분산 시스템에
  관심이 많습니다.
 
- 제 글을 100% 신뢰하시면 곤란합니다. 부족한 내용은 얼마든지 알려주세요.
+ 제 글을 100% 신뢰하시면 곤란합니다. 부족하거나 이상한 내용은 저에게
+ 알려주세요.
 
 ## About Caml Shaving
 
@@ -27,7 +28,7 @@ permalink: /about/
  - [Down the rabbit hole](https://en.wikipedia.org/wiki/Down_the_rabbit_hole)
  - [OCaml](https://ocaml.org)
 
- 하지만 사실 아무 글이나 씁니다.
+ 근데 사실 아무 글이나 씁니다.
 
 
 ## [A Very Personal Bible](/bible)
