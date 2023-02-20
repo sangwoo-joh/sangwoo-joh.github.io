@@ -1,11 +1,13 @@
 #+title: Doom Emacs
 #+subtitle: Welcome
-#+last_update: 2023-01-27 10:59:52
+#+last_update: 2023-02-20 14:28:12
 #+layout: post
 #+tags: dev
 
  * 나의 이맥스 설정은 부팅(?)이 느리다. 이건 명백한 사실. 심할 때는 3분 가까이
-   걸리기도 함.
+   걸리기도 함. =use-package= 개수는 63개지만, 실제 =eln-cache= 에 컴파일된 패키지
+   수는 400여개. 즉, 이맥스가 켜질 때 마다 400개가 넘는 패키지를 한번에 로딩하고
+   있었던 것이다.
  * 다양한 이맥스 변종 (예: 스페이스맥스) 에 대해 알고는 있었음. 그 중 둠
    이맥스는 테마가 마음에 들어서 개인적으로 고쳐다 쓰고 있었음.
  * 대체 왜 이렇게 부팅이 느린지 검색하다가 [[https://github.com/doomemacs/doomemacs/blob/develop/docs/faq.org#how-does-doom-start-up-so-quickly][요런 글]]을 보게 되었고 홀린듯이 둠
