@@ -20,7 +20,7 @@ layout: default
 
 <hr />
 
-<div class="updated-post-list">
+<div class="recent-post-list">
 </div>
 
 <ul class="post-list">
@@ -42,6 +42,7 @@ layout: default
 
 <script type="text/javascript">
   let posts = document.getElementsByClassName("post-preview");
+  let recent_posts = [];
   const today = moment();
   const weekago = moment().subtract(7, 'd');
 
@@ -55,33 +56,32 @@ layout: default
         const new_text = document.createTextNode(`[${text}!]`);
         b.appendChild(new_text);
         new_tag.appendChild(b);
+
+        recent_posts.push(post);
       }
     }
   }
 
-  update_label("postDate", "new");
-  update_label("lastUpdate", "updated");
+  update_label("postDate", "새 글");
+  update_label("lastUpdate", "수정됨");
 
-  // hoist the updated posts to the top
-  let updated_posts = [];
-  let updated_post_list = document.getElementsByClassName("updated-post-list")[0];
-  for (let post of posts) {
-    let pdate = moment(post.dataset["lastUpdate"]);
-    if (pdate.isBetween(weekago, today)) {
-      updated_posts.push(post);
-    }
-  }
+  // hoist the recent posts to the top
+  if (recent_posts.length > 0) {
+    let recent_post_list = document.getElementsByClassName("recent-post-list")[0];
+    const title = document.createElement("h4");
+    const title_text = document.createTextNode("최근 작업");
+    title.appendChild(title_text);
+    recent_post_list.appendChild(title);
 
-  if (updated_posts.length > 0) {
     const ul = document.createElement("ul");
-    for (let updated_post of updated_posts) {
+    for (let updated_post of recent_posts) {
       const li = document.createElement("li");
       li.appendChild(updated_post);
       ul.appendChild(li);
     }
-    updated_post_list.appendChild(ul);
+    recent_post_list.appendChild(ul);
     const hr = document.createElement("hr");
-    updated_post_list.appendChild(hr);
+    recent_post_list.appendChild(hr);
   }
 
 </script>
