@@ -152,6 +152,7 @@ img {
         display: inline;
         font-size: 0.9em;
         color: #4f4f4f;
+        font-family: $monospace;
     }
     .post-date::after {
         content: ' | ';
