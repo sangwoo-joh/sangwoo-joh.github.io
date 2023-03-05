@@ -19,6 +19,10 @@ layout: default
 </header>
 
 <hr />
+
+<div class="updated-post-list">
+</div>
+
 <ul class="post-list">
   {% for post in site.posts %}
   {% assign post_date = post.date | date: site.theme_config.date_format %}
@@ -44,7 +48,7 @@ layout: default
   function update_label(date, text){
     for (let post of posts) {
       let pdate = moment(post.dataset[date]);
-      console.log(pdate);
+      // console.log(pdate);
       if (pdate.isBetween(weekago, today)) {
         let new_tag = post.getElementsByClassName("post-label")[0];
         const b = document.createElement("b");
@@ -57,4 +61,27 @@ layout: default
 
   update_label("postDate", "new");
   update_label("lastUpdate", "updated");
+
+  // hoist the updated posts to the top
+  let updated_posts = [];
+  let updated_post_list = document.getElementsByClassName("updated-post-list")[0];
+  for (let post of posts) {
+    let pdate = moment(post.dataset["lastUpdate"]);
+    if (pdate.isBetween(weekago, today)) {
+      updated_posts.push(post);
+    }
+  }
+
+  if (updated_posts.length > 0) {
+    const ul = document.createElement("ul");
+    for (let updated_post of updated_posts) {
+      const li = document.createElement("li");
+      li.appendChild(updated_post);
+      ul.appendChild(li);
+    }
+    updated_post_list.appendChild(ul);
+    const hr = document.createElement("hr");
+    updated_post_list.appendChild(hr);
+  }
+
 </script>
