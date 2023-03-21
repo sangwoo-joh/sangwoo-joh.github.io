@@ -3,6 +3,7 @@ layout: post
 tags: [life]
 published: true
 title: 노동요
+last_update: 2023-03-21 10:59:10
 ---
 
  최근에 유튜브 뮤직이 내가 즐겨 듣던 가수 [더
@@ -71,3 +72,12 @@ title: 노동요
    (1976)](https://music.youtube.com/playlist?list=OLAK5uy_l63UotXvycgKWYn_GkpJcyRfMEf78qYxg)
  - [Mellow Dream
    (1977)](https://music.youtube.com/playlist?list=OLAK5uy_nCL6JERLYBC0fs0lW11o_gEMzZ79Fwkiw)
+
+#### 2023/03/21 업데이트
+
+ 또 새로운 가수를 찾았다. [Mina
+ Okabe](https://music.youtube.com/channel/UCdwuOm1Z7_1UyhMsTjgmxeg) 라는
+ 덴마크와 일본 혼혈의 싱어송라이터인데 이런 류의 노래를 뭐라고 해야할지...
+ 와이프의 말을 빌리자면 약간 힘빠지는(?) 그런 노래를 부르는데 이게 아주 내
+ 취향에 맞는다. 재즈 느낌도 있고 어쿠스틱 느낌도 있는데 멜로디가 참신해서,
+ 아티스트들은 정말 대단하구나 라고 생각하게 된다.
