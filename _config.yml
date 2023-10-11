@@ -27,15 +27,20 @@ plugins:
   - jekyll-feed
   - jekyll-seo-tag
   - jekyll-org
+  - kramdown/syntax_tree_sitter
 
 markdown: kramdown
-highlighter: rouge
+highlighter: tree-sitter
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
+  syntax_highlighter: tree-sitter
   syntax_highlighter_opts:
+    tree_sitter_parsers_dir: tree_sitter_parsers
     css_class: 'highlight'
     span:
       line_numbers: false
     block:
       line_numbers: false
+
+exclude:
+  - tree_sitter_parsers

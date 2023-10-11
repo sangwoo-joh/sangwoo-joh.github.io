@@ -3,19 +3,20 @@ layout: post
 tags: [dev]
 published: true
 title: 나의 Emacs 마크다운 링크 입력기
+last_update: 2023-10-11 11:19:32
 ---
 
  마크다운으로 블로그 글을 정리하면서 자주 마주치는 일 중 하나는 링크를
  입력하는 일이다. 마크다운 문법으로 링크는 다음과 같이 작성할 수 있다.
 
-```markdown
+```
 [Link Text](URL)
 ```
 
  그런데 이 문법으로 내 블로그 안의 글을 링크할 때에는 보통 다음과 같은
  규칙으로 만들고 있다.
 
-```markdown
+```
 [My Link Text](my-link-text)
 ```
 
@@ -56,7 +57,7 @@ title: 나의 Emacs 마크다운 링크 입력기
  리스트](https://www.markdownguide.org/extended-syntax/#task-lists)라는
  확장 문법이 있다.
 
-```markdown
+```
  - [ ] TODO
  - [x] DONE!
 ```
@@ -83,7 +84,7 @@ title: 나의 Emacs 마크다운 링크 입력기
 
  이 내장 함수들을 잘 조합해서 만든 함수는 다음과 같다.
 
-```lisp
+```elisp
 (defun fill-markdown-link-at-point ()
   "FILL MARKDOWN LINK IN PARENTHESES FROM BRACKET."
   (interactive)
@@ -117,7 +118,7 @@ title: 나의 Emacs 마크다운 링크 입력기
  원하는 함수를 만들었으니 이제 이 함수를 단축키에 등록하면 된다. 마침
  마크다운 모드를 사용하고 있으므로 해당 모드에만 바인드 시킬 수 있다.
 
-```lisp
+```elisp
 (use-package markdown-mode
   ....
   :bind

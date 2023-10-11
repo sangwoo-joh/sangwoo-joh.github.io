@@ -11,3 +11,5 @@ gem "no-style-please"
 
 gem "webrick", "~> 1.7"
 gem "jekyll-org", ">= 1.1.0"
+
+gem "kramdown-syntax_tree_sitter", "~> 0.5.0"
