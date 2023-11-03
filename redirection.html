@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      리-다이렉션
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="리-다이렉션" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="분석 시간 관련 이슈를 파기 위해 빌드에 최소 8분, 최대 50분 정도 걸리는 패키지들을 빌드해보고 있었다. 빌드 도중에 떨어지는 부가 데이터와 각각 패키지들의 빌드 시간도 기록할겸 대충 time build_cmd &gt; log 때리고 퇴근했다. 그런데 오늘 와서 보니 log 파일에는 빌드 관련 로그만 잔뜩 남아있고 time 커맨드의 실행 결과는 터미널에만 남아있는 것이 아닌가? 당연히 시간도 남을 거라 생각해서 좀 당황했지만 관련 내용을 찾아보니 금방 이유를 찾을 수 있었다." />
+<meta property="og:description" content="분석 시간 관련 이슈를 파기 위해 빌드에 최소 8분, 최대 50분 정도 걸리는 패키지들을 빌드해보고 있었다. 빌드 도중에 떨어지는 부가 데이터와 각각 패키지들의 빌드 시간도 기록할겸 대충 time build_cmd &gt; log 때리고 퇴근했다. 그런데 오늘 와서 보니 log 파일에는 빌드 관련 로그만 잔뜩 남아있고 time 커맨드의 실행 결과는 터미널에만 남아있는 것이 아닌가? 당연히 시간도 남을 거라 생각해서 좀 당황했지만 관련 내용을 찾아보니 금방 이유를 찾을 수 있었다." />
+<link rel="canonical" href="https://sangwoo-joh.github.io/redirection" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/redirection" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-10-30T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="리-다이렉션" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2018-10-30T00:00:00+00:00","datePublished":"2018-10-30T00:00:00+00:00","description":"분석 시간 관련 이슈를 파기 위해 빌드에 최소 8분, 최대 50분 정도 걸리는 패키지들을 빌드해보고 있었다. 빌드 도중에 떨어지는 부가 데이터와 각각 패키지들의 빌드 시간도 기록할겸 대충 time build_cmd &gt; log 때리고 퇴근했다. 그런데 오늘 와서 보니 log 파일에는 빌드 관련 로그만 잔뜩 남아있고 time 커맨드의 실행 결과는 터미널에만 남아있는 것이 아닌가? 당연히 시간도 남을 거라 생각해서 좀 당황했지만 관련 내용을 찾아보니 금방 이유를 찾을 수 있었다.","headline":"리-다이렉션","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/redirection"},"url":"https://sangwoo-joh.github.io/redirection"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>리-다이렉션</h1>
+<h2>저리 가라</h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2018-10-30
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+
+<a href="/archive?tag=think"><span class="tag">think</span></a>
+
+
+
+
+</p></em>
+
+
+<p>분석 시간 관련 이슈를 파기 위해 빌드에 최소 8분, 최대 50분 정도
+ 걸리는 패키지들을 빌드해보고 있었다.  빌드 도중에 떨어지는 부가
+ 데이터와 각각 패키지들의 빌드 시간도 기록할겸 대충 <code class="language-plaintext highlighter-rouge">time build_cmd &gt;
+ log</code> 때리고 퇴근했다.  그런데 오늘 와서 보니 log 파일에는 빌드 관련
+ 로그만 잔뜩 남아있고 <code class="language-plaintext highlighter-rouge">time</code> 커맨드의 실행 결과는 터미널에만 남아있는
+ 것이 아닌가?  당연히 시간도 남을 거라 생각해서 좀 당황했지만 관련
+ 내용을 찾아보니 금방 이유를 찾을 수 있었다.</p>
+
+<p>결론부터 말하면 <code class="language-plaintext highlighter-rouge">time</code> 커맨드를 쓰지말고 <code class="language-plaintext highlighter-rouge">\time</code> 커맨드와 <code class="language-plaintext highlighter-rouge">-v</code> , <code class="language-plaintext highlighter-rouge">-o
+ filename</code> 옵션을 이용해서 시간과 메모리 사용량 모두 파일에 쓰고
+ 광명을 찾는 것이 좋다.</p>
+
+<h3 id="time-커맨드">time 커맨드</h3>
+<p>man 페이지를 보면 다음 설명이 있다.</p>
+
+<blockquote>
+  <p><strong>DESCRIPTION</strong></p>
+
+  <p><strong>time</strong> run the program <em>COMMAND</em> with any given arguments
+<em>ARG…</em>. When <em>COMMAND</em> finishes, <strong>time</strong> displays information
+about resources used by <em>COMMAND</em> (on the standard error output, by
+default). If <em>COMMAND</em> exits with non-zero status, <strong>time</strong> displays
+a warning and the exit status.</p>
+</blockquote>
+
+<p>주목해야 하는 부분은 <code class="language-plaintext highlighter-rouge">on the standard error output, by
+ default</code>이다. 즉 time 커맨드의 결과는 stdout이 아니라 stderr에 쓰이고
+ 있었던 것이다. (man 페이지 읽는 습관을 생활화합시다…)</p>
+
+<h3 id="리다이렉션">리다이렉션</h3>
+<p><a href="https://en.wikipedia.org/wiki/Redirection_(computing)">링크</a>의 내용
+ 중 일부를 발췌해왔다.</p>
+
+<p>유닉스 쉘의 i/o stream은 다음과 같다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>핸들</th>
+      <th>이름</th>
+      <th>설명</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>0</td>
+      <td>stdin</td>
+      <td>Standard input</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>stdout</td>
+      <td>Standard output</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>stderr</td>
+      <td>Standard error</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>예를 들어, <code class="language-plaintext highlighter-rouge">command1 2&gt; file1</code>은 <code class="language-plaintext highlighter-rouge">command1</code>을 실행하고, 표준 에러
+ 스트림을 <code class="language-plaintext highlighter-rouge">file</code>에다 쓰게 된다.  csh 계열의 쉘에서는 i/o 스트림을
+ 구분하기 위해 숫자 앞에 <code class="language-plaintext highlighter-rouge">&amp;</code>를 붙이는데, 이유는 <code class="language-plaintext highlighter-rouge">1</code>이라는 파일과 표준
+ 출력 <code class="language-plaintext highlighter-rouge">1</code>을 구분하기 위해서다. 그래서 <code class="language-plaintext highlighter-rouge">cat file 2&gt;1</code>의 경우는 stderr이
+ <code class="language-plaintext highlighter-rouge">1</code>이라는 이름의 파일에 리다이렉트되고, <code class="language-plaintext highlighter-rouge">cat file 2&gt;&amp;1</code>의 경우는
+ stderr이 stdout에 리다이렉트된다.</p>
+
+<p>또하나 쓸만한 것은 표준 파일 핸들을 다른 파일로 리다이렉트 하는
+ 것이다. 가장 유명한 건 역시 stderr를 stdout에 합쳐서 에러메시지를
+ 같이 처리하는 일이다. 예를 들어, <code class="language-plaintext highlighter-rouge">find / -name .profile &gt; results
+ 2&gt;&amp;1</code> 커맨드는 파일이름이 <code class="language-plaintext highlighter-rouge">.profile</code>인 모든 파일을 찾아서 그 결과를
+ <code class="language-plaintext highlighter-rouge">result</code> 파일에다 쓴다. 리다이렉션 없이 실행하면, 찾은 건 stdout에
+ 출력하고 에러(예를 들면, 보호된 디렉토리를 탐색하려고 할때 발생하는
+ 권한 오류)는 stderr에 출력한다. 즉, stdout이 <code class="language-plaintext highlighter-rouge">results</code> 파일에
+ 출력되는 반면, 에러메시지는 그냥 콘솔에 출력되는 것이다. 찾은 것과
+ 에러 메시지 둘 다 <code class="language-plaintext highlighter-rouge">results</code> 파일에다 쓰고 싶으면, <code class="language-plaintext highlighter-rouge">2&gt;&amp;1</code>을 이용해서
+ stderr(핸들 2)를 stdout(핸들 1)에 합치면 된다.</p>
+
+<p>만약에 합친 출력을 파이프로 다른 프로그램에 던져 주고 싶으면,
+ <code class="language-plaintext highlighter-rouge">2&gt;&amp;1</code>로 머지한 시퀀스가 파이프에 넘겨 주기 전에 앞서야 한다. 즉,
+ <code class="language-plaintext highlighter-rouge">find / -name .profile 2&gt;&amp;1 | less</code> 꼴이 되야 한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">command &gt; file 2&gt;&amp;1</code>은 다음과 같이 해석하면 된다. 먼저 표준
+ 출력(<code class="language-plaintext highlighter-rouge">command</code>의 정상 실행 결과)이 <code class="language-plaintext highlighter-rouge">file</code>로 리다이렉트된다. 그리고
+ stderr이 추가적으로 stdout 핸들로 리다이렉트되는데, 이때 이미
+ stdout은 <code class="language-plaintext highlighter-rouge">file</code>로 리다이렉트된 상황이다. 따라서 최종적으로
+ <code class="language-plaintext highlighter-rouge">command</code>의 실행 결과와 오류가 모두 <code class="language-plaintext highlighter-rouge">file</code>에 쓰여진다.</p>
+
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>

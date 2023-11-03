@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      Giscus
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="Giscus" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Giscus란 걸 블로그에 연결했다. 작년 이맘때 즈음 내가 쓴 글에 대한 반응을 마주하기가 두려워져서, 그간 써왔던 디스커스를 버리고 간단한 리액션(하트)만 남길 수 있는 LikeBtn을 달았었다. 하트만 남기는 방식이 나쁘진 않았지만, 1년 정도 쓰다보니 몇 가지 아쉬운 점이 있었다. 일단 누가 하트를 찍었는지 구분할 수 없다는 게 아쉬워지는 순간이 있었다. 실명이나 닉네임을 알고 싶은 게 아니라, IP 단위로 사용자를 구분하다보니 내가 여러 브라우저에서 테스트로 찍은 하트가 전부 따로 카운트되어서 일종의 어뷰징이 가능한 게 아쉬웠다. 그리고 관련 통계를 보고 싶으면 반드시 결제를 해야하는 것이 가장 큰 아쉬움이었다. 하트 반응의 추이는 볼 수 있었지만, 어느 글에 하트가 찍힌 건지를 보기 위해서 매달 $5 (혹은 연 $13) 을 내고 싶지는 않았다. 그래서 취미 코딩 큐에 막연히 &#8216;대체재를 찾아서 갈아끼워야지&#8230;&#8217;란 생각만 하고 있다가, SNS에서 스치듯 Giscus란 걸 보게 되었다. 살펴보니 Utterances와 굉장히 유사하지만 코멘트 뿐만 아니라 리액션을 따로 남길 수 있는 점이 끌렸다. 이름은 Git + Disqus(랑 비슷) + (GitHub) Discussion 을 적절히 합친 것 같다. 그래서 GitHub 저장소 하나를 씨드로 하고 여기에 Giscus 앱을 설치해서 GitHub의 Discussion 기능을 활용하여 리액션과 코멘트를 관리하는 것으로 보인다. 한글 지원도 잘 되는 것이 마음에 든다. Lazy loading도 지원해서 사이트 로딩이 무거워지지 않아서(=그런 것처럼 느껴져서) 좋다. 예전에 찍혔던 하트가 날아간 것은 조금 아쉽지만, 훨씬 더 눈에 잘 들어오는 리액션과 코멘트 박스가 생긴 것은 정말 마음에 든다. 거기다 내가 계정을 관리할 필요 없이 깃허브 계정만 있으면 모든 것을 할 수 있다니. 오픈소스의 위대함을 다시 한번 느낄 수 있었다. 이제 내가 글만 쓰면 된다&#8230;" />
+<meta property="og:description" content="Giscus란 걸 블로그에 연결했다. 작년 이맘때 즈음 내가 쓴 글에 대한 반응을 마주하기가 두려워져서, 그간 써왔던 디스커스를 버리고 간단한 리액션(하트)만 남길 수 있는 LikeBtn을 달았었다. 하트만 남기는 방식이 나쁘진 않았지만, 1년 정도 쓰다보니 몇 가지 아쉬운 점이 있었다. 일단 누가 하트를 찍었는지 구분할 수 없다는 게 아쉬워지는 순간이 있었다. 실명이나 닉네임을 알고 싶은 게 아니라, IP 단위로 사용자를 구분하다보니 내가 여러 브라우저에서 테스트로 찍은 하트가 전부 따로 카운트되어서 일종의 어뷰징이 가능한 게 아쉬웠다. 그리고 관련 통계를 보고 싶으면 반드시 결제를 해야하는 것이 가장 큰 아쉬움이었다. 하트 반응의 추이는 볼 수 있었지만, 어느 글에 하트가 찍힌 건지를 보기 위해서 매달 $5 (혹은 연 $13) 을 내고 싶지는 않았다. 그래서 취미 코딩 큐에 막연히 &#8216;대체재를 찾아서 갈아끼워야지&#8230;&#8217;란 생각만 하고 있다가, SNS에서 스치듯 Giscus란 걸 보게 되었다. 살펴보니 Utterances와 굉장히 유사하지만 코멘트 뿐만 아니라 리액션을 따로 남길 수 있는 점이 끌렸다. 이름은 Git + Disqus(랑 비슷) + (GitHub) Discussion 을 적절히 합친 것 같다. 그래서 GitHub 저장소 하나를 씨드로 하고 여기에 Giscus 앱을 설치해서 GitHub의 Discussion 기능을 활용하여 리액션과 코멘트를 관리하는 것으로 보인다. 한글 지원도 잘 되는 것이 마음에 든다. Lazy loading도 지원해서 사이트 로딩이 무거워지지 않아서(=그런 것처럼 느껴져서) 좋다. 예전에 찍혔던 하트가 날아간 것은 조금 아쉽지만, 훨씬 더 눈에 잘 들어오는 리액션과 코멘트 박스가 생긴 것은 정말 마음에 든다. 거기다 내가 계정을 관리할 필요 없이 깃허브 계정만 있으면 모든 것을 할 수 있다니. 오픈소스의 위대함을 다시 한번 느낄 수 있었다. 이제 내가 글만 쓰면 된다&#8230;" />
+<link rel="canonical" href="https://sangwoo-joh.github.io/giscus" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/giscus" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2023-03-04T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Giscus" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2023-03-04T00:00:00+00:00","datePublished":"2023-03-04T00:00:00+00:00","description":"Giscus란 걸 블로그에 연결했다. 작년 이맘때 즈음 내가 쓴 글에 대한 반응을 마주하기가 두려워져서, 그간 써왔던 디스커스를 버리고 간단한 리액션(하트)만 남길 수 있는 LikeBtn을 달았었다. 하트만 남기는 방식이 나쁘진 않았지만, 1년 정도 쓰다보니 몇 가지 아쉬운 점이 있었다. 일단 누가 하트를 찍었는지 구분할 수 없다는 게 아쉬워지는 순간이 있었다. 실명이나 닉네임을 알고 싶은 게 아니라, IP 단위로 사용자를 구분하다보니 내가 여러 브라우저에서 테스트로 찍은 하트가 전부 따로 카운트되어서 일종의 어뷰징이 가능한 게 아쉬웠다. 그리고 관련 통계를 보고 싶으면 반드시 결제를 해야하는 것이 가장 큰 아쉬움이었다. 하트 반응의 추이는 볼 수 있었지만, 어느 글에 하트가 찍힌 건지를 보기 위해서 매달 $5 (혹은 연 $13) 을 내고 싶지는 않았다. 그래서 취미 코딩 큐에 막연히 &#8216;대체재를 찾아서 갈아끼워야지&#8230;&#8217;란 생각만 하고 있다가, SNS에서 스치듯 Giscus란 걸 보게 되었다. 살펴보니 Utterances와 굉장히 유사하지만 코멘트 뿐만 아니라 리액션을 따로 남길 수 있는 점이 끌렸다. 이름은 Git + Disqus(랑 비슷) + (GitHub) Discussion 을 적절히 합친 것 같다. 그래서 GitHub 저장소 하나를 씨드로 하고 여기에 Giscus 앱을 설치해서 GitHub의 Discussion 기능을 활용하여 리액션과 코멘트를 관리하는 것으로 보인다. 한글 지원도 잘 되는 것이 마음에 든다. Lazy loading도 지원해서 사이트 로딩이 무거워지지 않아서(=그런 것처럼 느껴져서) 좋다. 예전에 찍혔던 하트가 날아간 것은 조금 아쉽지만, 훨씬 더 눈에 잘 들어오는 리액션과 코멘트 박스가 생긴 것은 정말 마음에 든다. 거기다 내가 계정을 관리할 필요 없이 깃허브 계정만 있으면 모든 것을 할 수 있다니. 오픈소스의 위대함을 다시 한번 느낄 수 있었다. 이제 내가 글만 쓰면 된다&#8230;","headline":"Giscus","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/giscus"},"url":"https://sangwoo-joh.github.io/giscus"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>Giscus</h1>
+<h2></h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2023-03-04
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+</p></em>
+
+
+ <p><a href="https://giscus.app/ko">Giscus</a>란 걸 블로그에 연결했다.</p>
+<p><a href="fear-to-write">작년 이맘때 즈음</a> 내가 쓴 글에 대한 반응을 마주하기가 두려워져서, 그간 써왔던
+  디스커스를 버리고 간단한 리액션(하트)만 남길 수 있는 <a href="https://likebtn.com/en/">LikeBtn</a>을 달았었다. 하트만
+  남기는 방식이 나쁘진 않았지만, 1년 정도 쓰다보니 몇 가지 아쉬운 점이 있었다.
+  일단 <i>누가</i> 하트를 찍었는지 구분할 수 없다는 게 아쉬워지는 순간이 있었다.
+  실명이나 닉네임을 알고 싶은 게 아니라, IP 단위로 사용자를 구분하다보니 내가
+  여러 브라우저에서 테스트로 찍은 하트가 전부 따로 카운트되어서 일종의 어뷰징이
+  가능한 게 아쉬웠다. 그리고 관련 통계를 보고 싶으면 반드시 결제를 해야하는 것이
+  가장 큰 아쉬움이었다. 하트 반응의 추이는 볼 수 있었지만, 어느 글에 하트가 찍힌
+  건지를 보기 위해서 매달 $5 (혹은 연 $13) 을 내고 싶지는 않았다.</p>
+<p>그래서 취미 코딩 큐에 막연히 &#8216;대체재를 찾아서 갈아끼워야지&#8230;&#8217;란 생각만 하고
+  있다가, SNS에서 스치듯 Giscus란 걸 보게 되었다. 살펴보니 <a href="https://utteranc.es/">Utterances</a>와 굉장히
+  유사하지만 코멘트 뿐만 아니라 리액션을 따로 남길 수 있는 점이 끌렸다. 이름은
+  Git + Disqus(랑 비슷) + (GitHub) Discussion 을 적절히 합친 것 같다. 그래서
+  GitHub 저장소 하나를 씨드로 하고 여기에 Giscus 앱을 설치해서 GitHub의
+  Discussion 기능을 활용하여 리액션과 코멘트를 관리하는 것으로 보인다. 한글
+  지원도 잘 되는 것이 마음에 든다. Lazy loading도 지원해서 사이트 로딩이
+  무거워지지 않아서(=그런 것처럼 느껴져서) 좋다.</p>
+<p>예전에 찍혔던 하트가 날아간 것은 조금 아쉽지만, 훨씬 더 눈에 잘 들어오는
+  리액션과 코멘트 박스가 생긴 것은 정말 마음에 든다. 거기다 내가 계정을 관리할
+  필요 없이 깃허브 계정만 있으면 모든 것을 할 수 있다니. 오픈소스의 위대함을 다시
+  한번 느낄 수 있었다.</p>
+<p>이제 내가 글만 쓰면 된다&#8230;</p>
+ 
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>

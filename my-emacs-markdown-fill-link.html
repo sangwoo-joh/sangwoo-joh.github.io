@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      나의 Emacs 마크다운 링크 입력기
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="나의 Emacs 마크다운 링크 입력기" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="마크다운으로 블로그 글을 정리하면서 자주 마주치는 일 중 하나는 링크를 입력하는 일이다. 마크다운 문법으로 링크는 다음과 같이 작성할 수 있다." />
+<meta property="og:description" content="마크다운으로 블로그 글을 정리하면서 자주 마주치는 일 중 하나는 링크를 입력하는 일이다. 마크다운 문법으로 링크는 다음과 같이 작성할 수 있다." />
+<link rel="canonical" href="https://sangwoo-joh.github.io/my-emacs-markdown-fill-link" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/my-emacs-markdown-fill-link" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2022-04-07T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="나의 Emacs 마크다운 링크 입력기" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2022-04-07T00:00:00+00:00","datePublished":"2022-04-07T00:00:00+00:00","description":"마크다운으로 블로그 글을 정리하면서 자주 마주치는 일 중 하나는 링크를 입력하는 일이다. 마크다운 문법으로 링크는 다음과 같이 작성할 수 있다.","headline":"나의 Emacs 마크다운 링크 입력기","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/my-emacs-markdown-fill-link"},"url":"https://sangwoo-joh.github.io/my-emacs-markdown-fill-link"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>나의 Emacs 마크다운 링크 입력기</h1>
+<h2></h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2022-04-07
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+</p></em>
+
+
+<p>마크다운으로 블로그 글을 정리하면서 자주 마주치는 일 중 하나는 링크를
+ 입력하는 일이다. 마크다운 문법으로 링크는 다음과 같이 작성할 수 있다.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">Link Text</span><span class="p">](</span><span class="sx">URL</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>그런데 이 문법으로 내 블로그 안의 글을 링크할 때에는 보통 다음과 같은
+ 규칙으로 만들고 있다.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">[</span><span class="nv">My Link Text</span><span class="p">](</span><span class="sx">my-link-text</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>즉,</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">[]</code> 안의 문자열을 가져와서,</li>
+  <li>전부 소문자로 바꾼 다음,</li>
+  <li>알파벳 이외의 문자는 전부 <code class="language-plaintext highlighter-rouge">-</code>로 치환한 것,</li>
+</ul>
+
+<p>… 을 URL로 사용하고 있다.</p>
+
+<p>이게 한 두개면 그냥 그러려니 하고 직접 타이핑 하겠는데, 글을
+ 정리하다보니 가짓수가 꽤 많은데다가, 링크 텍스트가 길어지면 URL을
+ 쓰다가 오타가 나는 경우도 종종 있었다.</p>
+
+<p>그래서 이걸 위한 나만의 마크다운 링크 입력 함수를 이맥스 리슾으로
+ 작성하기로 했다. 오랜만에 블로그 제목다운 <del>야크</del> 낙타 털 깎기
+ 작업이다.</p>
+
+<h2 id="만들려는-함수">만들려는 함수</h2>
+
+<p>이맥스에서 함수를 만드는 자세한 내용은 <a href="https://www.gnu.org/software/emacs/manual/html_node/eintr/defun.html">이맥스
+ 가이드</a>에
+ 나와있다. 나는 다 읽지는 않았고 적당히 내가 필요한 부분만 골라
+ 읽었다. 보아하니 <code class="language-plaintext highlighter-rouge">(interactive)</code> 옵션을 줘야 직접 호출할 수 있는 것
+ 같다. 함수 이름은 적당히 <code class="language-plaintext highlighter-rouge">fill-markdown-link-at-point</code> 로 할
+ 것이다. 함수 동작은 철저히 나의 유스케이스에 맞춰 작성할 것이다.</p>
+
+<p>함수가 하는 일은 다음과 같다: 커서 근처에서 대괄호 짝을 찾은 다음,
+ 대괄호 안의 모든 내용을 가져와서 (1) 전부 소문자로 만들고 (2) 알파벳
+ 외의 글자는 <code class="language-plaintext highlighter-rouge">-</code>로 바꾼 다음 (3) 이 내용을 괄호로 감싸서 대괄호 바로
+ 뒤에다 붙인다. 간단하지만 아무도 관심이 없어서 직접 만들게 되었다.</p>
+
+<h2 id="의식의-흐름으로-구현하기">의식의 흐름으로 구현하기</h2>
+
+<p>내가 아는 마크다운 문법이 맞는지부터 확인해보자. 나는 보통 링크를
+ 리스트로 정리하는데, 마크다운에는 다음과 같이 <a href="https://www.markdownguide.org/extended-syntax/#task-lists">작업
+ 리스트</a>라는
+ 확장 문법이 있다.</p>
+
+<div class="language-markdown highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p"> -</span> [ ] TODO
+<span class="p"> -</span> [x] DONE!
+</code></pre></div></div>
+
+<p>따라서, 정확한 구현은 <code class="language-plaintext highlighter-rouge">[]</code> 안의 문자열을 가져올 때 이게 작업
+ 체크박스인지를 확인할 필요가 있다. 하지만 이건 내가 직접 해도
+ 된다. 그러니 함수에서 이걸 체크하지 않고, 내가 직접 원하는 위치의
+ 링크 텍스트 근처에서 함수를 실행하기로 했다.</p>
+
+<p>이맥스의 내장 함수 목록을 살펴보니, 다음 함수를 사용하면 될 것 같다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">search-forward</code>와 <code class="language-plaintext highlighter-rouge">search-backward</code>: 현재 커서에서 파라미터
+문자열이 처음으로 나타나는 곳을 찾고 그 값을 리턴함과 동시에 <strong>해당
+위치로 커서를 옮긴다</strong>. 어차피 커서는 내가 링크로 만들고자 하는
+대괄호 텍스트 근처에 있을 것이기 때문에, 굳이 정규식으로 검색할
+필요는 없어 보인다.</li>
+  <li><code class="language-plaintext highlighter-rouge">buffer-substring</code>: <code class="language-plaintext highlighter-rouge">search-*</code> 함수로 찾은 위치는 버퍼에서의
+위치(인덱스)이다. 이때 이 함수와 해당 위치로부터 대괄호 안의
+문자열을 가져올 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">replace-regexp-in-string</code>: 가져온 문자열에서 알파벳 외의 글자를
+전부 <code class="language-plaintext highlighter-rouge">-</code>로 만드는 가장 쉬운 방법은 정규식으로 치환하는 것이다. 마침
+딱 맞는 함수가 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">downcase</code>: 문자열 중 대문자를 전부 소문자로 만드는 함수다. 정확히
+내가 원하던 것이다.</li>
+</ul>
+
+<p>이 내장 함수들을 잘 조합해서 만든 함수는 다음과 같다.</p>
+
+<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">defun</span> <span class="nv">fill-markdown-link-at-point</span> <span class="p">()</span>
+  <span class="s">"FILL MARKDOWN LINK IN PARENTHESES FROM BRACKET."</span>
+  <span class="p">(</span><span class="nv">interactive</span><span class="p">)</span>
+  <span class="p">(</span><span class="nv">save-excursion</span>
+    <span class="p">(</span><span class="k">progn</span>
+      <span class="p">(</span><span class="k">let*</span> <span class="p">((</span><span class="nv">start</span> <span class="p">(</span><span class="nv">search-backward</span> <span class="s">"["</span><span class="p">))</span>
+             <span class="p">(</span><span class="nv">end</span> <span class="p">(</span><span class="nv">search-forward</span> <span class="s">"]"</span><span class="p">))</span>
+             <span class="p">(</span><span class="nv">title</span> <span class="p">(</span><span class="nv">buffer-substring</span> <span class="p">(</span><span class="nb">+</span> <span class="nv">start</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">-</span> <span class="nv">end</span> <span class="mi">1</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nv">title</span> <span class="p">(</span><span class="nv">replace-regexp-in-string</span> <span class="s">"[^a-zA-Z0-9]"</span> <span class="s">"-"</span> <span class="nv">title</span><span class="p">))</span>
+             <span class="p">(</span><span class="nv">title</span> <span class="p">(</span><span class="nv">downcase</span> <span class="nv">title</span><span class="p">)))</span>
+        <span class="p">(</span><span class="nv">goto-char</span> <span class="p">(</span><span class="nv">match-end</span> <span class="mi">0</span><span class="p">))</span>
+        <span class="p">(</span><span class="nv">insert</span> <span class="p">(</span><span class="nb">format</span> <span class="s">"(%s)"</span> <span class="nv">title</span><span class="p">))</span>
+        <span class="p">))))</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">search-*</code> 함수가 직접 커서를 움직인다는 점을 이용해서, 먼저 <code class="language-plaintext highlighter-rouge">[</code>를
+찾은 다음 <code class="language-plaintext highlighter-rouge">]</code>를 찾았다. 이렇게 하면 커서가 적당히 대괄호 근처에
+있어도 원하는 텍스트를 찾을 수 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">search-*</code> 함수는 검색 대상 문자열의 위치를 반환하기 때문에, 시작
+위치는 한 칸 뒤로 움직여주고 끝 위치는 한 칸 앞으로
+움직여준다. 그래야 대괄호를 제외한 온전한 텍스트를 얻는다.</li>
+  <li><code class="language-plaintext highlighter-rouge">search-*</code> 함수로 검색을 하고 나면 <code class="language-plaintext highlighter-rouge">(match-beginning)</code>와
+<code class="language-plaintext highlighter-rouge">(match-end)</code> 함수를 통해서 매칭된 위치를 알아낼 수 있다. 여기서는
+닫힌 대괄호 <code class="language-plaintext highlighter-rouge">]</code>를 찾은 결과가 스택에 남아있고 첫 번째 매칭 위치가
+필요해서 <code class="language-plaintext highlighter-rouge">(match-end 0)</code> 으로 간다.</li>
+  <li><code class="language-plaintext highlighter-rouge">search-*</code> 함수가 직접 커서를 움직여 버리기 때문에, 실제로 작업이
+끝나면 커서는 <code class="language-plaintext highlighter-rouge">insert</code> 한 위치로 간다. 이것은 그다지 기분좋은 일은
+아니다. <code class="language-plaintext highlighter-rouge">save-excursion</code> 으로 한번 감싸주면 커서를 얼마든지
+움직여도 함수를 실행하기 전 위치로 커서를 복원시켜 준다.</li>
+</ul>
+
+<p>원하는 함수를 만들었으니 이제 이 함수를 단축키에 등록하면 된다. 마침
+ 마크다운 모드를 사용하고 있으므로 해당 모드에만 바인드 시킬 수 있다.</p>
+
+<div class="language-lisp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">(</span><span class="nb">use-package</span> <span class="nv">markdown-mode</span>
+  <span class="o">....</span>
+  <span class="ss">:bind</span>
+  <span class="p">(</span><span class="s">"C-c C-c C-l"</span> <span class="o">.</span> <span class="nv">fill-markdown-link-at-point</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>이제 마크다운 파일을 작성하다가 내가 원하는 형태의 링크를 추가하고
+ 싶으면 단축키로 다음처럼 바로 실행할 수 있다.</p>
+
+<p><img src="https://sangwoo-joh.github.io/assets/img/fill-markdown.gif" alt="fill-markdown" /></p>
+
+<hr />
+
+<p>이렇게 내가 원하는 기능을 이맥스 리습으로 구현해보았다. 코드도 짧고
+ 읽기 좋아서 만족한다. 이 마지막 구현을 얻기까지 <code class="language-plaintext highlighter-rouge">(message)</code>로 직접
+ 출력도 해보고 <code class="language-plaintext highlighter-rouge">(debug-on-entry)</code>를 이용해서 스텝 바이 스텝으로
+ 디버깅도 해보았다. 그러다가 <a href="https://stackoverflow.com/a/11865109">이맥스 정규식 엔진으로는 대괄호 안의
+ 문자열을 정확하게 못잡는다</a>는
+ 것을 직접 눈으로 확인하기도 했다. 여태껏 대부분 원하던 기능은 다
+ 오픈소스로 공개된 패키지가 있어서 그것을 적절히 조합해서
+ 사용해왔었는데, 이번에 딱 나만의 유스케이스가 생겨서 만들어 보았고
+ 역시나 야크 털 깎기는 재밌었다. 다음에 또 이런 케이스가 있을지
+ 모르겠지만 종종 나만의 함수를 만들어볼 기회가 있으면 좋겠다.</p>
+
+<hr />
+
+<p>블로그 글을 쓰고 나서 직접 쓰다보니, 굳이 커서 위치를 원래 위치로
+ 돌릴 필요가 없다고 느꼈다. 그래서 <a href="https://github.com/sangwoo-joh/dotfiles/commit/0d8755deeee8245ed201472fa31e664866f01a30">커서를 저장하지
+ 않도록</a>
+ 수정했다.</p>
+
+<hr />
+
+<p>[<strong>2022/09/05 수정</strong>] 계속 글을 쓰다보니 추가적인 반복 패턴을
+ 발견할 수 있었다.</p>
+<ol>
+  <li>위의 기능을 통해 마크다운 문서 링크를 만든다.</li>
+  <li><code class="language-plaintext highlighter-rouge">문서 링크.md</code> 파일을 만든다.</li>
+  <li>여기에 문서 제목, 문제 아웃링크, 기타 공통 필드를 채운다.</li>
+</ol>
+
+<p>여기서 3번의 내용을 템플릿 파일로 만들고, 2번을 할 때 이 템플릿
+ 파일을 <code class="language-plaintext highlighter-rouge">링크.md</code>로 복사해서 열도록 했다. Elisp에서는 모든 것이
+ <em>버퍼</em>에서 수행되는 덕분인지, 1번의 컨텍스트(링크 이름 등)를 그대로
+ 복사한 파일에 적용할 수 있었다. 추가로 링크 파일로 이동할 때 마커
+ 스택에 레퍼런스를 추가했더니 인덱스로 돌아오는 것도 한결 편해졌다.</p>
+
+<p>최종 구현은
+ <a href="https://github.com/sangwoo-joh/.emacs.d/blob/trunk/lisp/others.el#L7-L114">여기</a>
+ 에서 볼 수 있다. 참고로 기존에 유지하던 <code class="language-plaintext highlighter-rouge">dotfiles</code>에서 따로
+ <code class="language-plaintext highlighter-rouge">.emacs.d</code>로 이맥스 설정만 뺐다. 점점 최적화가 되어 가는 것 같아
+ 뿌듯하다.</p>
+
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>

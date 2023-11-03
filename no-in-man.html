@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      man page
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="man page" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="오늘도 평화로운 하루를 보내며 커맨드 라인 툴로 실험을 하고 데이터를 뽑아내고 있었다. 필요한 옵션은 man 페이지 뒤져보면 다 나와서 너무 행복해하며 일하고 있었는데, etags 페이지를 읽다가 문득 다음 숫자가 눈에 들어왔다:" />
+<meta property="og:description" content="오늘도 평화로운 하루를 보내며 커맨드 라인 툴로 실험을 하고 데이터를 뽑아내고 있었다. 필요한 옵션은 man 페이지 뒤져보면 다 나와서 너무 행복해하며 일하고 있었는데, etags 페이지를 읽다가 문득 다음 숫자가 눈에 들어왔다:" />
+<link rel="canonical" href="https://sangwoo-joh.github.io/no-in-man" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/no-in-man" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2018-11-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="man page" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2018-11-06T00:00:00+00:00","datePublished":"2018-11-06T00:00:00+00:00","description":"오늘도 평화로운 하루를 보내며 커맨드 라인 툴로 실험을 하고 데이터를 뽑아내고 있었다. 필요한 옵션은 man 페이지 뒤져보면 다 나와서 너무 행복해하며 일하고 있었는데, etags 페이지를 읽다가 문득 다음 숫자가 눈에 들어왔다:","headline":"man page","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/no-in-man"},"url":"https://sangwoo-joh.github.io/no-in-man"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>man page</h1>
+<h2>숫자가 있다</h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2018-11-06
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+</p></em>
+
+
+<p>오늘도 평화로운 하루를 보내며 커맨드 라인 툴로 실험을 하고 데이터를
+ 뽑아내고 있었다. 필요한 옵션은 man 페이지 뒤져보면 다 나와서 너무
+ 행복해하며 일하고 있었는데, etags 페이지를 읽다가 문득 다음 숫자가
+ 눈에 들어왔다:</p>
+
+<blockquote>
+  <p>The <strong>etags</strong> program is used to create a tag table file, in a
+format understood by <strong>emacs(1)</strong>; …</p>
+</blockquote>
+
+<p>문득 왜 <code class="language-plaintext highlighter-rouge">emacs</code>가 아니라 <code class="language-plaintext highlighter-rouge">emacs(1)</code>이라고 되어 있는거지? 라는 생각이
+ 들었는데, 다시 보니 man 페이지 이름도 <code class="language-plaintext highlighter-rouge">etags(1)</code>이었다. 뭔가 타입
+ 같다는 생각이 들어서 검색해보니 비슷한 역할을 하는 것이었다. 심지어
+ man의 man 페이지에 떡하니 있었다…(<code class="language-plaintext highlighter-rouge">man man</code>이라니 이 얼마나
+ recursive한 커맨드인가..)</p>
+
+<blockquote>
+  <p>The table below shows the <em>section</em> numbers of the manual followed
+by the types of pages they contain.</p>
+</blockquote>
+
+<table>
+  <thead>
+    <tr>
+      <th>Number</th>
+      <th>Section</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>User Commands</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>System Calls</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>C Library Functions</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Devices and Special Files</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>File Formats and Conventions</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Games et. al.</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Miscellanea</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>System Administration tools and Daemons</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>즉 1번부터 8번까지 어떤 매뉴얼 섹션인지를 나타내주는 타입 같은 역할을
+ 하는 친구였던 것이다. 오호.  예를 들어 다음 커맨드는:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>man 1 <span class="nb">printf</span>
+</code></pre></div></div>
+
+<p>실제 유저가 사용할 수 있는 커맨드인 <code class="language-plaintext highlighter-rouge">printf</code>에 대한 매뉴얼 페이지가
+ 나오는 반면, 다음 커맨드는:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>man 3 <span class="nb">printf</span>
+</code></pre></div></div>
+
+<p>제목부터가 “Linux Programmer’s Manual”인, C의 stdio 라이브러리에 있는
+ printf 함수에 대한 매뉴얼이 나온다.</p>
+
+<p>그리고 재미있게도 다음 커맨드는:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>man <span class="nt">-a</span> <span class="nb">printf</span>
+</code></pre></div></div>
+
+<p>1번부터 8번까지, 존재하는 모든 printf에 대한 매뉴얼을 보여주는데, 그
+ 중에는 무려 OCaml 내장 함수도 있었다! <code class="language-plaintext highlighter-rouge">man -3o printf</code>로 따로 볼 수
+ 있기도 하다. OCamlDoc이라니. 와우.</p>
+
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>

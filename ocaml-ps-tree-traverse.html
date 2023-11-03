@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      OCaml로 PS 하기 -3-
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="OCaml로 PS 하기 -3-" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="최애 언어 OCaml 로 문제를 풀어보자 세 번째 시리즈다." />
+<meta property="og:description" content="최애 언어 OCaml 로 문제를 풀어보자 세 번째 시리즈다." />
+<link rel="canonical" href="https://sangwoo-joh.github.io/ocaml-ps-tree-traverse" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/ocaml-ps-tree-traverse" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-09-08T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OCaml로 PS 하기 -3-" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2019-09-08T00:00:00+00:00","datePublished":"2019-09-08T00:00:00+00:00","description":"최애 언어 OCaml 로 문제를 풀어보자 세 번째 시리즈다.","headline":"OCaml로 PS 하기 -3-","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/ocaml-ps-tree-traverse"},"url":"https://sangwoo-joh.github.io/ocaml-ps-tree-traverse"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>OCaml로 PS 하기 -3-</h1>
+<h2>내 친구 ADT</h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2019-09-08
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+
+<a href="/archive?tag=ocaml"><span class="tag">ocaml</span></a>
+
+
+
+
+</p></em>
+
+
+<p>최애 언어 <a href="https://ocaml.org/">OCaml</a> 로 문제를 풀어보자 세 번째
+ 시리즈다.</p>
+
+<h4 id="근황">근황</h4>
+<p>마지막 포스트가 8/27 이었으니 대략 2주만의 포스팅이다. 변명을 하자면
+ 그간 조금 바빴다. 나도 먹고 살아야지 별 수 있나.</p>
+
+<p>한국 기업들의 채용 빅 이벤트 중 하나인 하반기 공개 채용을 위해 캠퍼스
+ 리크루팅에 다녀왔다. 이거 때문에 예비군도 미뤘다. 벌써 두 번이나
+ 미뤘기 때문에 다음 번 2차 보충 훈련 마저 참여하지 못하면 형사고발
+ 당하여 이틀 구류 당할 수 있단다. 법치주의를 얕보지 말자.</p>
+
+<p>리크루팅 참여로 발생하는 약 1주일간의 부재를 위해 야근도 했다. 일정을
+ 못지키면 나만 손해기 때문에 ‘언제까지 하겠다’고 한 일은 되도록
+ 지키고자 한다. 사실 그렇다고 엄청나게 야근을 한 것은 아니다. 세상이
+ 조금씩 진일보 하고 있기 때문에 엄청나게 야근을 하고 싶어도 할 수가
+ 없기도 하다. 다만 집에 와서 씻고 잠들기 까지의 대략 1 ~ 2 시간에
+ 피씨(혹은 노트북)을 켜서 글을 쓰고자 하는 의지가 없었을 뿐이다. 맨날
+ 반성하는 것 같은데 또 반성한다. 인생은 반성의 연속이다. 뭐든 깨닫고
+ 과거보다 A4지 한 장 정도의 두께만큼 더 좋은 사람이 되도록
+ 노력하자. 그러면 언젠가는 책 한 권 만큼은 좋은 사람이 되어 있지
+ 않을까?</p>
+
+<p>포스팅을 쓰기 위해서는 몇 가지 준비가 필요한 법인데, 그 중 하나가
+ 바로 심신의 안정을 위한 주변 청소다. 책상 청소로 시작했다 결국 온
+ 집안 대 청소를 하였고 그러고도 시간이 남아돌아 결국 이렇게 포스팅을
+ 한다. 그래도 좋은 점은 있다. 덕분에 예전 연구실에서 쓰던 씽크패드
+ 빨콩 무선 키보드를 찾았다!  지금 이 포스팅도 이 키보드로 작성하고
+ 있다.</p>
+
+<p>뱀발로 당분간은 계속 쉬운 문제들만 풀 것 같다. 예전 C/C++ 로 풀었던
+ 문제들을 최애 언어로 다시 풀어보는 수준의 취미생활이기 때문이다.</p>
+
+<p>그럼 각설하고 문제를 풀어보자.</p>
+
+<h3 id="1991번-트리-순회"><a href="https://www.acmicpc.net/problem/1991">1991번: 트리 순회</a></h3>
+<p>좋은 문제이다. 잘 구성된 트리가 있으면 그냥 전위/중위/후위 순회 한
+ 결과를 출력하기만 하면 된다!  최애 언어의 자랑 중 하나인 ADT를
+ 이용해서 재귀적 데이터 구조를 만들면 정말 쉽고 아름답게 풀릴 것만
+ 같은 문제다. 참고로 ADT는 Abstract Data Type이 아니다. <a href="https://en.wikipedia.org/wiki/Algebraic_data_type">Algebraic
+ Data
+ Type</a>이다. 헷갈리지
+ 말자.</p>
+
+<p>일단 입력을 어떻게 받을지는 제쳐두고 타입부터 적어보자. 뭔가 드디어
+ 최애 언어 다운 코드가 나오는 것 같아서 설렌다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">tree</span> <span class="o">=</span> <span class="nc">Node</span> <span class="k">of</span> <span class="p">(</span><span class="n">tree</span> <span class="o">*</span> <span class="kt">char</span> <span class="o">*</span> <span class="n">tree</span><span class="p">)</span> <span class="o">|</span> <span class="nc">Nil</span>
+</code></pre></div></div>
+
+<p>아름답다. 합 타입으로 트리 전체를 정의하면서 곱 타입으로 노드를
+ 정의했다. 노드는 왼쪽/오른쪽 자식으로 <code class="language-plaintext highlighter-rouge">tree</code> 스스로를 가지도록 해서
+ 트리의 재귀적인 성질을 잘
+ 나타내었다. <a href="https://en.wikipedia.org/wiki/Nil#Computing"><code class="language-plaintext highlighter-rouge">Nil</code></a>은
+ 그냥 널이랑 같은 거다. 왠지 모르게 함수형 언어에서 자주 쓰이는
+ 관용적인 널 이길래 괜히 친근한 척 좀 해봤다.</p>
+
+<p>이제 이 트리를 순회하는 함수를 짜면 되는데, 세 종류를 각각 따로 짜고
+ 싶진 않다. 어차피 재귀적으로 방문하는 것은 똑같고 노드를 언제
+ 방문할지만 달라지기 때문에 그냥 함수 하나로 퉁치자. 대신 어떤
+ 순서일지만 파라미터로 받자.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">order</span> <span class="o">=</span> <span class="nc">Preorder</span> <span class="o">|</span> <span class="nc">Inorder</span> <span class="o">|</span> <span class="nc">Postorder</span>
+
+<span class="k">let</span> <span class="k">rec</span> <span class="n">traverse</span> <span class="o">~</span><span class="n">order</span> <span class="o">~</span><span class="n">visit</span> <span class="n">tree</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="n">traverse'</span> <span class="o">=</span> <span class="n">traverse</span> <span class="o">~</span><span class="n">order</span> <span class="o">~</span><span class="n">visit</span> <span class="k">in</span>
+  <span class="k">match</span> <span class="n">tree</span> <span class="k">with</span>
+  <span class="o">|</span> <span class="nc">Nil</span> <span class="o">-&gt;</span> <span class="bp">()</span>
+  <span class="o">|</span> <span class="nc">Node</span> <span class="p">(</span><span class="n">left</span><span class="o">,</span> <span class="n">value</span><span class="o">,</span> <span class="n">right</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">(</span>
+    <span class="k">match</span> <span class="n">order</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="nc">Preorder</span> <span class="o">-&gt;</span> <span class="n">visit</span> <span class="n">value</span> <span class="p">;</span> <span class="n">traverse'</span> <span class="n">left</span> <span class="p">;</span> <span class="n">traverse'</span> <span class="n">right</span>
+    <span class="o">|</span> <span class="nc">Inorder</span> <span class="o">-&gt;</span> <span class="n">traverse'</span> <span class="n">left</span> <span class="p">;</span> <span class="n">visit</span> <span class="n">value</span> <span class="p">;</span> <span class="n">traverse'</span> <span class="n">right</span>
+    <span class="o">|</span> <span class="nc">Postorder</span> <span class="o">-&gt;</span> <span class="n">traverse'</span> <span class="n">left</span> <span class="p">;</span> <span class="n">traverse'</span> <span class="n">right</span> <span class="p">;</span> <span class="n">visit</span> <span class="n">value</span> <span class="p">)</span>
+</code></pre></div></div>
+
+<p>일단 순회 순서를 위한 <code class="language-plaintext highlighter-rouge">order</code> 타입을 정의했다. 그리고 <code class="language-plaintext highlighter-rouge">traverse</code>
+ 함수에서 이 <code class="language-plaintext highlighter-rouge">order</code> 를 파라미터로 받아서 실제 노드를 방문할 때 순서에
+ 맞게 처리한다. 실제 방문을 위해서는 노드가 담고 있는 값을 받아서
+ <code class="language-plaintext highlighter-rouge">()</code>를 내놓는 함수 <code class="language-plaintext highlighter-rouge">visit</code>을 넘겨주면 된다. 이 문제에서는 그냥 <code class="language-plaintext highlighter-rouge">char</code>
+ 값을 출력하면 될 듯. 그리고 방문 순서에 상관없이 같은 순서와 <code class="language-plaintext highlighter-rouge">visit</code>
+ 함수를 가지고 재귀적으로 각 노드의 왼쪽/오른쪽 자식을 방문해야 하기
+ 때문에, 미리 이 부분을 <code class="language-plaintext highlighter-rouge">traverse'</code> 클로저로 만들어 두었다. 각 순서별
+ 방문은 너무 뻔하기 때문에 생략한다.</p>
+
+<p>여기까지 최애 언어로 (내 기준) 러블리하게 짤 수 있는 부분이다. 이제
+ 남은 일은 현실 세계의 입력을 다루는 일이다.</p>
+
+<p>일단 문제를 잘 읽어보면 노드 개수가 26개, 즉 알파벳 수 만큼임을 알 수
+ 있다. 그 외에 루트 노드가 항상 <code class="language-plaintext highlighter-rouge">A</code> 인 것을 제외하면 입력이 들어오는
+ 순서에 제약이 없다. 그래서 C/C++에서 했던 것처럼, 입력을 받자마자
+ 노드가 가리키는 자식 포인터를 업데이트하면서 곧바로 트리를 구성하는
+ 방식은 힘들 것 같다. 그러니 우선은 입력을 전부 받아서 배열에
+ 저장해뒀다가, (우리는 루트 노드가 어딘지 아니까) 루트 노드부터
+ 시작해서 탑 다운으로 구성하는 방식을 써보자.</p>
+
+<p>일단 입력을 받아서 크기 26의 배열에 저장하는 함수를 짜보자. 자식 두
+ 개에 대한 정보를 담아야 하는데 굳이 타입을 선언하기 보다는 그냥
+ 튜플로 담으면 될 것이다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">to_idx</span> <span class="n">ch</span> <span class="o">=</span> <span class="n">int_of_char</span> <span class="n">ch</span> <span class="o">-</span> <span class="n">int_of_char</span> <span class="k">'</span><span class="nc">A'</span>
+
+<span class="k">let</span> <span class="n">read_input</span> <span class="n">total</span> <span class="bp">()</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="n">node_info</span> <span class="o">=</span> <span class="nn">Array</span><span class="p">.</span><span class="n">make</span> <span class="mi">26</span> <span class="p">(</span><span class="k">'</span> <span class="k">'</span><span class="o">,</span> <span class="k">'</span> <span class="k">'</span><span class="p">)</span> <span class="k">in</span>
+  <span class="k">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="k">to</span> <span class="n">total</span> <span class="o">-</span> <span class="mi">1</span> <span class="k">do</span>
+    <span class="nn">Scanf</span><span class="p">.</span><span class="n">scanf</span> <span class="s2">" %c %c %c"</span> <span class="p">(</span><span class="k">fun</span> <span class="n">root</span> <span class="n">left</span> <span class="n">right</span> <span class="o">-&gt;</span>
+        <span class="n">node_info</span><span class="o">.</span><span class="p">(</span><span class="n">to_idx</span> <span class="n">root</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="p">(</span><span class="n">left</span><span class="o">,</span> <span class="n">right</span><span class="p">)</span> <span class="p">)</span>
+  <span class="k">done</span> <span class="p">;</span>
+  <span class="n">node_info</span>
+</code></pre></div></div>
+
+<p>다른건 다 제쳐두고, 여기서 가장 중요한 부분이 바로 <code class="language-plaintext highlighter-rouge">Scanf</code> 부분에
+ 있다. 입력을 받을 때 반드시 위의 코드 처럼 <code class="language-plaintext highlighter-rouge">" %c %c %c"</code> 형태로
+ 받아야 한다. 첫 번째 <code class="language-plaintext highlighter-rouge">%c</code> 앞에 공백이 없으면 <strong>런타임 에러가
+ 뜬다</strong>. 이거 때문에 또 한참을 헤매었다. 저 공백이 없으면 이전 줄의
+ 줄바꿈 문자(LF; Line feed)도 캐릭터 버퍼로 스캔해서 배열 인덱스를
+ 초과하기 때문이다.</p>
+
+<p>이렇게 입력을 전부 받아서 <code class="language-plaintext highlighter-rouge">(char * char) array</code> 를 만들었다. 이제
+ 루트 노드가 항상 <code class="language-plaintext highlighter-rouge">A</code> 라는 사실을 이용해서 트리를 구성해보자.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">construct_tree</span> <span class="n">node_info</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="k">rec</span> <span class="n">construct</span> <span class="n">c</span> <span class="o">=</span>
+    <span class="k">match</span> <span class="n">node_info</span><span class="o">.</span><span class="p">(</span><span class="n">to_idx</span> <span class="n">c</span><span class="p">)</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="sc">'.'</span><span class="o">,</span> <span class="sc">'.'</span> <span class="o">-&gt;</span> <span class="nc">Node</span> <span class="p">(</span><span class="nc">Nil</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="nc">Nil</span><span class="p">)</span>
+    <span class="o">|</span> <span class="n">l</span><span class="o">,</span> <span class="sc">'.'</span> <span class="o">-&gt;</span> <span class="nc">Node</span> <span class="p">(</span><span class="n">construct</span> <span class="n">l</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="nc">Nil</span><span class="p">)</span>
+    <span class="o">|</span> <span class="sc">'.'</span><span class="o">,</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="nc">Node</span> <span class="p">(</span><span class="nc">Nil</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">construct</span> <span class="n">r</span><span class="p">)</span>
+    <span class="o">|</span> <span class="n">l</span><span class="o">,</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="nc">Node</span> <span class="p">(</span><span class="n">construct</span> <span class="n">l</span><span class="o">,</span> <span class="n">c</span><span class="o">,</span> <span class="n">construct</span> <span class="n">r</span><span class="p">)</span>
+  <span class="k">in</span>
+  <span class="n">construct</span> <span class="k">'</span><span class="nc">A'</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">A</code> 부터 시작해서 배열에 자식 노드를 찾아서 패턴 매칭을 통해 어떤
+ 값인지에 따라 적절히 트리를 구성할 뿐이다. 어려운 것은 없다.</p>
+
+<p>이제 마지막으로 노드 개수를 입력으로 받아서 트리를 구성하고, 각
+ 순서별로 트리를 순회하여 문제를 푸는 메인 진입점을 짜면 완성이다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">solve</span> <span class="bp">()</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="n">visit</span> <span class="n">c</span> <span class="o">=</span> <span class="n">print_char</span> <span class="n">c</span> <span class="k">in</span>
+  <span class="nn">Scanf</span><span class="p">.</span><span class="n">scanf</span> <span class="s2">"%d"</span> <span class="p">(</span><span class="k">fun</span> <span class="n">total</span> <span class="o">-&gt;</span>
+      <span class="k">let</span> <span class="n">node_info</span> <span class="o">=</span> <span class="n">read_input</span> <span class="n">total</span> <span class="bp">()</span> <span class="k">in</span>
+      <span class="k">let</span> <span class="n">tree</span> <span class="o">=</span> <span class="n">construct_tree</span> <span class="n">node_info</span> <span class="k">in</span>
+      <span class="n">traverse</span> <span class="o">~</span><span class="n">order</span><span class="o">:</span><span class="nc">Preorder</span> <span class="o">~</span><span class="n">visit</span> <span class="n">tree</span> <span class="p">;</span>
+      <span class="n">print_newline</span> <span class="bp">()</span> <span class="p">;</span>
+      <span class="n">traverse</span> <span class="o">~</span><span class="n">order</span><span class="o">:</span><span class="nc">Inorder</span> <span class="o">~</span><span class="n">visit</span> <span class="n">tree</span> <span class="p">;</span>
+      <span class="n">print_newline</span> <span class="bp">()</span> <span class="p">;</span>
+      <span class="n">traverse</span> <span class="o">~</span><span class="n">order</span><span class="o">:</span><span class="nc">Postorder</span> <span class="o">~</span><span class="n">visit</span> <span class="n">tree</span> <span class="p">;</span>
+      <span class="n">print_newline</span> <span class="bp">()</span> <span class="p">)</span>
+
+<span class="k">let</span> <span class="bp">()</span> <span class="o">=</span> <span class="n">solve</span> <span class="bp">()</span>
+</code></pre></div></div>
+
+<p>이렇게 하여 4ms 의 솔루션을 얻었다. 사실 처음 시작할 땐 OCaml로
+ 입력을 어떻게 처리할지에 대한 고민 때문에 이렇게 시리즈가 이어질지
+ 몰랐는데, 갈수록 최애 언어로 더 많은 어려운 문제를 풀 수 있을 것만
+ 같은 예감이 든다. <a href="https://sangwoo-joh.github.io/restart">이전
+ 포스팅</a>에 적어둔 깨달음대로
+ 꾸준히 풀다보면, 누군가는 OCaml의 매력을 알고 함께 풀어가는 아름다운
+ 세상이 오지 않을까? 하는 두루뭉실한 기대를 해본다.</p>
+
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>

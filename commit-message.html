@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      커밋 메시지 잘 적기
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="커밋 메시지 잘 적기" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="졸업하고 엔지니어의 삶을 산지 벌써 1년이 넘었다. 내가 맡은 프로젝트 뿐만 아니라 다른 프로젝트 개발에도 참여하다보니 자연스럽게 커밋 메시지를 주의깊게 읽고 있는데, 이와 관련해서 어떻게 하면 더 좋은 메시지를 작성할지 고민하며 이 글을 쓴다." />
+<meta property="og:description" content="졸업하고 엔지니어의 삶을 산지 벌써 1년이 넘었다. 내가 맡은 프로젝트 뿐만 아니라 다른 프로젝트 개발에도 참여하다보니 자연스럽게 커밋 메시지를 주의깊게 읽고 있는데, 이와 관련해서 어떻게 하면 더 좋은 메시지를 작성할지 고민하며 이 글을 쓴다." />
+<link rel="canonical" href="https://sangwoo-joh.github.io/commit-message" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/commit-message" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-08-13T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="커밋 메시지 잘 적기" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2019-08-13T00:00:00+00:00","datePublished":"2019-08-13T00:00:00+00:00","description":"졸업하고 엔지니어의 삶을 산지 벌써 1년이 넘었다. 내가 맡은 프로젝트 뿐만 아니라 다른 프로젝트 개발에도 참여하다보니 자연스럽게 커밋 메시지를 주의깊게 읽고 있는데, 이와 관련해서 어떻게 하면 더 좋은 메시지를 작성할지 고민하며 이 글을 쓴다.","headline":"커밋 메시지 잘 적기","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/commit-message"},"url":"https://sangwoo-joh.github.io/commit-message"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>커밋 메시지 잘 적기</h1>
+<h2>기술적 빚이라도 잘 갚자</h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2019-08-13
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+
+<a href="/archive?tag=think"><span class="tag">think</span></a>
+
+
+
+
+</p></em>
+
+
+<p>졸업하고 엔지니어의 삶을 산지 벌써 1년이 넘었다. 내가 맡은 프로젝트
+ 뿐만 아니라 다른 프로젝트 개발에도 참여하다보니 자연스럽게 커밋
+ 메시지를 주의깊게 읽고 있는데, 이와 관련해서 어떻게 하면 더 좋은
+ 메시지를 작성할지 고민하며 이 글을 쓴다.</p>
+
+<p>다행히 예전에 드래프트까지 썼던 포스트에서 <a href="http://who-t.blogspot.com/2009/12/on-commit-messages.html">Peter Hutterer 님의
+ 글</a> 과
+ <a href="https://chris.beams.io/posts/git-commit/">Chris 님의 글</a> 의 링크를
+ 발견했다. 그때의 문맥을 되살려서 다시 이 글들을 소화해보자.</p>
+
+<p>Git 은 이거 없던 시절엔 대체 어떻게 개발했나 싶을 정도로 훌륭한
+ 도구다. 상태가 변하는 내용물의 추이를 관리하는데 최고다. 하지만
+ 도구가 훌륭해도 그걸 쓰는 내가 멍청하면 다 소용없겠지. 그러니
+ 똑똑하게 쓰는 방법을 연구해보자.</p>
+
+<p>일단 모든 소프트웨어 프로젝트는 협업이 기본일 수 밖에 없다. 혼자
+ 개발하는 개인 프로젝트마저도 협업이 필요 없어 보이지만, 오늘의 나와
+ 몇 달 후의 나는 (거의) 다른 사람이다. 일단 옛날 커밋과 관련된 문맥을
+ (거의 다) 잊어버릴 게 분명하다. 그래서 로그를 보다가 “내가 대체 이걸
+ 왜 개발했지?”의 구체적인 내용을 다시 머릿속의 메모리에 올릴려면
+ 시간이 꽤 걸린다. 그러므로 미래의 나 자신과 잘 협업하려면 커밋
+ 메시지를 잘 적어야 한다.</p>
+
+<p>좋은 커밋 메시지는 다음 세 가지 질문에 답해야 한다.</p>
+
+<ol>
+  <li><strong>왜 필요한가?</strong> 버그를 고치든, 기능을 추가하든, 성능을
+향상시키든, 뭐든 이유가 있을 것이다.</li>
+  <li><strong>어떻게 이 이슈를 다루는가?</strong> 고차원(high-level)에서 어떻게
+접근했는지를 알려줘야 한다. 디테일은 코드를 보자.</li>
+  <li><strong>미치는 영향은?</strong> 엄청 명백한 것 외에 주의해야 할 점을
+알려주자. 벤치마크가 달라진다거나, 사이드 이펙트로 어디에 영향이
+갈 수 있다거나, 하는 등.</li>
+</ol>
+
+<p>사실 이건 엄청 고수준의 얘기이고, 커밋 메시지를 위한 이상적이고
+ 엄격한 정의 같은 것은 없다. 그래도 옛 선인들이 겪은 꿀팁들이 있다.</p>
+
+<p>내가 생각하기에 가장 중요한 것은 <strong>하나의 커밋은 정확하게 하나의
+ 논리적인 변경만을 담아야 한다</strong> 는 것이다. 논리적인 변경은 정의하기
+ 나름이겠지만 뭐가 됐든 타당한 근거만 있으면 될 것 같다. 코딩 스타일을
+ 맞추든, 버그를 수정하든, 뭐든 간에 커밋에 대한 타당한 설명이 <em>문장
+ 하나</em> 로 딱 떨어지면 된다. 만약에 문장이 너무 길어지거나 여러
+ 문장으로 풀어 써지면, 그냥 커밋을 여러개 만드는게 훨씬 좋다.</p>
+
+<p>그 외에도 Peter 님의 글에는 좋은 팁들이 많으니 시간이 나면 원문을
+ 자주 찾아보자. 커밋 메시지 형식을 표준화한다거나, “파일 당 커밋
+ 하나”같은 건 하지말라거나 하는 좋은 팁들이 많다.</p>
+
+<p>그리고 커밋 메시지를 쓰는 관용적인 스타일이 있다고 한다. 너무 당연한
+ 것은 빼고 중요한 두 가지만 적으면 다음과 같다.</p>
+
+<ol>
+  <li>제목은 명령형으로</li>
+  <li>본문에 <em>왜</em>와 <em>어떻게</em>를 설명</li>
+</ol>
+
+<p>2번은 앞에서 한 얘기의 서브셋이다. 저기에 사이드 이펙트까지 적으면
+ 동치다. 이런 스타일은 리눅스 커널에서 자연스럽게 만들어진 공통 패턴인
+ 것 같은데, 생각해보니 나도 자연스럽게 저런 방식으로 커밋 메시지를
+ 작성하고 있는 것 같다. 앞으로 이 글을 종종 다시 보면서 커밋 메시지를
+ 더 잘 적도록 해야겠다. 그래야 기술적 빚이라도 잘 갚을 것 아닌가.</p>
+
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>

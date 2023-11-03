@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      WSL 2 + Emacs 28 (성공)
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="WSL 2 + Emacs 28 (성공)" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="감사하게도 회사에서 코드 리뷰와 관련된 교육을 듣게 되었다. 코로나로 인해 재택으로 진행되는데, 실습도 있는 과정이다. 하지만 집에 있던 맥북은 팔아버렸고 만자로 설치는 실패했었기 때문에, 이번에는 얌전히 윈도우에서 Cygwin과 VS Code로 개발하려고 했었다. 그런데 문득 끈닷넷님이 WSL 2와 윈도우 터미널을 사용한 경험을 공유했던게 생각나서, 이참에 나도 WSL 2 환경을 꾸려 보기로 했다. 결과는 보시다시피 성공적이다. 마이크로소프트 만세. 그리고 머신도 환경도 없이 원격 디버깅에 큰 도움을 주신 끈닷넷님에게 심심한 감사의 말씀을 보낸다." />
+<meta property="og:description" content="감사하게도 회사에서 코드 리뷰와 관련된 교육을 듣게 되었다. 코로나로 인해 재택으로 진행되는데, 실습도 있는 과정이다. 하지만 집에 있던 맥북은 팔아버렸고 만자로 설치는 실패했었기 때문에, 이번에는 얌전히 윈도우에서 Cygwin과 VS Code로 개발하려고 했었다. 그런데 문득 끈닷넷님이 WSL 2와 윈도우 터미널을 사용한 경험을 공유했던게 생각나서, 이참에 나도 WSL 2 환경을 꾸려 보기로 했다. 결과는 보시다시피 성공적이다. 마이크로소프트 만세. 그리고 머신도 환경도 없이 원격 디버깅에 큰 도움을 주신 끈닷넷님에게 심심한 감사의 말씀을 보낸다." />
+<link rel="canonical" href="https://sangwoo-joh.github.io/wsl2-with-emacs-28" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/wsl2-with-emacs-28" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-01-06T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="WSL 2 + Emacs 28 (성공)" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2021-01-06T00:00:00+00:00","datePublished":"2021-01-06T00:00:00+00:00","description":"감사하게도 회사에서 코드 리뷰와 관련된 교육을 듣게 되었다. 코로나로 인해 재택으로 진행되는데, 실습도 있는 과정이다. 하지만 집에 있던 맥북은 팔아버렸고 만자로 설치는 실패했었기 때문에, 이번에는 얌전히 윈도우에서 Cygwin과 VS Code로 개발하려고 했었다. 그런데 문득 끈닷넷님이 WSL 2와 윈도우 터미널을 사용한 경험을 공유했던게 생각나서, 이참에 나도 WSL 2 환경을 꾸려 보기로 했다. 결과는 보시다시피 성공적이다. 마이크로소프트 만세. 그리고 머신도 환경도 없이 원격 디버깅에 큰 도움을 주신 끈닷넷님에게 심심한 감사의 말씀을 보낸다.","headline":"WSL 2 + Emacs 28 (성공)","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/wsl2-with-emacs-28"},"url":"https://sangwoo-joh.github.io/wsl2-with-emacs-28"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>WSL 2 + Emacs 28 (성공)</h1>
+<h2>진정한 리눅스는 맥이 아니라 윈도우다</h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2021-01-06
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+
+<a href="/archive?tag=life"><span class="tag">life</span></a>
+
+
+
+
+</p></em>
+
+
+<p>감사하게도 회사에서 코드 리뷰와 관련된 교육을 듣게 되었다. 코로나로
+ 인해 재택으로 진행되는데, 실습도 있는 과정이다. 하지만 집에 있던
+ 맥북은 팔아버렸고 만자로 설치는 <a href="manjaro-budgie-failure">실패</a>했었기
+ 때문에, 이번에는 얌전히 윈도우에서 Cygwin과 VS Code로 개발하려고
+ 했었다. 그런데 문득 끈닷넷님이 <a href="https://blog.kkeun.net/computer/2020-12-18-wsl2-and-windows-terminal">WSL 2와 윈도우
+ 터미널</a>을
+ 사용한 경험을 공유했던게 생각나서, 이참에 나도 WSL 2 환경을 꾸려
+ 보기로 했다. 결과는 보시다시피 성공적이다. 마이크로소프트
+ 만세. 그리고 머신도 환경도 없이 원격 디버깅에 큰 도움을 주신
+ 끈닷넷님에게 심심한 감사의 말씀을 보낸다.</p>
+
+<h3 id="wsl-2">WSL 2</h3>
+<p>연구실에 있을 무렵에 이미 WSL를 시도했었다. 그때는 개발자 모드에서만
+ 해금 가능한 숨겨진 기능이었고, 시스템 콜도 제대로 지원 안되는게
+ 많았고, 윈도우와 파일 시스템이 달라서 성능이 굉장히 떨어지는, 그냥
+ 재미로 쓸 수 있는 물건이었다. 그때도 VcXsrv 통해서 이맥스를 켤 순
+ 있었지만 말 그대로 켤 수만 있었고 많은 기능을 (시스템 콜의 부재로
+ 인해) 사용할 수 없었다.</p>
+
+<p>그런데 이번에 새롭게 써본 WSL 2는 정말 장족의 발전을 이룬 대단한
+ 물건이었다.</p>
+<ul>
+  <li>일단 설치가 쉽다. 파워쉘 커맨드 몇 줄로 금방 설치할 수 있었다.</li>
+  <li>심지어 기존에 깔아둔 WSL 1 버전의 Ubuntu를 지우고 새로 설치할
+필요도 없이 커맨드 하나로 버전 업그레이드가 가능했다. 역시 하위
+호환성의 대가 마이크로소프트.</li>
+  <li><a href="https://docs.microsoft.com/en-us/windows/wsl/compare-versions">WSL1과
+비교글</a>에
+따르면 (1) 파일 시스템 성능이 향상되었고 (2) 시스템 콜을 전부(!)
+지원한다고 하는데, 이게 정말 엄청나게 체감되었다. 일단 내 <a href="https://github.com/sangwoo-joh/dotfiles">Linux
+설정</a>을 다 사용할 수
+있었고, 패키지를 받고 설치하거나 직접 빌드하는 속도가 예전에 비해
+10배는 빨라진 기분이다.</li>
+</ul>
+
+<p>“윈도우에서 리눅스 할 수 있어” 라는 문장이 예전엔 장난같은
+ 느낌이었는데, WSL 2가 탑재된 지금은 웬만한 취미 코딩은 무리없이 다 할
+ 수 있고 여기에 머신만 받쳐준다면 업무도 가능한 수준으로 강력한 [힘]이
+ 느껴진다. 인텔이 추락하고, 암드가 인텔을 데스크탑 점유율에서
+ 이기고<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>, 애플 머신에 ARM이 탑재되더니, 급기야 윈도우에서 full
+ 리눅스를 돌릴 수 있게 되었다. 역시 세상은 변한다.</p>
+
+<blockquote>
+  <p>진짜 리눅스를 쓰고 싶으면 맥OS보다는 차라리 윈도우를 쓰는 것이
+맞다. by kkeun.net</p>
+</blockquote>
+
+<h3 id="고군분투-emacs">고군분투 Emacs</h3>
+<p>리눅스 환경은 WSL 2로 든든하게 해결했지만 의외로 발목을 잡은 것은
+ 이맥스였다. WSL 설정 후, 최근 일이라 관성과 네이티브 뽕맛(…)을 잊지
+ 못하고 <a href="emacs-native-comp">네이티브 이맥스 28</a>을 준비하기 시작했고
+ 빌드, <code class="language-plaintext highlighter-rouge">make install</code> 까지 아주 스무스하게 진행되었다.</p>
+
+<p><img src="assets/img/building-emacs-nativecomp.png" alt="두근두근" /></p>
+
+<p><img src="assets/img/nervous-frog.jpg" alt="기대하는 페페" /></p>
+<center>두근두근. 윈도우에서 우분투로 이맥스를 네이티브로 돌린다니!</center>
+
+<p>하지만 역시 세상은 호락호락하지 않았다. 이맥스를 구동하자마자 흰
+ 화면에서 더이상 넘어가지 않았다.</p>
+
+<p><img src="assets/img/are-you-ok-emacs.png" alt="대답좀 해 이맥스야" /></p>
+
+<p><img src="assets/img/sad-frog.jpg" alt="엉엉" /></p>
+<center>대답 좀 해 이맥스야...</center>
+
+<p><code class="language-plaintext highlighter-rouge">Ctrl-x Ctrl-c</code>로 종료되는 걸로 봐서 실행은 되고 있지만 폰트 렌더링이
+ 안되는 것 같았다. 흐음. 혹시 X 환경을 쓰는 어플리케이션 전부가 안되는
+ 것인가 싶어서 gedit과 xeyes를 켜봤지만 얘네는 잘 되었다. 이맥스만
+ 안되었다. 흐으으음.</p>
+
+<p>비록 VS Code가 생각보다 좋아서<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup> 쓸 만 하긴 했지만, 눈 앞에서
+ 대답없는 이맥스를 보고 있으니 윈도우에서 이맥스를 네이티브로 돌리고야
+ 말겠다는 욕심과 오기가 생기기 시작했다. 그리고 곧바로 나의 구루
+ 끈닷넷 님에게 이 상황을 공유하고 문제를 파악하기 시작했다.</p>
+
+<ol>
+  <li>일단 X가 이상한 것 같아서 VcXsrv 로그를 살펴보았고 에러 로그로
+검색해보니 <a href="https://sourceforge.net/p/vcxsrv/bugs/78/">뭔가 안된다는
+글</a>이 있었다. 정확히
+같은 증상은 아니지만 2020년 4월까지도 안되었기 때문에, 사실 이
+글을 발견한 순간에는 (귀찮아서) 그냥 WSL 에서 만족할까 하는 생각이
+들었었다.</li>
+  <li>하지만 끈닷넷님은 이 상황을 해결할 수 있다고 보았고 하나씩
+물어봐주셨다. 일단 직접 빌드한 이맥스 28 버전 이슈일 수 있으므로
+apt-get 으로 패키지를 설치해서 시도해보라고 하셨지만 문제는
+해결되지 않았다. 아무래도 이맥스 28을 빌드하고 <code class="language-plaintext highlighter-rouge">make install</code> 로
+설치하면서 같이 깔린 자갈(?)들에 apt-get 패키지 이맥스가 걸려
+넘어지는 것이 아닌가 싶다고 추측하셨다.</li>
+  <li>만자로가 실패했듯 왠지 내 데스크탑만의 문제일 수도 있을 것 같아서
+WSL 2에 우분투 18.04 를 깔고 apt-get 패키지로 이맥스를
+깔아보았더니 잘 되었다. ???? 우분투 18.04 에서는 잘 되고 우분투
+20.04 에서는 안되다니, 정말로 내 머신의 하드웨어 이슈일까?  그런데
+고작 LTS 버전 하나 차이나는데 이렇게 하위 호환이 안되는 게 말이
+되나? 진짜 하드웨어 이슈라면 우분투 18.04에서 이맥스 28을 빌드해서
+써보면 알겠지 싶어 시도해보았고 똑같은 현상을 마주하였다. 흐음.</li>
+  <li>이것저것 시도해보니 조금 더 상황을 정확하게 파악할 수 있었는데,
+(우분투 버전과 상관없이) 이맥스 25는 안되고 이맥스 26, 27, 28은 다
+안되었다. 여기까지 알아낸 상황을 끈닷넷님과 공유하고 잠자리에
+들었다.</li>
+  <li>그 사이 끈닷넷님이 우리는
+<a href="https://skeptric.com/emacs-buffering/">혼자가</a> <a href="https://emacs.stackexchange.com/questions/41021/emacs-26-1-rc1-display-issues-over-ssh-x11-with-xming-vcxsrv">아니라는
+것</a>을
+알아내었다!</li>
+</ol>
+
+<p>결과적으로 이맥스 버전 이슈가 맞았고 여기에 추가로 VcXsrv의 버전
+ 이슈도 섞여있었다. 이맥스 26 부터는 <a href="https://www.phoronix.com/scan.php?page=news_item&amp;px=Emacs-26.1-Released">Double
+ Buffering</a>
+ 기능을 지원하는데, VcXsrv 1.20.1.2 버전 미만에서는 이 기능을
+ <a href="https://sourceforge.net/p/vcxsrv/feature-requests/32/">지원하지
+ 않았던</a>
+ 것이다. 과연 내 머신에 깔린 VcXsrv는 1.18.xx 버전이었고, 최신인
+ 1.20.9.0으로 설치하니 성공적으로 이맥스가 구동되었다. 예이!</p>
+
+<p><img src="assets/img/emacs-landing.png" alt="영롱한 이맥스" /></p>
+<center>영롱한 이맥스의 자태. 윈도우에서 귀하신 분을 이렇게 뵙네요.</center>
+
+<p><img src="assets/img/emacs-zsh-in-windows.png" alt="이게 윈도우여 리눅스여" /></p>
+<center>최종적인 윈도우 개발 환경. 이게 윈도우여 리눅스여.</center>
+
+<p>사실 그냥 우분투 깔면 다 한번에 해결되는 것인데 (…) 오기로 여기까지
+ 오게 되었다. 윈도우에서 이맥스를 네이티브로 돌리고야 마는 이 묘한
+ 쾌감을 이해하는 사람이 세상에 (끈닷넷님 이외에) 몇이나 될런지.</p>
+
+<p>그리고 이 글은 당연하게도 Windows 버전 2004(OS 빌드 1904.685)에
+ 설치된 WSL 2 기반의 Ubuntu 20.04에 설치된 Emacs 28 native elisp
+ compilation 에서 작성되었다.</p>
+
+<p>이렇게 또 하나 씩 배워간다.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p><a href="https://hexus.net/business/news/components/147224-amd-briefly-passes-intel-desktop-cpu-market-share/">출처</a> <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p><a href="https://marketplace.visualstudio.com/search?term=emacs&amp;target=VSCode&amp;category=All%20categories&amp;sortBy=Relevance">이맥스 키 바인딩 플러그인</a>과 <a href="https://marketplace.visualstudio.com/items?itemName=kahole.magit">magit 플러그인</a>이 생각보다 잘 되어 있었다. 특히 magit을 VS Code에서 쓰게 될 줄은 몰랐다. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>

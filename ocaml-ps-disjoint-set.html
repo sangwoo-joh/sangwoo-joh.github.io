@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      OCaml로 PS 하기 -6-
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="OCaml로 PS 하기 -6-" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="최애 언어 OCaml로 알고리즘 문제를 풀어보는 시리즈 여섯 번째 글이다." />
+<meta property="og:description" content="최애 언어 OCaml로 알고리즘 문제를 풀어보는 시리즈 여섯 번째 글이다." />
+<link rel="canonical" href="https://sangwoo-joh.github.io/ocaml-ps-disjoint-set" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/ocaml-ps-disjoint-set" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2021-10-13T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OCaml로 PS 하기 -6-" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2021-10-13T00:00:00+00:00","datePublished":"2021-10-13T00:00:00+00:00","description":"최애 언어 OCaml로 알고리즘 문제를 풀어보는 시리즈 여섯 번째 글이다.","headline":"OCaml로 PS 하기 -6-","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/ocaml-ps-disjoint-set"},"url":"https://sangwoo-joh.github.io/ocaml-ps-disjoint-set"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>OCaml로 PS 하기 -6-</h1>
+<h2>서로소 집합</h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2021-10-13
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+
+<a href="/archive?tag=ocaml"><span class="tag">ocaml</span></a>
+
+
+
+
+</p></em>
+
+
+<p>최애 언어 <a href="https://ocaml.org/">OCaml</a>로 알고리즘 문제를 풀어보는
+ 시리즈 여섯 번째 글이다.</p>
+
+<h2 id="서로소-집합">서로소 집합</h2>
+<p>서로소 집합(Disjoint Set, 또는 Union-Find)은 이름이 뜻하는 그대로
+ <em>서로소</em>인 성질을 갖는 <em>집합</em>이다. 여기에 속한 원소 각각은 중복되지
+ 않는 유일한 값(집합)이지만, 공통 원소가 없는 부분 집합(서로소)으로
+ 원소를 분할할 수 있는 자료구조이다. 세 가지 핵심 연산을 제공해야
+ 하는데,</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">합치기</code>(<code class="language-plaintext highlighter-rouge">Union</code>): 두 원소가 속한 서로소 부분 집합을 합쳐서 하나의
+서로소 부분 집합으로 만든다.</li>
+  <li><code class="language-plaintext highlighter-rouge">찾기</code>(<code class="language-plaintext highlighter-rouge">Find</code>): 어떤 원소가 속한 서로소 부분 집합을 구한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">만들기</code>(<code class="language-plaintext highlighter-rouge">MakeSet</code>): 원소 하나만 가지는 서로소 부분 집합을 만든다.</li>
+</ul>
+
+<p>이때 <code class="language-plaintext highlighter-rouge">합치기</code> 연산은 두 원소를 합치는 것이 아니라, 원소가 속한 서로소
+ 부분 집합 <em>자체</em>를 합치는 것이다. 따라서 <code class="language-plaintext highlighter-rouge">합치기</code> 연산 이후에 두
+ 원소에 대한 <code class="language-plaintext highlighter-rouge">찾기</code> 연산의 결과는 같아야 한다.</p>
+
+<p>그럼 이걸 어디다 쓸 수 있을까?
+ <a href="https://en.wikipedia.org/wiki/Disjoint-set_data_structure#Applications">위키백과</a>에
+ 따르면 어떤 집합의 분할(partitioning)을 모델링할 수 있다고
+ 한다. 그리고 심볼 표현식으로 구성된 방정식을 푸는 알고리즘인
+ <a href="https://en.wikipedia.org/wiki/Unification_(computer_science)">Unification</a>을
+ 구현하는 데에도 쓰인다<sup id="fnref:1" role="doc-noteref"><a href="#fn:1" class="footnote" rel="footnote">1</a></sup>. 그 외에도 여러 현실 문제를 모델링하여
+ 해를 구하는 데에 쓰인다<sup id="fnref:2" role="doc-noteref"><a href="#fn:2" class="footnote" rel="footnote">2</a></sup>.</p>
+
+<h2 id="구현">구현</h2>
+<p>서로소 집합의 구현은 <a href="https://en.wikipedia.org/wiki/Parent_pointer_tree">Parent point
+ tree</a>라고 불리는
+ 자료구조를 따른다. 이름 그대로 부모를 가리키는 트리이다. 우리에게
+ 익숙한 트리는 부모가 자식을 가리키는 하향식의 트리이지만, 이건 그
+ 반대의 개념이다. 아무런 최적화를 하지 않는다면 이 구조를 그대로
+ 사용하면 되고, 성능을 개선하고 싶다면 여기에 추가적인 정보를 더
+ 유지하여 활용한다. 참고로 아무런 최적화가 없다면 이 트리는 입력에
+ 따라 아주 불균형한 트리를 만들 수 있기 때문에, 링크드 리스트와 다를
+ 바 없다.</p>
+
+<p>보통 알고리즘 문제에서는 서로소 집합에 담을 원소가 정수로도 충분히
+ 모델링 가능하도록 문제가 나오기 때문에, 대부분은 (1) 정수형 배열을
+ 이용하여 원소가 속한 서로소 집합의 <em>대표 원소</em>를 관리하도록
+ 구현한다. 이렇게하면 속도 측면에서는 이득을 얻지만 원소의 타입에 대한
+ 일반성을 잃는다. 그래서 정수로 표현할 수 없는 원소인 경우에는 (2)
+ 해시 테이블(파이썬에서는 딕셔너리)로 구현을 하기도 한다. 그 외에
+ 제네릭한 라이브러리의 경우 말 그대로 (3) 부모를 가리키는 포인터
+ 트리로 구현하기도 한다<sup id="fnref:3" role="doc-noteref"><a href="#fn:3" class="footnote" rel="footnote">3</a></sup>.</p>
+
+<h2 id="1717번-집합의-표현"><a href="https://www.acmicpc.net/problem/1717">1717번: 집합의 표현</a></h2>
+<p>“서로소 집합이 뭔지 알고, 구현할 수 있니?”를 묻는 문제다. 위에서
+ 설명한 세 가지 방법으로 구현해보자.</p>
+
+<h3 id="정수형-배열로-구현하기">정수형 배열로 구현하기</h3>
+<p>가장 기본이 되는 정수형 배열로 먼저 구현해보자.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">MakeSet(x)</code>: <code class="language-plaintext highlighter-rouge">x</code>가 하나뿐인 서로소 집합을 만들면 된다. 즉, <code class="language-plaintext highlighter-rouge">x</code>의
+대표 원소가 <code class="language-plaintext highlighter-rouge">x</code>가 되게끔 하면 된다. 참고로, 배열로 구현하는
+경우에는 그냥 배열의 초기값을 그 인덱스로 잡아버리면 <code class="language-plaintext highlighter-rouge">MakeSet</code>
+연산을 한 것과 동일하다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Find(x)</code>: <code class="language-plaintext highlighter-rouge">x</code>의 대표 원소를 배열에서 찾으면 된다.</li>
+  <li><code class="language-plaintext highlighter-rouge">Union(x, y)</code>: <code class="language-plaintext highlighter-rouge">x</code>의 대표 원소와 <code class="language-plaintext highlighter-rouge">y</code>의 대표 원소가 같도록 만들면
+된다. 예를 들어 <code class="language-plaintext highlighter-rouge">x</code>를 중심으로 생각하면, <code class="language-plaintext highlighter-rouge">x</code>의 대표 원소를 <code class="language-plaintext highlighter-rouge">y</code>의
+대표 원소로 업데이트한다.</li>
+</ul>
+
+<p>이 아이디어를 코드로 옮기면 다음과 같다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">make_set</span> <span class="n">root</span> <span class="n">x</span> <span class="o">=</span> <span class="n">root</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="c">(* Array.init을 활용한다면 필요없는 연산 *)</span>
+
+<span class="k">let</span> <span class="k">rec</span> <span class="n">find</span> <span class="n">root</span> <span class="n">x</span> <span class="o">=</span>
+  <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="k">then</span> <span class="n">x</span> <span class="k">else</span> <span class="n">find</span> <span class="n">root</span> <span class="n">root</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">let</span> <span class="n">union</span> <span class="n">root</span> <span class="n">x</span> <span class="n">y</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="n">px</span><span class="o">,</span> <span class="n">py</span> <span class="o">=</span> <span class="n">find</span> <span class="n">root</span> <span class="n">x</span><span class="o">,</span> <span class="n">find</span> <span class="n">root</span> <span class="n">y</span> <span class="k">in</span>
+  <span class="k">if</span> <span class="n">px</span> <span class="o">=</span> <span class="n">py</span> <span class="k">then</span> <span class="bp">()</span> <span class="k">else</span> <span class="n">root</span><span class="o">.</span><span class="p">(</span><span class="n">px</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">py</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">union</code> 연산에서는 <code class="language-plaintext highlighter-rouge">px</code> 하나의 부모를 업데이트하기 때문에, <code class="language-plaintext highlighter-rouge">find</code>
+ 연산이 제대로 동작하려면 <code class="language-plaintext highlighter-rouge">root.(x)</code>가 변하지 않을 때까지, 즉 일종의
+ Fixed point에 도달할 때까지 거슬러 올라가야 한다.</p>
+
+<p>이건 올바른 구현이지만, 아무런 최적화가 없기 때문에 제출 시 <code class="language-plaintext highlighter-rouge">시간
+ 초과</code>가 뜬다. 그럼 하나씩 최적화를 해 나아가 보자.</p>
+
+<h4 id="최적화-1---경로-압축">최적화 1 - 경로 압축</h4>
+<p>서로소 집합에는 유명한 두 가지 최적화가 있는데, 그 중 먼저 <em>경로
+ 압축(Path compression)</em>을 살펴보자.</p>
+
+<p>앞서 말했듯이 입력이 불균형하면 우리가 만든 트리는 아래 그림<sup id="fnref:4" role="doc-noteref"><a href="#fn:4" class="footnote" rel="footnote">4</a></sup>처럼
+ 일자로 늘어진 링크드 리스트와 다를 바 없게 된다. 그래서 <code class="language-plaintext highlighter-rouge">Find(x)</code>
+ 연산은 결국 링크드 리스트의 길이만큼 <code class="language-plaintext highlighter-rouge">y</code>, <code class="language-plaintext highlighter-rouge">z</code>를 거슬러 올라가게 된다.</p>
+
+<p><img src="assets/img/disjoint-set-unbalanced.png" alt="unbalanced" /></p>
+
+<p>그런데 생각해보면 <code class="language-plaintext highlighter-rouge">Find(x)</code> 연산을 하면서 거슬러 올라가는 동안 만나는
+ 모든 친구들의 대표 원소는 궁극적으로는 모두 하나의 대표 원소(위
+ 그림의 <code class="language-plaintext highlighter-rouge">z</code>)로 수렴하게 된다. 경로 압축은 이 사실을 이용해서,
+ <code class="language-plaintext highlighter-rouge">Find(x)</code> 연산을 수행할 때마다 거쳐간 모든 친구들의 부모를 바로 이
+ 진짜 부모 노드를 가리키도록 업데이트 하는 것이다. 이를 통해 트리가
+ 링크드 리스트 모양이 아니라 아래와 같이 고르게 평평해질 수 있다.</p>
+
+<p><img src="assets/img/disjoint-set-path-compression.png" alt="balanced" /></p>
+
+<p>이 아이디어를 코드로 옮기면 다음과 같다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">rec</span> <span class="n">find</span> <span class="n">root</span> <span class="n">x</span> <span class="o">=</span>
+  <span class="k">if</span> <span class="n">root</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">=</span> <span class="n">x</span> <span class="k">then</span> <span class="n">x</span>
+  <span class="k">else</span> <span class="p">(</span>
+    <span class="c">(* path compression *)</span>
+    <span class="n">root</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">find</span> <span class="n">root</span> <span class="n">root</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">);</span>
+    <span class="n">root</span><span class="o">.</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+  <span class="p">)</span>
+</code></pre></div></div>
+
+<p>겨우 두 줄 수정했을 뿐이지만, 엄청나게 빨라진다. 덕분에
+ <a href="https://www.acmicpc.net/problem/status/1717/22/1">68ms</a>로 통과할 수
+ 있었다.</p>
+
+<h4 id="최적화-2---랭크로-합치기">최적화 2 - 랭크로 합치기</h4>
+<p>두 번째 최적화는 <em>랭크로 합치기(Union by Rank)</em>라는 것이다. 앞의 경로
+ 압축이 <code class="language-plaintext highlighter-rouge">찾기</code> 연산에 대한 최적화였다면, 이 최적화는 이름처럼 <code class="language-plaintext highlighter-rouge">합치기</code>
+ 연산에 대한 최적화이다.</p>
+
+<p>앞에서 본 것처럼 <code class="language-plaintext highlighter-rouge">합치기</code> 연산을 할 때 아무 생각없이 합쳐버리면
+ 일자로 늘어진 링크드 리스트가 된다. 그럼 이걸 좀더 똑똑하게 합칠 수
+ 있는 방법은 뭘까? 아래 그림에서 <code class="language-plaintext highlighter-rouge">y</code>와 <code class="language-plaintext highlighter-rouge">z</code>를 합치려고 할 때, 즉
+ <code class="language-plaintext highlighter-rouge">Union(y, z)</code> 연산을 할 때,</p>
+
+<p><img src="assets/img/disjoint-set-before-union.png" alt="before-union" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">z</code>를 <code class="language-plaintext highlighter-rouge">y</code>에 합치면 다음과 같이 일자로 늘어진 링크드 리스트가
+ 되어버리지만,</p>
+
+<p><img src="assets/img/disjoint-set-dumb-union.png" alt="dumb-union" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">y</code>를 <code class="language-plaintext highlighter-rouge">z</code>에 합치면 다음과 같이 좀더 균형잡힌 트리를 얻을 수 있다.</p>
+
+<p><img src="assets/img/disjoint-set-smart-union.png" alt="smart-union" /></p>
+
+<p>즉, 둘 중 더 작은 집합을 더 큰 집합에 합치는 것이다.</p>
+
+<p>이 아이디어를 구현하기 위해서는 <em>랭크</em>라고 하는, 서로소 부분
+ 집합(대표 원소)에서 어떤 정수 값으로 가는 맵을 도입한다. 초기에 모든
+ 서로소 부분 집합의 랭크는 <code class="language-plaintext highlighter-rouge">0</code>이다. 같은 랭크 <code class="language-plaintext highlighter-rouge">r</code>을 갖는 두 집합이
+ 합쳐지면 랭크가 1 증가한다. 그 외의 경우는 더 작은 랭크를 갖는 집합을
+ 더 큰 랭크를 갖는 집합에 합친다. 이 아이디어를 바탕으로 랭크로 합치기
+ 최적화를 구현하면 다음과 같다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">union</span> <span class="n">root</span> <span class="n">rank</span> <span class="n">x</span> <span class="n">y</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="n">px</span><span class="o">,</span> <span class="n">py</span> <span class="o">=</span> <span class="n">find</span> <span class="n">root</span> <span class="n">x</span><span class="o">,</span> <span class="n">find</span> <span class="n">root</span> <span class="n">y</span> <span class="k">in</span>
+  <span class="k">if</span> <span class="n">px</span> <span class="o">=</span> <span class="n">py</span> <span class="k">then</span> <span class="bp">()</span>
+  <span class="k">else</span> <span class="p">(</span>
+    <span class="c">(* optimize with union by rank *)</span>
+    <span class="c">(* make px.rank &gt;= py.rank *)</span>
+    <span class="k">let</span> <span class="n">px</span><span class="o">,</span> <span class="n">py</span> <span class="o">=</span> <span class="k">if</span> <span class="n">rank</span><span class="o">.</span><span class="p">(</span><span class="n">px</span><span class="p">)</span> <span class="o">&gt;=</span> <span class="n">rank</span><span class="o">.</span><span class="p">(</span><span class="n">py</span><span class="p">)</span> <span class="k">then</span> <span class="n">px</span><span class="o">,</span> <span class="n">py</span> <span class="k">else</span> <span class="n">py</span><span class="o">,</span> <span class="n">px</span> <span class="k">in</span>
+    <span class="c">(* attach smaller one to bigger one *)</span>
+    <span class="n">root</span><span class="o">.</span><span class="p">(</span><span class="n">py</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">px</span><span class="p">;</span>
+    <span class="c">(* increment rank if necessary *)</span>
+    <span class="k">if</span> <span class="n">rank</span><span class="o">.</span><span class="p">(</span><span class="n">px</span><span class="p">)</span> <span class="o">=</span> <span class="n">rank</span><span class="o">.</span><span class="p">(</span><span class="n">py</span><span class="p">)</span> <span class="k">then</span> <span class="n">rank</span><span class="o">.</span><span class="p">(</span><span class="n">px</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="n">rank</span><span class="o">.</span><span class="p">(</span><span class="n">px</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="p">)</span>
+</code></pre></div></div>
+
+<p><a href="https://en.wikipedia.org/wiki/Disjoint-set_data_structure#Time_complexity">위키피디아</a>에
+ 따르면, 경로 압축과 랭크로 합치기 최적화를 모두 적용하면 시간
+ 복잡도가 <a href="https://en.wikipedia.org/wiki/Ackermann_function#Inverse">역 아커만
+ 함수</a>로
+ 떨어진다고 하며, 이는 큰 입력에 대해서는 거의 상수(<code class="language-plaintext highlighter-rouge">5</code>)에 가까운
+ 값이라고 한다. 하지만 이 문제의 경우, 오히려 두 최적화를 모두
+ 적용하니 <a href="https://www.acmicpc.net/source/34199332">88ms</a>로 경로
+ 압축만 적용했을 때보다 느렸다. 그리고 랭크로 합치기만 적용했을 때에도
+ 경로 압축만큼 빠르진 않았다. 이 문제 정도의 사이즈에서 배열로 구현할
+ 때에는 경로 압축 최적화만 적용해도 충분한 속도를 보였다.</p>
+
+<h3 id="해시-테이블로-구현하기">해시 테이블로 구현하기</h3>
+<p>파이썬이라면, 배열을 해시 테이블로 바꾸는 일은 trivial하다. 그냥
+ 딕셔너리로 바꿔주기만 하면 된다. OCaml에서는 모듈을 만들어줘야
+ 한다. 따라서 여기서는 해시 테이블을 이용한 <code class="language-plaintext highlighter-rouge">DisjointSet</code>
+ 모듈(정확히는 펑터)을 구현해보았다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nc">DisjointSet</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">module</span> <span class="k">type</span> <span class="nc">Elt</span> <span class="o">=</span> <span class="k">sig</span>
+    <span class="k">type</span> <span class="n">t</span>
+    <span class="k">val</span> <span class="n">equal</span><span class="o">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="kt">bool</span>
+    <span class="k">val</span> <span class="n">hash</span><span class="o">:</span> <span class="n">t</span> <span class="o">-&gt;</span> <span class="kt">int</span>
+  <span class="k">end</span>
+
+  <span class="k">module</span> <span class="nc">Make</span><span class="p">(</span><span class="nc">Elt</span><span class="o">:</span> <span class="nc">Elt</span><span class="p">)</span> <span class="o">=</span> <span class="k">struct</span>
+    <span class="k">type</span> <span class="n">elt</span> <span class="o">=</span> <span class="nn">Elt</span><span class="p">.</span><span class="n">t</span>
+    <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="n">root</span><span class="o">:</span> <span class="p">(</span><span class="n">elt</span><span class="o">,</span> <span class="n">elt</span><span class="p">)</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">t</span><span class="p">;</span>
+      <span class="n">rank</span><span class="o">:</span> <span class="p">(</span><span class="n">elt</span><span class="o">,</span> <span class="kt">int</span><span class="p">)</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">t</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">let</span> <span class="n">empty</span> <span class="o">=</span> <span class="p">{</span> <span class="n">root</span><span class="o">=</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">create</span> <span class="mi">100</span><span class="p">;</span> <span class="n">rank</span><span class="o">=</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">create</span> <span class="mi">100</span> <span class="p">}</span>
+    <span class="k">let</span> <span class="n">make_set</span> <span class="n">t</span> <span class="n">x</span> <span class="o">=</span>
+      <span class="k">if</span> <span class="n">not</span> <span class="p">(</span><span class="nn">Hashtbl</span><span class="p">.</span><span class="n">mem</span> <span class="n">t</span><span class="o">.</span><span class="n">root</span> <span class="n">x</span><span class="p">)</span> <span class="k">then</span> <span class="p">(</span>
+        <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">add</span> <span class="n">t</span><span class="o">.</span><span class="n">root</span> <span class="n">x</span> <span class="n">x</span><span class="p">;</span>
+        <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">add</span> <span class="n">t</span><span class="o">.</span><span class="n">rank</span> <span class="n">x</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">let</span> <span class="k">rec</span> <span class="n">find</span> <span class="n">t</span> <span class="n">x</span> <span class="o">=</span>
+      <span class="k">let</span> <span class="n">px</span> <span class="o">=</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">find</span> <span class="n">t</span><span class="o">.</span><span class="n">root</span> <span class="n">x</span> <span class="k">in</span>
+      <span class="k">if</span> <span class="n">px</span> <span class="o">&lt;&gt;</span> <span class="n">x</span> <span class="k">then</span>
+        <span class="c">(* path compression *)</span>
+        <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">replace</span> <span class="n">t</span><span class="o">.</span><span class="n">root</span> <span class="n">x</span> <span class="p">(</span><span class="n">find</span> <span class="n">t</span> <span class="n">px</span><span class="p">);</span>
+      <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">find</span> <span class="n">t</span><span class="o">.</span><span class="n">root</span> <span class="n">x</span>
+    <span class="k">let</span> <span class="k">rec</span> <span class="n">union</span> <span class="n">t</span> <span class="n">x</span> <span class="n">y</span> <span class="o">=</span>
+      <span class="k">let</span> <span class="n">px</span><span class="o">,</span> <span class="n">py</span> <span class="o">=</span> <span class="n">find</span> <span class="n">t</span> <span class="n">x</span><span class="o">,</span> <span class="n">find</span> <span class="n">t</span> <span class="n">y</span> <span class="k">in</span>
+      <span class="k">if</span> <span class="n">px</span> <span class="o">=</span> <span class="n">py</span> <span class="k">then</span> <span class="bp">()</span>
+      <span class="k">else</span> <span class="p">(</span>
+        <span class="c">(* union by rank *)</span>
+        <span class="k">let</span> <span class="n">rx</span><span class="o">,</span> <span class="n">ry</span> <span class="o">=</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">find</span> <span class="n">t</span><span class="o">.</span><span class="n">rank</span> <span class="n">px</span><span class="o">,</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">find</span> <span class="n">t</span><span class="o">.</span><span class="n">rank</span> <span class="n">py</span> <span class="k">in</span>
+        <span class="k">let</span> <span class="n">px</span><span class="o">,</span> <span class="n">py</span> <span class="o">=</span> <span class="k">if</span> <span class="n">rx</span> <span class="o">&lt;</span> <span class="n">ry</span> <span class="k">then</span> <span class="n">py</span><span class="o">,</span> <span class="n">px</span> <span class="k">else</span> <span class="n">px</span><span class="o">,</span> <span class="n">py</span> <span class="k">in</span>
+        <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">replace</span> <span class="n">t</span><span class="o">.</span><span class="n">root</span> <span class="n">py</span> <span class="n">px</span><span class="p">;</span>
+        <span class="k">if</span> <span class="n">rx</span> <span class="o">=</span> <span class="n">ry</span> <span class="k">then</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">replace</span> <span class="n">t</span><span class="o">.</span><span class="n">rank</span> <span class="n">px</span> <span class="p">(</span><span class="n">rx</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+      <span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<ul>
+  <li>실제 사용은 <code class="language-plaintext highlighter-rouge">module DisjointIntSet =
+DisjointSet.Make(IntWithHash)</code>와 같이 <code class="language-plaintext highlighter-rouge">Make</code> 펑터로부터 모듈을
+만들어서 사용한다. 해시 테이블로 구현했기 때문에 <code class="language-plaintext highlighter-rouge">hash</code> 함수가
+필요하다.</li>
+  <li>해싱 함수를 호출해야만 하는 로드로 인해서 당연히 배열로 구현한
+것보다 느리다. 해당 문제 기준 대략 2~3배 정도의 속도 차이가 났다.</li>
+  <li>경로 압축과 랭크로 합치기 최적화를 모두 적용한 바람직한 구현이지만,
+배열로 구현했을 때와 마찬가지로 경로 압축 최적화만 적용했을 때가 더
+빠른 성능을 보였다 (168ms vs. 288ms)</li>
+</ul>
+
+<h3 id="부모-포인터-트리로-구현하기">부모 포인터 트리로 구현하기</h3>
+<p>마지막으로 실제 포인터를 이용해서 뒤집어진 트리를
+ 구현해보자. JaneStreet Core_kernel 모듈의
+ <a href="https://github.com/janestreet/core_kernel/blob/master/core/src/union_find.ml"><code class="language-plaintext highlighter-rouge">Union_find</code></a>를
+ 많이 참조했다. 주석을 보니 오리지널은 MLTon의
+ <a href="https://github.com/MLton/mlton/blob/master/lib/mlton/set/disjoint.fun"><code class="language-plaintext highlighter-rouge">disjoint.fun</code></a>인듯
+ 하다.</p>
+
+<p>OCaml의 강점 중 하나는 바로 명령형(Imperative) 스타일을 특별한
+ 복잡함없이 잘 지원한다는 것이다. 기본적으로 OCaml의 모든 변수는 불변
+ 타입이지만, <code class="language-plaintext highlighter-rouge">mutable</code> 키워드를 이용해서 레코드의 필드를 가변으로
+ 정의할 수 있다. 또 하나의 값만 가변으로 담을 수 있는 <code class="language-plaintext highlighter-rouge">ref</code> 생성자가
+ 있는데, <code class="language-plaintext highlighter-rouge">type 'a ref = { mutable content : 'a }</code>로 정의되어 있다. 이
+ <code class="language-plaintext highlighter-rouge">ref</code>에서 값을 빼오거나 업데이트하는 연산은
+ <a href="https://github.com/ocaml/ocaml/blob/4.11.1/stdlib/stdlib.ml#L232-L237">런타임</a>에
+ <a href="https://github.com/ocaml/ocaml/blob/600aad5d29643598d4bddee346275a51930c7859/lambda/translprim.ml#L132">구현</a>되어
+ 있는데, 레코드의 <code class="language-plaintext highlighter-rouge">mutable</code> 필드를 조작하는 것과 동일한 의미를 갖는다.</p>
+
+<p>런타임 프리미티브가 좀더 최적화가 잘 되어 있을 거라는 기대를 갖고
+ 여기서는 <code class="language-plaintext highlighter-rouge">ref</code>를 이용해서 트리를 구현해보자. 먼저 트리의 노드 타입을
+ 다음과 같이 정의한다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">type</span> <span class="n">node</span> <span class="o">=</span>
+  <span class="o">|</span> <span class="nc">Representative</span> <span class="k">of</span> <span class="kt">int</span> <span class="n">ref</span>
+  <span class="o">|</span> <span class="nc">PointsTo</span> <span class="k">of</span> <span class="n">node</span> <span class="n">ref</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Representative r</code>은 트리의 대표 원소를 나타내며, 랭크 값 <code class="language-plaintext highlighter-rouge">r</code>을
+담고 있다.</li>
+  <li><code class="language-plaintext highlighter-rouge">PointsTo x</code>는 <code class="language-plaintext highlighter-rouge">x</code>를 가리키는 재귀적인 타입이다. <code class="language-plaintext highlighter-rouge">x</code>가 현재 노드의
+부모 노드라는 것을 추상화했다.</li>
+</ul>
+
+<p>잠깐 삼천포로 빠지자면, 여기서는 특별히 대표 원소의 <em>값</em>을 유지할
+ 필요는 없어서 제외했지만, 범용적인 용도의 라이브러리에서는 주로 <code class="language-plaintext highlighter-rouge">'a</code>
+ 타입의 값을 담는 <code class="language-plaintext highlighter-rouge">mutable</code> 필드를 함께 갖는 레코드로 정의한다. 아마
+ Unification 알고리즘을 서로소 집합으로 구현하려면 이렇게 값을 담는
+ 필드가 필요할 것으로 생각된다.</p>
+
+<p>이렇게 정의한 타입으로 먼저 <code class="language-plaintext highlighter-rouge">만들기</code> 연산을 구현해보자.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">make_set</span> <span class="bp">()</span> <span class="o">=</span> <span class="n">ref</span> <span class="p">(</span><span class="nc">Representative</span> <span class="p">(</span><span class="n">ref</span> <span class="mi">0</span><span class="p">))</span>
+</code></pre></div></div>
+
+<ul>
+  <li>랭크 초기값 <code class="language-plaintext highlighter-rouge">0</code>을 갖는 대표 원소 하나를 만든다.</li>
+  <li>이때 대표 원소 값 자체도 <code class="language-plaintext highlighter-rouge">ref</code>로 감싸줘야 한다. 그래야 실제로
+가리키는 값을 업데이트하는 연산을 할 수 있다.</li>
+</ul>
+
+<p>다음으로 최적화가 없는 <code class="language-plaintext highlighter-rouge">찾기</code> 연산을 구현해보자.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">rec</span> <span class="n">find</span> <span class="n">t</span> <span class="o">=</span>
+  <span class="k">match</span> <span class="o">!</span><span class="n">t</span> <span class="k">with</span>
+  <span class="o">|</span> <span class="nc">Representative</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="p">)</span>
+  <span class="o">|</span> <span class="nc">PointsTo</span> <span class="n">t'</span> <span class="o">-&gt;</span> <span class="n">find</span> <span class="n">t'</span>
+</code></pre></div></div>
+
+<p>여기서 <code class="language-plaintext highlighter-rouge">r</code>이 아니라 <code class="language-plaintext highlighter-rouge">(t, r)</code>을 리턴하는 이유는 <code class="language-plaintext highlighter-rouge">합치기</code> 연산을
+ 위해서이다.</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">t</code>는 <code class="language-plaintext highlighter-rouge">node ref</code> 타입으로, 노드가 가리키는 부모 노드를 업데이트
+하기 위해서 리턴한다.</li>
+  <li><code class="language-plaintext highlighter-rouge">r</code>은 <code class="language-plaintext highlighter-rouge">int ref</code> 타입으로, 랭크 값을 비교하고 업데이트하기 위해서
+리턴한다.</li>
+</ul>
+
+<p>이제 마지막으로 최적화가 없는 <code class="language-plaintext highlighter-rouge">합치기</code> 연산은 다음과 같다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">union</span> <span class="n">t1</span> <span class="n">t2</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="n">t1</span><span class="o">,</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">find</span> <span class="n">t1</span> <span class="k">in</span>
+  <span class="k">let</span> <span class="n">t2</span><span class="o">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">find</span> <span class="n">t2</span> <span class="k">in</span>
+  <span class="k">if</span> <span class="n">t1</span> <span class="o">==</span> <span class="n">t2</span> <span class="k">then</span> <span class="bp">()</span> <span class="k">else</span> <span class="n">t1</span> <span class="o">:=</span> <span class="nc">PointsTo</span> <span class="n">t2</span>
+</code></pre></div></div>
+
+<ul>
+  <li>파라미터로 넘어온 <code class="language-plaintext highlighter-rouge">t1</code>과 <code class="language-plaintext highlighter-rouge">t2</code>과 서로 같은 서로소 집합에
+속해있는지를 확인해야 하는데, 이때 값이 구조적으로
+같은지(structural equaltiy)를 확인하는 게 아니라 실제로 <em>같은 값을
+가리키고 있는지(physical equality)</em>를 확인해야 한다. 따라서 <code class="language-plaintext highlighter-rouge">=</code>가
+아니라 <code class="language-plaintext highlighter-rouge">==</code> 연산자로 비교해야 한다<sup id="fnref:5" role="doc-noteref"><a href="#fn:5" class="footnote" rel="footnote">5</a></sup></li>
+  <li>참고로 <code class="language-plaintext highlighter-rouge">find</code>로 찾은 <code class="language-plaintext highlighter-rouge">t</code>와 <code class="language-plaintext highlighter-rouge">r</code> 모두 대표 원소라고 할 수 있는
+레퍼런스이므로, 같은지 비교할 때 <code class="language-plaintext highlighter-rouge">t1 == t2</code>을 써도 되고 <code class="language-plaintext highlighter-rouge">r1 ==
+r2</code>를 써도 된다.</li>
+</ul>
+
+<p>이렇게 바닐라 구현을 하면 당연하게도 <code class="language-plaintext highlighter-rouge">시간 초과</code>가 뜬다. 그럼 또
+ 최적화해보자.</p>
+
+<h4 id="경로-압축">경로 압축</h4>
+<p>앞의 아이디어를 코드로 옮기면 다음과 같다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="k">rec</span> <span class="n">find</span> <span class="n">t</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="k">rec</span> <span class="n">compress</span> <span class="n">t</span> <span class="o">~</span><span class="n">prev</span> <span class="o">~</span><span class="n">descendants</span> <span class="o">=</span>
+    <span class="k">match</span> <span class="o">!</span><span class="n">t</span> <span class="k">with</span>
+    <span class="o">|</span> <span class="nc">Representative</span> <span class="n">r</span> <span class="o">-&gt;</span>
+      <span class="nn">List</span><span class="p">.</span><span class="n">iter</span> <span class="p">(</span><span class="k">fun</span> <span class="n">n</span> <span class="o">-&gt;</span> <span class="n">n</span> <span class="o">:=</span> <span class="o">!</span><span class="n">prev</span><span class="p">)</span> <span class="n">descendants</span><span class="p">;</span>
+      <span class="p">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="p">)</span>
+    <span class="o">|</span> <span class="nc">PointsTo</span> <span class="n">t'</span> <span class="o">-&gt;</span> <span class="n">compress</span> <span class="n">t'</span> <span class="o">~</span><span class="n">prev</span><span class="o">:</span><span class="n">t</span> <span class="o">~</span><span class="n">descendants</span><span class="o">:</span><span class="p">(</span><span class="n">prev</span> <span class="o">::</span> <span class="n">descendants</span><span class="p">)</span>
+  <span class="k">in</span>
+  <span class="k">match</span> <span class="o">!</span><span class="n">t</span> <span class="k">with</span>
+  <span class="o">|</span> <span class="nc">Representative</span> <span class="n">r</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="n">t</span><span class="o">,</span> <span class="n">r</span><span class="p">)</span>
+  <span class="o">|</span> <span class="nc">PointsTo</span> <span class="n">t'</span> <span class="o">-&gt;</span> <span class="n">compress</span> <span class="n">t'</span> <span class="o">~</span><span class="n">prev</span><span class="o">:</span><span class="n">t</span> <span class="o">~</span><span class="n">descendants</span><span class="o">:</span><span class="bp">[]</span>
+</code></pre></div></div>
+
+<p>먼저 일반적인 트리에서, 어떤 부모 노드에서 출발해서 도달할 수
+ 있는(Reachable) 자식 노드를 <em>후손(Descendant)</em>이라고 한다. 여기서는
+ 자식에서 부모로 가는 길 밖에 없긴 하지만, 최종적으로 트리의 루트(대표
+ 원소)까지 가는 경로에 있는 모든 노드는 이 루트 노드의 후손들이 된다.</p>
+
+<p>그래서 이 후손들을 <code class="language-plaintext highlighter-rouge">descendants</code> 라는 리스트로 계속 모아뒀다가 한번에
+ 최적화를 진행하는 <code class="language-plaintext highlighter-rouge">compress</code>라는 함수를 도입한다. <code class="language-plaintext highlighter-rouge">find</code>에 처음
+ 진입했을 때 <code class="language-plaintext highlighter-rouge">t</code>가 가리키는 부모 노드가 있다면 그때부터 <code class="language-plaintext highlighter-rouge">compress</code>를
+ 진행하면 된다. 이때 바로 직전에 만난 노드를 <code class="language-plaintext highlighter-rouge">prev</code>에 저장해두는
+ 방식으로 <code class="language-plaintext highlighter-rouge">descendants</code>를 쌓을 수 있다. 그리고 <code class="language-plaintext highlighter-rouge">compress</code>가 최종적으로
+ 대표 원소인 <code class="language-plaintext highlighter-rouge">Representative r</code>을 만났을 때, 쌓아둔 후손들이 가리키는
+ 노드를 업데이트하면 된다.</p>
+
+<h4 id="랭크로-합치기">랭크로 합치기</h4>
+<p>바로 코드부터 보자.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">union</span> <span class="n">t1</span> <span class="n">t2</span> <span class="o">=</span>
+  <span class="k">let</span> <span class="n">t1</span><span class="o">,</span> <span class="n">r1</span> <span class="o">=</span> <span class="n">find</span> <span class="n">t1</span> <span class="k">in</span>
+  <span class="k">let</span> <span class="n">t2</span><span class="o">,</span> <span class="n">r2</span> <span class="o">=</span> <span class="n">find</span> <span class="n">t2</span> <span class="k">in</span>
+  <span class="k">if</span> <span class="n">t1</span> <span class="o">==</span> <span class="n">t2</span> <span class="k">then</span> <span class="bp">()</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="o">!</span><span class="n">r1</span> <span class="o">&lt;</span> <span class="o">!</span><span class="n">r2</span> <span class="k">then</span> <span class="n">t1</span> <span class="o">:=</span> <span class="nc">PointsTo</span> <span class="n">t2</span>
+  <span class="k">else</span> <span class="p">(</span>
+    <span class="n">t2</span> <span class="o">:=</span> <span class="nc">PointsTo</span> <span class="n">t1</span><span class="p">;</span>
+    <span class="k">if</span> <span class="o">!</span><span class="n">r1</span> <span class="o">=</span> <span class="o">!</span><span class="n">r2</span> <span class="k">then</span> <span class="n">incr</span> <span class="n">r1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">!r</code>로 랭크 정수 값을 빼올 수 있다. 랭크 값의 비교는 physical
+equality로 비교할 필요가 없다.</li>
+  <li><code class="language-plaintext highlighter-rouge">t1</code>의 랭크가 더 작으면 <code class="language-plaintext highlighter-rouge">t1</code>을 <code class="language-plaintext highlighter-rouge">t2</code> 아래에 합친다. 이 말을 코드로
+풀어쓰면, <code class="language-plaintext highlighter-rouge">t1</code>이 가리키는 노드가 <code class="language-plaintext highlighter-rouge">PointsTo t2</code>가 된다는 의미이다.</li>
+</ul>
+
+<p>포인터 트리 구현의 경우, 경로 압축만 적용하거나 (284ms) 랭크로
+ 합치기만 적용한 것 (324ms)보다 두 최적화를 모두 적용했을 때 (260ms)
+ 가장 빨랐다.</p>
+
+<hr />
+<p>여기까지 다양한 방법으로 서로소 집합을 구현해보았다. 배열과 경로
+ 압축만을 이용한 68ms 솔루션, 해시 테이블과 경로 압축만을 이용한 168ms
+ 솔루션, 포인터 트리와 경로 압축 + 랭크로 합치기 최적화를 적용한 260ms
+ 솔루션 총 세 가지를 확인할 수 있었다.</p>
+
+<p>다른 사람은 어떻게 구현했을지 궁금하지만 아쉽게도 이 문제를 OCaml로
+ 제출한 사람이 <a href="https://www.acmicpc.net/problem/status/1717/22/1">나
+ 혼자</a>라서 확인할 수
+ 없었다. 애초에 알고리즘 문제를 OCaml로 푸는 데 관심 있는 사람이 없는
+ 것 같다. 아니 애초에 OCaml에 관심있는 사람이 없는 것이다. OCaml
+ 얘기를 나눌 수 있는 사람이 주변에 많았으면 좋겠건만. 🥲 이번 생은
+ 외롭게 방망이나 깎아야 겠다.</p>
+
+<hr />
+
+<div class="footnotes" role="doc-endnotes">
+  <ol>
+    <li id="fn:1" role="doc-endnote">
+      <p>불현듯 4190.310 마지막 과제였던 타입 체커 구현하기가
+떠오른다. 그때는 Unification이 어떻게 동작하는지 제대로 이해하지
+못해서 여기저기 구멍난 구현을 제출했었는데. 지금이라면 제대로
+구현할 수 있을까? 이건 다른 포스팅에서 다뤄봐야겠다. <a href="#fnref:1" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:2" role="doc-endnote">
+      <p>의외로 현업에서도 해당 자료 구조를 이용해야만 해결 가능한 이슈를
+마주한 적이 있다. 처음 접했을 당시에는 이 자료구조도, 해당 이슈도
+제대로 파악하지 못해서 애를 먹었지만, 주변의 도움으로 서로소
+집합으로 해결 가능하다는 것을 알았고 덕분에 쉽게 해결할 수 있었다. <a href="#fnref:2" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:3" role="doc-endnote">
+      <p>core_kernel의
+<a href="https://github.com/janestreet/core_kernel/blob/master/core/src/union_find.ml"><code class="language-plaintext highlighter-rouge">Union_find</code></a>
+모듈이 이렇게 구현되어 있다. 단, <code class="language-plaintext highlighter-rouge">MakeSet</code> 연산이 숲(Forest)을
+만드는 연산이 <strong>아니기</strong> 때문에, 문제 풀이를 위해서는 추가적인
+구현이 필요하다. <a href="#fnref:3" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:4" role="doc-endnote">
+      <p>그림은 <a href="https://excalidraw.com/">Excalidraw</a>로
+그렸다. <a href="https://blog.kkeun.net/computer/2021-02-18-excalidraw-cool">끈닷넷</a>에
+감사를. <a href="#fnref:4" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+    <li id="fn:5" role="doc-endnote">
+      <p>자세한 내용은 <a href="https://www.cs.cornell.edu/courses/cs3110/2020sp/textbook/mut/physical_equality.html">코넬 대학교의 OCaml 강의
+노트</a>를
+참조하면 좋다. <a href="#fnref:5" class="reversefootnote" role="doc-backlink">&#8617;</a></p>
+    </li>
+  </ol>
+</div>
+
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>

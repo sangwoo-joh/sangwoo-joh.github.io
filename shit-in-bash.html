@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      배쉬 스크립트에서 지뢰 피하기
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="배쉬 스크립트에서 지뢰 피하기" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="모름지기 프로그래머는 귀찮은 반복적인 일을 자동화할 줄 알아야 한다. 대부분의 자동화는 현존 최강의 스크립트 언어 파이썬으로 해결되지만, 리눅스 커맨드를 요리조리 지지고 볶고 해야하는 경우는 쉘 스크립트가 더 편한 경우가 종종 있어서 자주 쓰는 편이다." />
+<meta property="og:description" content="모름지기 프로그래머는 귀찮은 반복적인 일을 자동화할 줄 알아야 한다. 대부분의 자동화는 현존 최강의 스크립트 언어 파이썬으로 해결되지만, 리눅스 커맨드를 요리조리 지지고 볶고 해야하는 경우는 쉘 스크립트가 더 편한 경우가 종종 있어서 자주 쓰는 편이다." />
+<link rel="canonical" href="https://sangwoo-joh.github.io/shit-in-bash" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/shit-in-bash" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-10-25T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="배쉬 스크립트에서 지뢰 피하기" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2019-10-25T00:00:00+00:00","datePublished":"2019-10-25T00:00:00+00:00","description":"모름지기 프로그래머는 귀찮은 반복적인 일을 자동화할 줄 알아야 한다. 대부분의 자동화는 현존 최강의 스크립트 언어 파이썬으로 해결되지만, 리눅스 커맨드를 요리조리 지지고 볶고 해야하는 경우는 쉘 스크립트가 더 편한 경우가 종종 있어서 자주 쓰는 편이다.","headline":"배쉬 스크립트에서 지뢰 피하기","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/shit-in-bash"},"url":"https://sangwoo-joh.github.io/shit-in-bash"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>배쉬 스크립트에서 지뢰 피하기</h1>
+<h2>뭐 이딴게 다있어</h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2019-10-25
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+</p></em>
+
+
+<p>모름지기 프로그래머는 귀찮은 반복적인 일을 자동화할 줄 알아야
+ 한다. 대부분의 자동화는 현존 최강의 스크립트 언어 파이썬으로
+ 해결되지만, 리눅스 커맨드를 요리조리 지지고 볶고 해야하는 경우는 쉘
+ 스크립트가 더 편한 경우가 종종 있어서 자주 쓰는 편이다.</p>
+
+<p>하지만 쉘 스크립트, 특히 배쉬 스크립트는 … 언어 모델이 지뢰밭이라서
+ 까딱 잘못 하면 밟고 터지기 십상이다. 오늘은 내가 이때까지 밟은
+ 지뢰들을 정리한다.</p>
+
+<h2 id="지뢰밭-목록">지뢰밭 목록</h2>
+
+<h3 id="대입문에서-공백이-의미를-해친다">대입문에서 공백이 의미를 해친다</h3>
+<p>말 그대로 어떤 변수에 값을 대입할 때, 무심코 다른 언어에서 하던
+ 것처럼 <code class="language-plaintext highlighter-rouge">lhs = rhs</code> 로 쓰는 순간 <strong>에러코드 127</strong>을 볼 수 있다. 이
+ 뜻은 “현재 <code class="language-plaintext highlighter-rouge">PATH</code> 에서 님이 실행한 커맨드 못찾겠음” 인데, 즉 저
+ 대입문을 대입문이 아니라 <strong>커맨드의 실행</strong>으로 인식한
+ 것이다. 그러고보니 커맨드에서 옵션 줄 때 종종 <code class="language-plaintext highlighter-rouge">=</code>를 쓰지 않던가?</p>
+
+<p>암튼 원하는 걸 얻으려면 딱 붙여 써야 한다: <code class="language-plaintext highlighter-rouge">lhs=rhs</code></p>
+
+<h3 id="조건문에서는-공백이-의미를-갖는다">조건문에서는 공백이 의미를 갖는다</h3>
+<p>일단 쉘에서 조건문은 다음처럼 쓴다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">[</span> COND <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+ ...
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">if</code>로 열고 <code class="language-plaintext highlighter-rouge">fi</code>로 닫는 참신한 발상은 대체 누구 생각인지 궁금해지지만
+ 넘어가자. 뱀발로 그러면 당연히 <code class="language-plaintext highlighter-rouge">case</code> 문은 <code class="language-plaintext highlighter-rouge">esac</code>으로 닫겠지?
+ 그렇다. 그럼 <code class="language-plaintext highlighter-rouge">for</code>문은 <code class="language-plaintext highlighter-rouge">rof</code>으로 닫지 않을까? 아니다. 이건
+ 함정이다. 반복문은 <code class="language-plaintext highlighter-rouge">do</code>와 <code class="language-plaintext highlighter-rouge">done</code>으로 닫는다. 놀랍지 않은가?</p>
+
+<p>삼천포로 빠졌다. 다시 돌아와서, 저기서 <code class="language-plaintext highlighter-rouge">[ ... ];</code> 부분이 조건문의
+ 조건을 작성하는 부분인데, 여기서 중요한 것은 중괄호 사이에 <strong>반드시
+ 공백이 있어야 한다</strong>는 것이다. 예를 들어서 <code class="language-plaintext highlighter-rouge">VAR</code> 변수가 정수 1과
+ 같은지를 체크하려면:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">[</span> <span class="nv">$VAR</span> <span class="nt">-eq</span> 1]<span class="p">;</span> <span class="k">then</span>
+  ...
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>이렇게 쓰면 파싱에러가 뜬다. <strong>정확하게</strong></p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="o">[</span> <span class="nv">$VAR</span> <span class="nt">-eq</span> 1 <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  ...
+<span class="k">fi</span>
+</code></pre></div></div>
+
+<p>이렇게 써줘야한다. 아주 독불장군이다.</p>
+
+<h3 id="파이프라이닝에는-숨겨진-지뢰가-있다">파이프라이닝에는 숨겨진 지뢰가 있다.</h3>
+<p>이게 무슨 뜻인지 결론부터 말하면 파이프라이닝은 <strong>서브 쉘</strong>에서
+ 실행된다. 이게 대체 뭔 말이냐? 다음 상황을 보자.</p>
+
+<p>빌드 대상을 확인하는 함수와 실제 빌드를 수행하는 함수를 쉘로 대충
+ 다음과 같이 작성했다고 하자. 이때 <code class="language-plaintext highlighter-rouge">validate</code> 함수는 빌드 대상을
+ <code class="language-plaintext highlighter-rouge">BUILD_TARGETS</code> 배열 변수에 쌓고 <code class="language-plaintext highlighter-rouge">full_build</code> 함수에서 이걸 읽어서
+ 빌드를 수행하려고 한다.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">function </span>validate
+<span class="o">{</span>
+  ...
+  <span class="nv">BUILD_TARGETS</span><span class="o">=(</span> <span class="o">)</span>
+  ...
+  <span class="nv">BUILD_TARGETS</span><span class="o">=(</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BUILD_TARGETS</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BUILD_TARGET</span><span class="k">}</span><span class="s2">"</span> <span class="o">)</span>
+  ...
+<span class="o">}</span>
+
+<span class="k">function </span>full_build
+<span class="o">{</span>
+  real_build_command <span class="nt">--targets</span> <span class="s2">"</span><span class="k">${</span><span class="nv">BUILD_TARGETS</span><span class="p">[@]</span><span class="k">}</span><span class="s2">"</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>타입도 없고 공백이 시맨틱을 갖는 쉘에서 배열을 쓸려는 시도 자체가
+ 잘못된 것 같긴 하지만(…) 넘어가자. 암튼 이 함수들을 이렇게 쓰면 잘
+ 된다:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>...
+validate
+full_build
+</code></pre></div></div>
+
+<p>근데 빌드 하면서 <code class="language-plaintext highlighter-rouge">stdout</code>에 찍히는 로그를 타임스탬프랑 함께 파일에 찍고
+ 싶어서 다음처럼 바꿨다고 하자.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>validate
+full_build | ts | <span class="nb">tee </span>full-build.log
+</code></pre></div></div>
+
+<p>그럼 바로 <strong>에러</strong>가 뜬다!</p>
+
+<p>그 이유는 바로 쉘에서 <strong>파이프라이닝되는 명령들은 서브 쉘에서
+ 실행되어 독립적인 환경을 갖기 때문이다</strong>. 그래서 <code class="language-plaintext highlighter-rouge">full_build</code>가 그냥
+ 호출되면 <code class="language-plaintext highlighter-rouge">validate</code>에서 설정한 빌드 대상 변수를 잘 읽어오지만,
+ 파이프라이닝과 함께 실행되는 경우 <code class="language-plaintext highlighter-rouge">BUILD_TARGETS</code> 변수가 <strong>정의되지
+ 않았고</strong> , 그래서 실패가 뜬다. 세상에 뭐 이딴 경우가. 스펙을 모르면
+ 100% 밟고 터질 수 밖에 없는 초특급 지뢰다.</p>
+
+<p>그래서 예전 끈닷넷님이 공유해주셨던 <a href="http://mywiki.wooledge.org/BashPitfalls">배쉬의
+ 함정</a>을 다시 읽어보고 있는데
+ 여기 8번에 딱 이 상황이 나와있더라.</p>
+
+<blockquote>
+  <p>Changes to <code class="language-plaintext highlighter-rouge">count</code> won’t propagate outside the <code class="language-plaintext highlighter-rouge">while</code> loop because
+each command in a pipeline is executed in a separate SubShell. This
+surprises almost every Bash beginner at some point.</p>
+</blockquote>
+
+<p>호환마마보다도 무서운 언어다. 이 외에도 위의 “배쉬 함정” 글에는 정말
+ 참신하고도 기발한 지뢰들이 많으니 꼭 읽어보자. 그리고 <code class="language-plaintext highlighter-rouge">shellcheck</code>를
+ 생활화하도록 하자. (물론 이것도 완벽한 솔루션은 아니다. 특히 정규식
+ 관련해서는 의미가 달라지는 제안을 하기도 하던데 이건 다음 기회에.)
+ 지뢰밭을 피하려면 지뢰탐지기가 필요하듯 우리에겐 쉘을 잘 쓰기 위한
+ 장비가 필요하다. 물론 제일 좋은 것은 쉘을 쓰지 않아도 되는 것이겠지만
+ 리눅스가 점령한 세상에서 그런게 있을리가 없잖아? 결국 각개로 살아남는
+ 수 밖에 없으니 조심 또 조심하자.</p>
+
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>

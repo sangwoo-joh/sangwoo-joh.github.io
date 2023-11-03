@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="google-site-verification" content="fgTBOMeN_sdI4JNBqYTzDwH0458H8AAVbF78jLjwudg" />
+  <script type="text/javascript" src="/assets/vendor/moment.min.js"></script>
+  <script type="text/javascript" src="/assets/js/site.js"></script>
+  <!-- <script src="https://unpkg.com/cursor-effects@latest/dist/browser.js"></script> -->
+
+  <title>
+    
+      OCaml로 PS 하기 -5-
+    
+  </title>
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<meta name="generator" content="Jekyll v4.3.2" />
+<meta property="og:title" content="OCaml로 PS 하기 -5-" />
+<meta name="author" content="sangwoo-joh" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="최애 언어 OCaml 로 문제를 풀어보자 다섯 번째 시리즈다." />
+<meta property="og:description" content="최애 언어 OCaml 로 문제를 풀어보자 다섯 번째 시리즈다." />
+<link rel="canonical" href="https://sangwoo-joh.github.io/ocaml-ps-graphs" />
+<meta property="og:url" content="https://sangwoo-joh.github.io/ocaml-ps-graphs" />
+<meta property="og:site_name" content="Caml Shaving" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2020-04-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="OCaml로 PS 하기 -5-" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"sangwoo-joh"},"dateModified":"2020-04-14T00:00:00+00:00","datePublished":"2020-04-14T00:00:00+00:00","description":"최애 언어 OCaml 로 문제를 풀어보자 다섯 번째 시리즈다.","headline":"OCaml로 PS 하기 -5-","mainEntityOfPage":{"@type":"WebPage","@id":"https://sangwoo-joh.github.io/ocaml-ps-graphs"},"url":"https://sangwoo-joh.github.io/ocaml-ps-graphs"}</script>
+<!-- End Jekyll SEO tag -->
+
+  <link type="application/atom+xml" rel="alternate" href="https://sangwoo-joh.github.io/feed.xml" title="Caml Shaving" />
+
+  <link rel="apple-touch-icon" sizes="57x57" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-57x57.png">
+  <link rel="apple-touch-icon" sizes="60x60" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-60x60.png">
+  <link rel="apple-touch-icon" sizes="72x72" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-72x72.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-76x76.png">
+  <link rel="apple-touch-icon" sizes="114x114" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-114x114.png">
+  <link rel="apple-touch-icon" sizes="120x120" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-120x120.png">
+  <link rel="apple-touch-icon" sizes="144x144" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-144x144.png">
+  <link rel="apple-touch-icon" sizes="152x152" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-152x152.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://sangwoo-joh.github.io/assets/icons/apple-icon-180x180.png">
+  <link rel="icon" type="image/png" sizes="192x192"  href="https://sangwoo-joh.github.io/assets/icons/android-icon-192x192.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="https://sangwoo-joh.github.io/assets/icons/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="96x96" href="https://sangwoo-joh.github.io/assets/icons/favicon-96x96.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="https://sangwoo-joh.github.io/assets/icons/favicon-16x16.png">
+  <link rel="manifest" href="https://sangwoo-joh.github.io/assets/icons/manifest.json">
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Ubuntu" />
+  <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+  <meta name="msapplication-TileColor" content="#ffffff">
+  <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/main.css" />
+  <link rel="stylesheet" href="https://sangwoo-joh.github.io/assets/css/syntax.css" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-J0C68FHJ6L"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-J0C68FHJ6L');
+</script>
+
+
+</head>
+<body a="auto">
+    <main class="page-content" aria-label="Content">
+      <div class="w">
+        <a href="https://sangwoo-joh.github.io">/home/caml-shaving</a>
+<center>
+<h1>OCaml로 PS 하기 -5-</h1>
+<h2>OCamlgraph 흉내내기</h2>
+</center>
+
+<div class="post-edit-date">
+  
+  2020-04-14
+</div>
+
+<div class="post-edit-date">
+  
+  
+</div>
+
+<em><p align="right">
+
+태그:
+
+
+
+<a href="/archive?tag=dev"><span class="tag">dev</span></a>
+
+
+
+
+
+<a href="/archive?tag=ocaml"><span class="tag">ocaml</span></a>
+
+
+
+
+</p></em>
+
+
+<p>최애 언어 <a href="https://ocaml.org/">OCaml</a> 로 문제를 풀어보자 다섯 번째
+ 시리즈다.</p>
+
+<h3 id="그래프">그래프</h3>
+<p>그래프는 노드의 집합 \(V\)와 엣지의 집합 \(E\)로 구성된다. 이건
+ 이론적인 내용이고, 실제 문제 풀이에서는 “두 노드 사이에 엣지가
+ 있느냐?” 가 주된 관심사이다. 그래서 C 계열 언어로 코드를 짤 때는 주로
+ 2차원 인접 배열로 그래프를 구현한다.</p>
+
+<p>그럼 최애 언어 OCaml 에서는 어떻게 그래프를 모델링할 수 있을까? 답은
+ <a href="http://ocamlgraph.lri.fr/doc/">OCamlgraph</a>에서 찾을 수 있었다.</p>
+
+<p>OCamlgraph에는 두 가지 타입의 그래프가 있다: 하나는 Persistent이고
+ 다른 하나는 Imperative이다. Persistent는 그래프가 immutable 타입이
+ 되어 함수형에 적합하고, Imperative는 그래프가 reference 타입이 되어
+ 사이드 이펙트를 통해서 그래프를 조작해야 한다. 코드를 보면
+ Persistent는 <a href="https://github.com/backtracking/ocamlgraph/blob/master/src/persistent.ml#L43">Map으로
+ 구현</a>
+ 되어 있고, Imperative는 <a href="https://github.com/backtracking/ocamlgraph/blob/master/src/imperative.ml#L44">Hashtbl로
+ 구현</a>
+ 되어 있다.</p>
+
+<p>그럼 이제 이걸 흉내내서 문제를 풀어보자.</p>
+
+<h4 id="트리---리프-노드-개수-세기"><a href="https://www.acmicpc.net/problem/1068">트리 - 리프 노드 개수 세기</a></h4>
+<p>백준에서 “그래프 이론”으로 분류된 문제 중 기초적인 문제를 하나
+ 골라왔다. 제목은 트리이지만 실제로 트리는 그래프의 특수한 형태
+ (싸이클이 없는) 이므로 상관없다.</p>
+
+<p>이 문제는 OCamlgraph의 Persistent를 흉내내서 풀어보았다. 우선,
+ 그래프는 “노드에서 (연결된) 노드 집합으로 가는 함수”로 정의할 수
+ 있다.</p>
+
+<p>이를 위해 노드를 먼저 정의하자. 문제를 보면 노드는 그냥
+ 정수형이다. 하지만 OCaml에서 집합이나 맵 펑터를 이용하려면, 이를
+ 모듈로 정의할 필요가 있다. 집합과 맵 펑터 모두 모듈 시그니쳐로
+ <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.07/libref/Set.OrderedType.html">비교할 수 있는
+ 타입</a>을
+ 요구한다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nc">Node</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="kt">int</span>
+
+  <span class="k">let</span> <span class="n">compare</span> <span class="o">=</span> <span class="nn">Stdlib</span><span class="p">.</span><span class="n">compare</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>이 노드 모듈로 노드의 집합과 노드의 맵을 정의할 수 있다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nc">NodeSet</span> <span class="o">=</span> <span class="nn">Set</span><span class="p">.</span><span class="nc">Make</span> <span class="p">(</span><span class="nc">Node</span><span class="p">)</span>
+<span class="k">module</span> <span class="nc">NodeMap</span> <span class="o">=</span> <span class="nn">Map</span><span class="p">.</span><span class="nc">Make</span> <span class="p">(</span><span class="nc">Node</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이로부터 트리, 즉 (싸이클이 없는) 단방향 그래프 모듈을
+ 만들어보자. 어떤 인터페이스가 필요할까? 문제를 풀기 위해서는 아래와
+ 같은 인터페이스가 필요함을 알 수 있다.</p>
+
+<ul>
+  <li>노드 하나를 추가/삭제하는 함수 <code class="language-plaintext highlighter-rouge">add_vertex</code></li>
+  <li>두 노드를 잇는 엣지를 추가하는 함수 <code class="language-plaintext highlighter-rouge">add_edge</code></li>
+  <li>어떤 노드가 리프 노드인지를 확인하는 함수 <code class="language-plaintext highlighter-rouge">is_leaf</code></li>
+  <li>그래프 전체를 탐색하기 위한 모듈</li>
+</ul>
+
+<p>모듈 이름은 적당히 <code class="language-plaintext highlighter-rouge">Digraph</code>로 하고, 위의 인터페이스들을 하나씩
+ 차근차근 만들어보자.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nc">Digraph</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">module</span> <span class="nc">S</span> <span class="o">=</span> <span class="nc">NodeSet</span>
+  <span class="k">module</span> <span class="nc">M</span> <span class="o">=</span> <span class="nc">NodeMap</span>
+
+</code></pre></div></div>
+
+<p>먼저 그래프 모듈 안에서 집합과 맵 연산을 자주 사용할 것 같으니 짧은
+ 모듈 별칭을 지어주자.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="nn">S</span><span class="p">.</span><span class="n">t</span> <span class="nn">M</span><span class="p">.</span><span class="n">t</span>
+</code></pre></div></div>
+
+<p>그래프의 타입은 앞서 말한것 처럼 노드에서 노드의 집합으로 가는 함수
+  (맵) 이 된다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">let</span> <span class="n">empty</span> <span class="o">:</span> <span class="n">t</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">empty</span>
+</code></pre></div></div>
+
+<p>그래프를 조작하기 위해서는 반드시 빈 그래프가 필요하다. 이 빈
+ 그래프로부터 그래프 연산을 수행해서 새로운 그래프를 만들어야 하기
+ 때문이다. 그래프 타입에 따라 이는 단순히 비어있는 노드 맵이다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">let</span> <span class="n">mem_vertex</span> <span class="n">g</span> <span class="n">v</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">mem</span> <span class="n">v</span> <span class="n">g</span>
+
+  <span class="k">let</span> <span class="n">mem_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span> <span class="o">=</span> <span class="k">try</span> <span class="nn">S</span><span class="p">.</span><span class="n">mem</span> <span class="n">v2</span> <span class="p">(</span><span class="nn">M</span><span class="p">.</span><span class="n">find</span> <span class="n">v1</span> <span class="n">g</span><span class="p">)</span> <span class="k">with</span> <span class="nc">Not_found</span> <span class="o">-&gt;</span> <span class="bp">false</span>
+</code></pre></div></div>
+
+<p>노드를 추가/삭제하는 함수를 만들기 전에, 노드/엣지가 그래프에 있는지
+ 확인하는 멤버 함수를 만들었다. 노드 멤버 함수는 맵에 있는지만
+ 확인하면 되고, 엣지 멤버 함수는 (1) 일단 소스 노드를 가지고 맵을 뒤진
+ 뒤에 (2) 맵에 있는 싱크 노드 집합 안에 싱크 노드가 포함되는지를 보면
+ 된다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">let</span> <span class="n">add_vertex</span> <span class="n">g</span> <span class="n">v</span> <span class="o">=</span> <span class="k">if</span> <span class="n">mem_vertex</span> <span class="n">g</span> <span class="n">v</span> <span class="k">then</span> <span class="n">g</span> <span class="k">else</span> <span class="nn">M</span><span class="p">.</span><span class="n">add</span> <span class="n">v</span> <span class="nn">S</span><span class="p">.</span><span class="n">empty</span> <span class="n">g</span>
+</code></pre></div></div>
+
+<p>노드 하나만 추가하는 함수를 구현했다. 앞서 만든 노드 멤버 함수를
+ 이용해, 노드가 이미 있으면 원래 그래프를 리턴한다. 없으면 그때
+ 추가하는데, 여기서 노드 하나만 추가하는 것은 곧 해당 노드와 연결된
+ 노드 집합이 없다는 것을 의미한다. 따라서 빈 노드 집합과 맵핑
+ 시켜준다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">let</span> <span class="n">unsafe_add_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">add</span> <span class="n">v1</span> <span class="p">(</span><span class="nn">S</span><span class="p">.</span><span class="n">add</span> <span class="n">v2</span> <span class="p">(</span><span class="nn">M</span><span class="p">.</span><span class="n">find</span> <span class="n">v1</span> <span class="n">g</span><span class="p">))</span> <span class="n">g</span>
+
+  <span class="k">let</span> <span class="n">add_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span> <span class="o">=</span>
+    <span class="k">if</span> <span class="n">mem_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span> <span class="k">then</span> <span class="n">g</span>
+    <span class="k">else</span>
+      <span class="k">let</span> <span class="n">g</span> <span class="o">=</span> <span class="n">add_vertex</span> <span class="n">g</span> <span class="n">v1</span> <span class="k">in</span>
+      <span class="k">let</span> <span class="n">g</span> <span class="o">=</span> <span class="n">add_vertex</span> <span class="n">g</span> <span class="n">v2</span> <span class="k">in</span>
+      <span class="n">unsafe_add_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span>
+</code></pre></div></div>
+
+<p>엣지를 추가하는 함수는 조금 복잡하다. 우선 런타임 예외가 발생할 수
+ 있는 Unsafe 함수를 만들었다. 이 함수는 <code class="language-plaintext highlighter-rouge">v1</code>에 맵핑된 싱크 노드 집합에
+ <code class="language-plaintext highlighter-rouge">v2</code>를 추가하는데, 싱크 노드 집합을 못 찾으면 <code class="language-plaintext highlighter-rouge">Not_found</code> 예외를
+ 일으킨다. 하지만 실제 사용할 <code class="language-plaintext highlighter-rouge">add_edge</code> 함수 안에서 이런 경우가
+ 없도록 잘 처리했으니 괜찮다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">let</span> <span class="n">remove_vertex</span> <span class="n">g</span> <span class="n">v</span> <span class="o">=</span>
+    <span class="k">if</span> <span class="n">mem_vertex</span> <span class="n">g</span> <span class="n">v</span> <span class="k">then</span>
+      <span class="k">let</span> <span class="n">g</span> <span class="o">=</span> <span class="nn">M</span><span class="p">.</span><span class="n">remove</span> <span class="n">v</span> <span class="n">g</span> <span class="k">in</span>
+      <span class="nn">M</span><span class="p">.</span><span class="n">fold</span> <span class="p">(</span><span class="k">fun</span> <span class="n">k</span> <span class="n">s</span> <span class="o">-&gt;</span> <span class="nn">M</span><span class="p">.</span><span class="n">add</span> <span class="n">k</span> <span class="p">(</span><span class="nn">S</span><span class="p">.</span><span class="n">remove</span> <span class="n">v</span> <span class="n">s</span><span class="p">))</span> <span class="n">g</span> <span class="n">empty</span>
+    <span class="k">else</span> <span class="n">g</span>
+</code></pre></div></div>
+
+<p>노드를 하나 제거하는 함수는 다음과 같이 구현할 수 있다. 일단 멤버
+ 함수를 이용해 노드가 없는 경우는 그냥 원래 그래프를 돌려준다. 있으면,
+ 일단 맵에서 그 노드를 삭제한다. 그리고 맵 전체를 돌면서, 모든 싱크
+ 노드 집합에서 해당 노드를 삭제한다. Persistent한 스타일로, 맵 전체를
+ fold 하면서 기존의 노드 집합에서 해당 노드를 삭제하여 새로운 맵에
+ 추가하도록 했다. 이때 초기값은 빈 그래프 (빈 맵) 이다. 이 기발한
+ 방법은 Ocamlgraph의 <a href="https://github.com/backtracking/ocamlgraph/blob/master/src/persistent.ml#L69">Persistent
+ 코드</a>를
+ 참조했다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="k">let</span> <span class="n">is_leaf</span> <span class="n">g</span> <span class="n">v</span> <span class="o">=</span> <span class="k">try</span> <span class="nn">S</span><span class="p">.</span><span class="n">is_empty</span> <span class="p">(</span><span class="nn">M</span><span class="p">.</span><span class="n">find</span> <span class="n">v</span> <span class="n">g</span><span class="p">)</span> <span class="k">with</span> <span class="nc">Not_found</span> <span class="o">-&gt;</span> <span class="bp">false</span>
+</code></pre></div></div>
+
+<p>노드와 연결된 노드 집합이 공집합이면 해당 노드는 리프 노드이다.</p>
+
+<p>여기까지 그래프를 조작하는 인터페이스를 만들었다. 그러면 그래프를
+ 탐색하는 모듈은 어떻게 만들면 좋을까? 역시 OCamlgraph에서 힌트를 얻을
+ 수 있었는데,
+ <a href="http://ocamlgraph.lri.fr/doc/Traverse.html">Traverse</a>라는 모듈이
+ 제공하는 펑터를 이용해 각 그래프마다 원하는 탐색, 즉 넓이 우선
+ 탐색이나 깊이 우선 탐색을 위한 모듈을 만들 수 있다. 그리고 각
+ 탐색마다 fold, iter등의 조작 옵션을 통해 원하는 걸 얻을 수 있게끔
+ 해뒀다. 깔끔한 인터페이스다.</p>
+
+<p>문제를 풀기 위해서 모든 탐색 방법과 모든 조작 옵션이 필요하진
+ 않다. 여기서는 단순하게 DFS를 이용한 fold 를 구현하면 리프 노드의
+ 개수를 셀 수 있을 것이다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nc">Dfs</span> <span class="p">(</span><span class="nc">G</span><span class="o">:</span> <span class="k">module</span> <span class="k">type</span> <span class="k">of</span> <span class="nc">Digraph</span><span class="p">)</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">module</span> <span class="nc">H</span> <span class="o">=</span> <span class="nc">Hashtbl</span>
+
+  <span class="k">let</span> <span class="n">fold</span> <span class="o">~</span><span class="n">f</span> <span class="o">~</span><span class="n">init</span> <span class="o">~</span><span class="n">g</span> <span class="o">~</span><span class="n">root</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="n">explored</span> <span class="o">=</span> <span class="nn">H</span><span class="p">.</span><span class="n">create</span> <span class="mi">50</span> <span class="k">in</span>
+    <span class="k">let</span> <span class="n">frontier</span> <span class="o">=</span> <span class="nn">Stack</span><span class="p">.</span><span class="n">create</span> <span class="bp">()</span> <span class="k">in</span>
+    <span class="k">let</span> <span class="n">push</span> <span class="n">v</span> <span class="o">=</span>
+      <span class="k">if</span> <span class="n">not</span> <span class="p">(</span><span class="nn">H</span><span class="p">.</span><span class="n">mem</span> <span class="n">explored</span> <span class="n">v</span><span class="p">)</span> <span class="k">then</span> <span class="p">(</span>
+        <span class="nn">H</span><span class="p">.</span><span class="n">add</span> <span class="n">explored</span> <span class="n">v</span> <span class="bp">()</span> <span class="p">;</span>
+        <span class="nn">Stack</span><span class="p">.</span><span class="n">push</span> <span class="n">v</span> <span class="n">frontier</span> <span class="p">)</span>
+    <span class="k">in</span>
+    <span class="k">let</span> <span class="k">rec</span> <span class="n">loop</span> <span class="n">acc</span> <span class="o">=</span>
+      <span class="k">if</span> <span class="nn">Stack</span><span class="p">.</span><span class="n">is_empty</span> <span class="n">frontier</span> <span class="k">then</span> <span class="n">acc</span>
+      <span class="k">else</span>
+        <span class="k">let</span> <span class="n">visit</span> <span class="o">=</span> <span class="nn">Stack</span><span class="p">.</span><span class="n">pop</span> <span class="n">frontier</span> <span class="k">in</span>
+        <span class="k">let</span> <span class="n">acc</span> <span class="o">=</span> <span class="n">f</span> <span class="n">visit</span> <span class="n">acc</span> <span class="k">in</span>
+        <span class="nn">G</span><span class="p">.</span><span class="n">iter_succ</span> <span class="n">g</span> <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="n">push</span> <span class="o">~</span><span class="n">src</span><span class="o">:</span><span class="n">visit</span> <span class="p">;</span>
+        <span class="n">loop</span> <span class="n">acc</span>
+    <span class="k">in</span>
+    <span class="n">push</span> <span class="n">root</span> <span class="p">;</span>
+    <span class="n">loop</span> <span class="n">init</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>DFS <code class="language-plaintext highlighter-rouge">fold</code>는 다음과 같이 만들 수 있다. 일단 DFS 자체는 우리가 만든
+ (싸이클 없는 단방향) 그래프를 받아서 깊이 우선 탐색을 하는 모듈을
+ 만드는 펑터가 된다. <code class="language-plaintext highlighter-rouge">fold</code> 는 네 가지 입력을 받는데 (1) 각 노드마다
+ fold 할 함수, (2) fold 초기값, (3) 그래프, (4) 탐색을 시작할 루트
+ 노드이다. 그리고 이를 이용해 단순히 Stack을 활용한 깊이 우선 탐색을
+ 구현하면 된다.</p>
+
+<p>다만 한 가지, 이를 위해 추가적으로 필요한 그래프 인터페이스가
+ 있다. 바로 어떤 소스 노드에 연결된 싱크 노드 집합 전체에 함수를
+ 적용하는 함수이다. 여기서는 다음 탐색을 위해 스택에 넣는 함수
+ <code class="language-plaintext highlighter-rouge">push</code>를 적용해야 하기 때문에, fold나 map이 아닌 iter가
+ 필요하다. 이를 <code class="language-plaintext highlighter-rouge">Digraph</code> 모듈에 구현하면 다음과 같다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  <span class="o">...</span>
+  <span class="k">let</span> <span class="n">iter_succ</span> <span class="n">g</span> <span class="o">~</span><span class="n">f</span> <span class="o">~</span><span class="n">src</span> <span class="o">=</span> <span class="k">try</span> <span class="nn">S</span><span class="p">.</span><span class="n">iter</span> <span class="n">f</span> <span class="p">(</span><span class="nn">M</span><span class="p">.</span><span class="n">find</span> <span class="n">src</span> <span class="n">g</span><span class="p">)</span> <span class="k">with</span> <span class="nc">Not_found</span> <span class="o">-&gt;</span> <span class="bp">()</span>
+  <span class="o">...</span>
+</code></pre></div></div>
+
+<p>이제 이렇게 만든 그래프 모듈을 이용해서 그래프의 리프 노드
+ 개수를 세는 함수를 다음과 같이 만들 수 있다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="n">count_leaves</span> <span class="n">g</span> <span class="n">root</span> <span class="o">=</span>
+  <span class="k">if</span> <span class="nn">Digraph</span><span class="p">.</span><span class="n">mem_vertex</span> <span class="n">g</span> <span class="n">root</span> <span class="k">then</span>
+    <span class="k">let</span> <span class="k">module</span> <span class="nc">DFS</span> <span class="o">=</span> <span class="nc">Dfs</span> <span class="p">(</span><span class="nc">Digraph</span><span class="p">)</span> <span class="k">in</span>
+    <span class="nn">DFS</span><span class="p">.</span><span class="n">fold</span>
+      <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="p">(</span><span class="k">fun</span> <span class="n">node</span> <span class="n">count</span> <span class="o">-&gt;</span> <span class="k">if</span> <span class="nn">Digraph</span><span class="p">.</span><span class="n">is_leaf</span> <span class="n">g</span> <span class="n">node</span> <span class="k">then</span> <span class="n">succ</span> <span class="n">count</span> <span class="k">else</span> <span class="n">count</span><span class="p">)</span>
+      <span class="o">~</span><span class="n">init</span><span class="o">:</span><span class="mi">0</span> <span class="o">~</span><span class="n">g</span> <span class="o">~</span><span class="n">root</span>
+  <span class="k">else</span> <span class="mi">0</span>
+</code></pre></div></div>
+
+<p>루트 노드가 그래프에 없으면 당연히 리프 개수는 0이다. 있으면, 탐색을
+ 위한 DFS 모듈을 만들고, 리프 여부를 판단하여 개수를 누적하는 함수를
+ 그래프 전체에 fold 한다.</p>
+
+<p>나머지는 입력을 받아 그래프를 적절히 만들어서 <code class="language-plaintext highlighter-rouge">count_leaves</code> 함수에
+ 적용하기만 하면 된다. 이렇게 4ms 의 솔루션을 얻었다. 하하.</p>
+
+<h4 id="그래프---bfs와-dfs"><a href="https://www.acmicpc.net/problem/1260">그래프 - BFS와 DFS</a></h4>
+<p>이참에 그래프 탐색을 다 완성시켜보자. 마침 문제 제목부터 대놓고 BFS와
+ DFS인게 있어서 이것도 풀어봤다.</p>
+
+<p>이 문제는 앞의 트리와 다르게 양방향 그래프이다. 그러므로 엣지를
+ 추가할 때 양방향으로만 적절히 추가해주면 될 것이다. 그리고 똑같이
+ 풀면 재미없으니 이번에는 그래프 타입을 해시 테이블로 바꿔보자.</p>
+
+<p>Hashtbl 펑터를 이용하려면 앞의 노드 모듈에 해싱을 위해 <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.07/libref/Hashtbl.HashedType.html">추가적인
+ 값</a>이
+ 더 필요하다: <code class="language-plaintext highlighter-rouge">hash</code>와 <code class="language-plaintext highlighter-rouge">equal</code>을 구현해주면 된다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nc">Node</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="kt">int</span>
+
+  <span class="k">let</span> <span class="n">compare</span> <span class="o">=</span> <span class="nn">Stdlib</span><span class="p">.</span><span class="n">compare</span>
+
+  <span class="k">let</span> <span class="n">equal</span> <span class="o">=</span> <span class="nn">Stdlib</span><span class="p">.(</span> <span class="o">=</span> <span class="p">)</span>
+
+  <span class="k">let</span> <span class="n">hash</span> <span class="o">=</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="n">hash</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">NodeSet</span> <span class="o">=</span> <span class="nn">Set</span><span class="p">.</span><span class="nc">Make</span> <span class="p">(</span><span class="nc">Node</span><span class="p">)</span>
+<span class="k">module</span> <span class="nc">NodeHashtbl</span> <span class="o">=</span> <span class="nn">Hashtbl</span><span class="p">.</span><span class="nc">Make</span> <span class="p">(</span><span class="nc">Node</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>이제 이걸로 양방향 그래프 Bigraph 모듈을 만들어보자.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nc">Bigraph</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">module</span> <span class="nc">S</span> <span class="o">=</span> <span class="nc">NodeSet</span>
+  <span class="k">module</span> <span class="nc">H</span> <span class="o">=</span> <span class="nc">NodeHashtbl</span>
+
+  <span class="k">type</span> <span class="n">t</span> <span class="o">=</span> <span class="nn">S</span><span class="p">.</span><span class="n">t</span> <span class="nn">H</span><span class="p">.</span><span class="n">t</span>
+
+  <span class="k">let</span> <span class="n">empty</span> <span class="o">:</span> <span class="n">t</span> <span class="o">=</span> <span class="nn">H</span><span class="p">.</span><span class="n">create</span> <span class="mi">1000</span>
+
+  <span class="k">let</span> <span class="n">mem_vertex</span> <span class="n">g</span> <span class="n">v</span> <span class="o">=</span> <span class="nn">H</span><span class="p">.</span><span class="n">mem</span> <span class="n">g</span> <span class="n">v</span>
+
+  <span class="k">let</span> <span class="n">mem_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span> <span class="o">=</span> <span class="k">try</span> <span class="nn">S</span><span class="p">.</span><span class="n">mem</span> <span class="n">v2</span> <span class="p">(</span><span class="nn">H</span><span class="p">.</span><span class="n">find</span> <span class="n">g</span> <span class="n">v1</span><span class="p">)</span> <span class="k">with</span> <span class="nc">Not_found</span> <span class="o">-&gt;</span> <span class="bp">false</span>
+
+  <span class="k">let</span> <span class="n">add_vertex</span> <span class="n">g</span> <span class="n">v</span> <span class="o">=</span> <span class="k">if</span> <span class="n">mem_vertex</span> <span class="n">g</span> <span class="n">v</span> <span class="k">then</span> <span class="bp">()</span> <span class="k">else</span> <span class="nn">H</span><span class="p">.</span><span class="n">add</span> <span class="n">g</span> <span class="n">v</span> <span class="nn">S</span><span class="p">.</span><span class="n">empty</span>
+
+  <span class="k">let</span> <span class="n">unsafe_add_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span> <span class="o">=</span> <span class="nn">H</span><span class="p">.</span><span class="n">replace</span> <span class="n">g</span> <span class="n">v1</span> <span class="p">(</span><span class="nn">S</span><span class="p">.</span><span class="n">add</span> <span class="n">v2</span> <span class="p">(</span><span class="nn">H</span><span class="p">.</span><span class="n">find</span> <span class="n">g</span> <span class="n">v1</span><span class="p">))</span>
+
+  <span class="k">let</span> <span class="n">add_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span> <span class="o">=</span>
+    <span class="k">if</span> <span class="n">mem_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span> <span class="k">then</span> <span class="bp">()</span>
+    <span class="k">else</span> <span class="p">(</span>
+      <span class="n">add_vertex</span> <span class="n">g</span> <span class="n">v1</span> <span class="p">;</span>
+      <span class="n">add_vertex</span> <span class="n">g</span> <span class="n">v2</span> <span class="p">;</span>
+      <span class="n">unsafe_add_edge</span> <span class="n">g</span> <span class="n">v1</span> <span class="n">v2</span> <span class="p">;</span>
+      <span class="n">unsafe_add_edge</span> <span class="n">g</span> <span class="n">v2</span> <span class="n">v1</span> <span class="p">)</span>
+
+  <span class="k">let</span> <span class="n">iter_succ</span> <span class="n">g</span> <span class="o">~</span><span class="n">f</span> <span class="o">~</span><span class="n">src</span> <span class="o">=</span> <span class="k">try</span> <span class="nn">S</span><span class="p">.</span><span class="n">iter</span> <span class="n">f</span> <span class="p">(</span><span class="nn">H</span><span class="p">.</span><span class="n">find</span> <span class="n">g</span> <span class="n">src</span><span class="p">)</span> <span class="k">with</span> <span class="nc">Not_found</span> <span class="o">-&gt;</span> <span class="bp">()</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>Hashtbl은 Imperative 타입이기 때문에 사이드 이펙트를 이용해서 그래프
+ (노드 집합으로 가는 노드 테이블)을 조작한다. 따라서 빈 그래프를
+ 만드는 <code class="language-plaintext highlighter-rouge">empty</code>를 제외한 나머지 조작 함수들은 모두 리턴 타입이 <code class="language-plaintext highlighter-rouge">()</code>
+ 이다. 그 외에 Hashtbl 문서를 잘 읽어보면, 같은 키 값으로 <code class="language-plaintext highlighter-rouge">add</code> 함수를
+ 여러번 호출하면 이전의 값이 지워지는게 아니라 <em>가려지기</em> 때문에, 만약
+ 같은 키 값으로 여러번 다른 데이터를 추가한 뒤에 해당 키 값을 한번
+ 삭제하면 마지막 바로 직전의 키-값 맵핑이 부활한다. 따라서 엣지를
+ 추가할 때 <code class="language-plaintext highlighter-rouge">H.add</code>가 아니라 <code class="language-plaintext highlighter-rouge">H.replace</code>를 호출해야 한다. 사실 이
+ 문제에서는 노드를 삭제하는 경우가 없어서 크게 문제는 안되지만 덕분에
+ 표준 라이브러리가 어떻게 동작하는지 이번 기회에 더 잘 알게 되었다.</p>
+
+<p>이제 이 양방향 그래프 모듈로부터 각각 깊이 우선 탐색 / 넓이 우선
+ 탐색을 수행할 수 있는 탐색용 펑터를 만들어보자. 이 문제에서는 단순히
+ 탐색하는 순서대로 노드 번호를 출력하라고만 되어 있으니 이번에는
+ fold가 아니라 iter가 있으면 될 것이다.</p>
+
+<div class="language-ocaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">module</span> <span class="nc">Dfs</span> <span class="p">(</span><span class="nc">G</span><span class="o">:</span> <span class="k">module</span> <span class="k">type</span> <span class="k">of</span> <span class="nc">Bigraph</span><span class="p">)</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">module</span> <span class="nc">H</span> <span class="o">=</span> <span class="nc">Hashtbl</span>
+
+  <span class="k">let</span> <span class="n">iter</span> <span class="o">~</span><span class="n">f</span> <span class="o">~</span><span class="n">g</span> <span class="o">~</span><span class="n">root</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="n">explored</span> <span class="o">=</span> <span class="nn">H</span><span class="p">.</span><span class="n">create</span> <span class="mi">2048</span> <span class="k">in</span>
+    <span class="k">let</span> <span class="k">rec</span> <span class="n">loop</span> <span class="n">v</span> <span class="o">=</span>
+      <span class="k">if</span> <span class="n">not</span> <span class="p">(</span><span class="nn">H</span><span class="p">.</span><span class="n">mem</span> <span class="n">explored</span> <span class="n">v</span><span class="p">)</span> <span class="k">then</span>
+        <span class="nn">H</span><span class="p">.</span><span class="n">add</span> <span class="n">explored</span> <span class="n">v</span> <span class="bp">()</span> <span class="p">;</span>
+        <span class="n">f</span> <span class="n">v</span> <span class="p">;</span>
+        <span class="nn">G</span><span class="p">.</span><span class="n">iter_succ</span> <span class="n">g</span> <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="n">loop</span> <span class="o">~</span><span class="n">src</span><span class="o">:</span><span class="n">v</span> <span class="p">)</span>
+    <span class="k">in</span>
+    <span class="n">loop</span> <span class="n">root</span>
+<span class="k">end</span>
+
+<span class="k">module</span> <span class="nc">Bfs</span> <span class="p">(</span><span class="nc">G</span><span class="o">:</span> <span class="k">module</span> <span class="k">type</span> <span class="k">of</span> <span class="nc">Bigraph</span><span class="p">)</span> <span class="o">=</span> <span class="k">struct</span>
+  <span class="k">module</span> <span class="nc">H</span> <span class="o">=</span> <span class="nc">Hashtbl</span>
+
+  <span class="k">let</span> <span class="n">iter</span> <span class="o">~</span><span class="n">f</span> <span class="o">~</span><span class="n">g</span> <span class="o">~</span><span class="n">root</span> <span class="o">=</span>
+    <span class="k">let</span> <span class="n">explored</span> <span class="o">=</span> <span class="nn">H</span><span class="p">.</span><span class="n">create</span> <span class="mi">2048</span> <span class="k">in</span>
+    <span class="k">let</span> <span class="n">frontier</span> <span class="o">=</span> <span class="nn">Queue</span><span class="p">.</span><span class="n">create</span> <span class="bp">()</span> <span class="k">in</span>
+    <span class="k">let</span> <span class="n">push</span> <span class="n">v</span> <span class="o">=</span>
+      <span class="k">if</span> <span class="n">not</span> <span class="p">(</span><span class="nn">H</span><span class="p">.</span><span class="n">mem</span> <span class="n">explored</span> <span class="n">v</span><span class="p">)</span> <span class="k">then</span> <span class="p">(</span>
+        <span class="nn">Queue</span><span class="p">.</span><span class="n">push</span> <span class="n">v</span> <span class="n">frontier</span> <span class="p">;</span>
+        <span class="nn">H</span><span class="p">.</span><span class="n">add</span> <span class="n">explored</span> <span class="n">v</span> <span class="bp">()</span> <span class="p">)</span>
+    <span class="k">in</span>
+    <span class="k">let</span> <span class="k">rec</span> <span class="n">loop</span> <span class="bp">()</span> <span class="o">=</span>
+      <span class="k">if</span> <span class="nn">Queue</span><span class="p">.</span><span class="n">is_empty</span> <span class="n">frontier</span> <span class="k">then</span> <span class="bp">()</span>
+      <span class="k">else</span>
+        <span class="k">let</span> <span class="n">v</span> <span class="o">=</span> <span class="nn">Queue</span><span class="p">.</span><span class="n">pop</span> <span class="n">frontier</span> <span class="k">in</span>
+        <span class="n">f</span> <span class="n">v</span> <span class="p">;</span>
+        <span class="nn">G</span><span class="p">.</span><span class="n">iter_succ</span> <span class="n">g</span> <span class="o">~</span><span class="n">f</span><span class="o">:</span><span class="n">push</span> <span class="o">~</span><span class="n">src</span><span class="o">:</span><span class="n">v</span> <span class="p">;</span>
+        <span class="n">loop</span> <span class="bp">()</span>
+    <span class="k">in</span>
+    <span class="n">push</span> <span class="n">root</span> <span class="p">;</span>
+    <span class="n">loop</span> <span class="bp">()</span>
+<span class="k">end</span>
+</code></pre></div></div>
+
+<p>문제의 조건에 따라 fold가 아닌 iter를 구현해야 하는데, 각 탐색마다
+ 까다로웠던 부분이 하나 씩 있었다.</p>
+
+<p>먼저 DFS를 보자. 문제에서 “방문할 수 있는 정점이 여러 개인 경우에는
+ <strong>정점 번호가 작은 것</strong>을 먼저 방문하고, …“라고 명시하고 있다. 만약
+ 이전 트리 문제처럼 스택을 이용해서 DFS를 구현했다면, 이 조건을
+ 지키기가 까다롭다. 왜냐하면, 우리가 구현한 <code class="language-plaintext highlighter-rouge">iter_succ</code>, 즉 인접한
+ 싱크 노드 집합에 대해 함수 f를 적용하는 함수는 내부적으로
+ <a href="http://caml.inria.fr/pub/docs/manual-ocaml-4.07/libref/Set.Make.html"><code class="language-plaintext highlighter-rouge">Set.iter</code></a>를
+ 이용하고 있고, 당연히 이 함수는 집합의 원소가 <em>증가하는 순서대로</em> f를
+ 적용한다. 그래서 다음 방문 노드를 <code class="language-plaintext highlighter-rouge">iter_succ</code> 과 스택을 이용해서
+ 처리하게 되면 스택의 특성으로 인해 작은 것부터 스택에 들어가게 되고
+ 결과적으로 <strong>정점 번호가 큰 것</strong>을 먼저 방문하게 된다. 그래서
+ <code class="language-plaintext highlighter-rouge">Dfs.iter</code> 에서는 스택을 사용하지 않고 일반적인 재귀함수를 이용해서
+ 방문 순서를 지키도록 했다.</p>
+
+<p>BFS에서는 다음 방문할 노드를 큐 (frontier) 에 쌓으면 되는데, “이
+ 노드를 예전에 방문했었나?”를 이 큐에 넣기 전에 확인해야 한다. 이거만
+ 지키면 나머지는 자명하다.</p>
+
+<p>나머지 부분은 역시 입력으로부터 그래프를 만들고, 적절히 출력하기만
+ 하면 된다. 덕분에 76ms의 솔루션을 얻었다. 다른 C++ 솔루션들을 보니
+ 4ms (…) 투성이라 조금 아쉽긴 하지만, 최애 언어로 문제 풀이가 잘
+ 동작하는 걸 지켜보는 뿌듯함이 더 크다.</p>
+
+<h4 id="다섯-번째-시리즈를-마무리하면서">다섯 번째 시리즈를 마무리하면서…</h4>
+<p>최애 언어로 문제 풀이 시리즈가 벌써 다섯 번째다. 업무에서 최애 언어를
+ 쓰지 못하는 아쉬움에 몸부림 치면서 시작한 시리즈가 여기까지 오게 될
+ 줄은 몰랐다. 감개가 무량하다.</p>
+
+<p>시리즈를 진행하면서 놀라웠던 점은 의외로 OCaml이 문제를 풀기에 괜찮은
+ 언어라는 것이다. 물론 수행 시간은 C++나 Rust에 비해서는 조금 아쉽지만
+ (얘넨 무슨 4ms, 8ms 이런다…), 다른 GC 언어에 비하면 오히려
+ <strong>월등하다</strong>. 자바는 대부분 300ms가 넘어가고, 파이썬은 500ms, 1000ms
+ 이런다. 거기다 언어 자체가 간결하며, 모듈을 이용해서 깔끔한 추상화가
+ 가능하고, 의외로 Stdlib 표준 라이브러리도 나쁘지 않으며, functional과
+ imperative를 적절히 취사선택할 수 있고, 무엇보다 <strong>타입 안전</strong> 해서
+ 런타임 예외가 어디서 발생할지 짐작하기 쉽다.</p>
+
+<p>이 시리즈가 어디까지 갈 진 모르겠지만 당분간 계속 해볼 예정이다.</p>
+
+<p>추신) 제 코드의 최적화나 개선 사항은 언제든지 환영합니다 😋</p>
+
+
+<script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<br />
+
+<div>
+  <script src="https://giscus.app/client.js"
+          data-repo="sangwoo-joh/reactions"
+          data-repo-id="R_kgDOJFNVQw"
+          data-category="Comments"
+          data-category-id="DIC_kwDOJFNVQ84CUox9"
+          data-mapping="pathname"
+          data-strict="1"
+          data-reactions-enabled="1"
+          data-emit-metadata="0"
+          data-input-position="bottom"
+          data-theme="light_high_contrast"
+          data-lang="ko"
+          data-loading="lazy"
+          crossorigin="anonymous"
+          async>
+  </script>
+</div>
+
+<br />
+
+      </div>
+    </main>
+
+    
+    <footer>
+  <a href="/feed.xml">rss</a>
+  <a href="mailto:work.sangwoo.joh@gmail.com">mail</a>
+  <a href="https://www.linkedin.com/in/sangwoo-joh">linkedin</a>
+  <a href="https://github.com/sangwoo-joh">github</a>
+  <p class="copyright text-muted">Copyright &copy; sangwoo-joh 2023</p>
+  <small><a target="_blank" href="https://icons8.com/icons/set/--camel">Camel icon</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a></small>
+</footer>
+
+  </body>
+</html>
