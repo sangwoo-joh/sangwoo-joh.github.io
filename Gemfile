@@ -10,4 +10,3 @@ gem "wdm", "~> 0.1.0" if Gem.win_platform?
 gem "no-style-please"
 
 gem "webrick", "~> 1.7"
-gem "jekyll-org", ">= 1.1.0"
