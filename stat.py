@@ -20,8 +20,8 @@ def load_all(dir, exclude):
     paths = os.walk(dir, followlinks=False)
     files = []
     for path in paths:
-        for file_name in path[2]:
-            files.append(os.path.join(path[0], file_name))
+        for filename in path[2]:
+            files.append(os.path.join(path[0], filename))
 
     # only hard links
     files = [file for file in files if not os.path.islink(file)]
@@ -39,12 +39,12 @@ def load_all(dir, exclude):
     '--exclude', '-e',
     type=click.Path(exists=True, resolve_path=True, dir_okay=False),
     multiple=True,
-    help="Exclude from statistics",
+    help="File to exclude from statistics",
 )
 @click.option(
     '--output-plot', '-o',
     type=click.Path(exists=True, resolve_path=True, file_okay=False),
-    help="File name to write histogram plot",
+    help="Directory to write histogram plot. Figure file name will be hist-{now}.svg.",
 )
 def stat(dir, exclude, output_plot):
     contents = load_all(dir, exclude)
