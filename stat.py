@@ -37,14 +37,30 @@ def load_all(dir, exclude):
 @click.option(
     '--exclude', '-e',
     type=click.Path(exists=True, resolve_path=True, dir_okay=False),
-    multiple=True
+    multiple=True,
+    help="Exclude from statistics",
 )
-def stat(dir, exclude):
+@click.option(
+    '--output-plot', '-o',
+    type=click.Path(exists=True, resolve_path=True, file_okay=False),
+    help="File name to write histogram plot",
+)
+def stat(dir, exclude, output_plot):
     contents = load_all(dir, exclude)
     print(f"Total {len(contents)} contents")
     df = pd.DataFrame(data=contents, columns=['title', 'content'])
     df['words'] = df.apply(lambda row: len(row['content']), axis=1)
     print(df.describe())
+    post_max = df[df['words'] == df['words'].max()].iloc[0]['title']
+    post_min = df[df['words'] == df['words'].min()].iloc[0]['title']
+    print(f"Lognest post: {post_max}")
+    print(f"Shortest post: {post_min}")
+
+    if output_plot:
+        fig_name = os.path.join(output_plot, 'hist.svg')
+        fig = df.plot.hist(bins=100)
+        fig.figure.savefig(fig_name)
+        print(f"Saved figure in {fig_name}")
 
 if __name__ == '__main__':
     stat()
