@@ -2,6 +2,7 @@ import re
 import os
 import pandas as pd
 import click
+import time
 
 
 def load(filename):
@@ -47,6 +48,8 @@ def load_all(dir, exclude):
 )
 def stat(dir, exclude, output_plot):
     contents = load_all(dir, exclude)
+    now = time.strftime("%Y-%m-%d")
+    print(f"> Statistics of {now}")
     print(f"> Total {len(contents)} posts")
     df = pd.DataFrame(data=contents, columns=['title', 'content'])
     df['words'] = df.apply(lambda row: len(row['content']), axis=1)
@@ -59,7 +62,7 @@ def stat(dir, exclude, output_plot):
     print(f"> Shortest post: {post_min}")
 
     if output_plot:
-        fig_name = os.path.join(output_plot, 'hist.svg')
+        fig_name = os.path.join(output_plot, f'hist-{now}.svg')
         fig = df.plot.hist(bins=100)
         fig.figure.savefig(fig_name)
         print(f"> Saved figure in {fig_name}")
