@@ -15,7 +15,7 @@ def load(filename):
     content = content.strip()
     return title, content
 
-def load_all(dir):
+def load_all(dir, exclude):
     paths = os.walk(dir, followlinks=False)
     files = []
     for path in paths:
@@ -25,14 +25,22 @@ def load_all(dir):
     # only hard links
     files = [file for file in files if not os.path.islink(file)]
 
+    # filter exclude
+    files = [file for file in files if file not in exclude]
+
     # filter only markdown
     files = [file for file in files if os.path.splitext(file)[-1].lower() == '.md']
     return [*map(load, files)]
 
 @click.command()
 @click.argument('dir', type=click.Path(exists=True, resolve_path=True, file_okay=False))
-def stat(dir):
-    contents = load_all(dir)
+@click.option(
+    '--exclude', '-e',
+    type=click.Path(exists=True, resolve_path=True, dir_okay=False),
+    multiple=True
+)
+def stat(dir, exclude):
+    contents = load_all(dir, exclude)
     print(f"Total {len(contents)} contents")
     df = pd.DataFrame(data=contents, columns=['title', 'content'])
     df['words'] = df.apply(lambda row: len(row['content']), axis=1)
