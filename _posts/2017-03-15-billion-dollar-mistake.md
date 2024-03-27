@@ -3,7 +3,6 @@ layout: post
 tags: [think]
 published: true
 title: 1조짜리 실수
-subtitle: 호어 아저씨가 말씀하시길...
 ---
 
 >  I call it my billion-dollar mistake. It was the invention of the
@@ -18,4 +17,4 @@ subtitle: 호어 아저씨가 말씀하시길...
 >  last forty years.
 >  - Tony Hoare, Speaking at a conference in 2009, QCon
 
- 널 레퍼런스의 유혹이란...
+글쎄. 말은 저렇게 했지만 사실 저 당시에는 최선의 선택 아니었을까?

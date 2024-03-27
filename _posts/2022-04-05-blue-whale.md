@@ -1,8 +1,9 @@
 ---
 layout: post
 tags: [life]
-published: true
+published: false
 title: 흰수염고래
+last_update: 2024-03-27 11:18:48
 ---
 
 <center>

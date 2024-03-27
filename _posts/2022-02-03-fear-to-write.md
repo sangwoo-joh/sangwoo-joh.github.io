@@ -1,8 +1,9 @@
 ---
 layout: post
 tags: [life, think]
-published: true
+published: false
 title: 글 쓰는 일에 대한 두려움
+last_update: 2024-03-27 11:18:05
 ---
 
  문득 글을 쓰기가 두려워지는 때가 있다. 좀 생각해본 결과 두려움의
