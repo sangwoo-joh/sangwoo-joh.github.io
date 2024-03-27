@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-last_update: 2023-06-30 09:18:56
+last_update: 2024-03-27 15:34:15
 ---
 
 > We don't rise to the level of our expectations; we fall to the level of our training. - Archilochus
@@ -21,6 +21,6 @@ last_update: 2023-06-30 09:18:56
 
 
 ## Works 
- - [Bible](/bible)
+ - [Book](/book)
  - [`.dotfiles`](https://github.com/sangwoo-joh/.dotfiles)
  - [`.doom.d`](https://github.com/sangwoo-joh/.doom.d)
