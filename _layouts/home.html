@@ -44,13 +44,13 @@ layout: default
   let posts = document.getElementsByClassName("post-preview");
   let recent_posts = [];
   const today = moment();
-  const weekago = moment().subtract(7, 'd');
+  const past = moment().subtract(3, 'd');
 
   function update_label(date, text){
     for (let post of posts) {
       let pdate = moment(post.dataset[date]);
       // console.log(pdate);
-      if (pdate.isBetween(weekago, today)) {
+      if (pdate.isBetween(past, today)) {
         let new_tag = post.getElementsByClassName("post-label")[0];
         const b = document.createElement("b");
         const new_text = document.createTextNode(`[${text}]`);
