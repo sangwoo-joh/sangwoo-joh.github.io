@@ -2,25 +2,33 @@
 layout: page
 title: About
 permalink: /about/
-last_update: 2024-03-27 15:34:15
+last_update: 2024-05-25 23:38:37
 ---
-
-> We don't rise to the level of our expectations; we fall to the level of our training. - Archilochus
 
 ## About Me
 
- - Involuntary Polyglot Software Engineer
- - Emacs
- - Type System 
+ - I work as a full-stack software engineer.
+ - I define myself as an applied programming languages engineer.
+ - I'm fond of OCaml, Emacs(Doom), magit, org-roam.
 
-## About Caml Shaving
+## Interests
+ - programming languages theory and software engineering.
+ - engineering leadership.
+ - physical parallelism and asynchrony.
+ - books I'm currently reading:
+   - Types and programming languages, by Benjamin C. Pierce.
+   - Algoritms for modern hardware (Algorithmica), by Sergey Slotin.
+   - The software engineer's guidebook, by Gergely Orosz
+   - Verification for dummis: SMT and induction, by Adrien Champion.
 
- - [Yak Shaving](http://projects.csail.mit.edu/gsb/old-archive/gsb-archive/gsb2000-02-11.html)
- - [Down the rabbit hole](https://en.wikipedia.org/wiki/Down_the_rabbit_hole)
- - [OCaml](https://ocaml.org)
+## Mantra
 
+> We don't rise to the level of our expectations; we fall to the level of our training. - Archilochus
 
-## Works 
+> Before you speak, let your words pass through three gates: Is it true? Is it necessary? Is it kind?
+
+## Works
  - [Book](/book)
+ - [ocaml-ps](/ocaml-ps)
  - [`.dotfiles`](https://github.com/sangwoo-joh/.dotfiles)
  - [`.doom.d`](https://github.com/sangwoo-joh/.doom.d)
