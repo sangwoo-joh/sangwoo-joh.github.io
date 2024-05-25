@@ -17,7 +17,7 @@ last_update: 2024-05-25 23:38:37
  - physical parallelism and asynchrony.
  - books I'm currently reading:
    - Types and programming languages, by Benjamin C. Pierce.
-   - Algoritms for modern hardware (Algorithmica), by Sergey Slotin.
+   - Algorithms for modern hardware (Algorithmica), by Sergey Slotin.
    - The software engineer's guidebook, by Gergely Orosz
    - Verification for dummis: SMT and induction, by Adrien Champion.
 
