@@ -20,6 +20,7 @@ last_update: 2024-05-25 23:38:37
    - Algorithms for modern hardware (Algorithmica), by Sergey Slotin.
    - The software engineer's guidebook, by Gergely Orosz
    - Verification for dummis: SMT and induction, by Adrien Champion.
+   - 자기 경영 노트, 피터 드러커.
 
 ## Mantra
 
