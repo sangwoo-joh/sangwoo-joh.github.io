@@ -2,7 +2,7 @@
 layout: page
 title: About
 permalink: /about/
-last_update: 2024-05-25 23:38:37
+last_update: 2024-05-27 10:15:29
 ---
 
 ## About Me
@@ -15,12 +15,13 @@ last_update: 2024-05-25 23:38:37
  - programming languages theory and software engineering.
  - engineering leadership.
  - physical parallelism and asynchrony.
- - books I'm currently reading:
-   - Types and programming languages, by Benjamin C. Pierce.
-   - Algorithms for modern hardware (Algorithmica), by Sergey Slotin.
-   - The software engineer's guidebook, by Gergely Orosz
-   - Verification for dummis: SMT and induction, by Adrien Champion.
-   - 자기 경영 노트, 피터 드러커.
+
+## Books in Progress
+ - Types and programming languages, by Benjamin C. Pierce.
+ - Algorithms for modern hardware (Algorithmica), by Sergey Slotin.
+ - The software engineer's guidebook, by Gergely Orosz
+ - Verification for dummis: SMT and induction, by Adrien Champion.
+ - 자기 경영 노트, 피터 드러커.
 
 ## Mantra
 
