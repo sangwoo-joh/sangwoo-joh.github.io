@@ -1,8 +1,9 @@
 ---
 layout: post
 tags: [life]
-published: true
+published: false
 title: 허리 건강과 잠
+last_update: 2024-08-26 08:28:27
 ---
 
  나에게는 꾸준히 찾아오는 고통이 있는데 바로 허리 디스크다. 기억 나는
