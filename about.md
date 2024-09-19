@@ -9,7 +9,7 @@ last_update: 2024-07-26 14:39:34
 
  - full-stack software engineer
  - applied programming languages engineer
- - doomemacs
+ - OCaml, doomemacs, org-roam
 
 ## Interests
  - programming languages theory
