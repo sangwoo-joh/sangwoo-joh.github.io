@@ -7,14 +7,14 @@ last_update: 2024-07-26 14:39:34
 
 ## About Me
 
- - I work as a full-stack software engineer.
- - I define myself as an applied programming languages engineer.
- - I'm fond of OCaml, Emacs(Doom), magit, org-roam.
+ - full-stack software engineer
+ - applied programming languages engineer
+ - doomemacs
 
 ## Interests
- - programming languages theory and software engineering.
- - engineering leadership.
- - physical parallelism and asynchrony.
+ - programming languages theory
+ - engineering leadership
+ - parallel & asynchronous programming
 
 ## Mantra
 
