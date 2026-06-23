@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>페이지 이동 중...</title>
+    <script>
+        var newDomain = "https://blog.untyped.kr";
+        var path = window.location.pathname;
+        var query = window.location.search;
+        window.location.replace(newDomain + path + query);
+    </script>
+</head>
+<body>
+    <p>도메인을 샀습니다. 자동으로 이동하지 않으면 <a id="manual-link" href="https://blog.untyped.kr">여기</a>로 와주세요.</p>
+   <script>
+     document.getElementById("manual-link").href = "https://blog.untyped.kr" + window.location.pathname + window.location.search;
+  </script>
+</body>
+</html>
